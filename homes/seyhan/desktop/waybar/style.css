@@ -1,0 +1,120 @@
+/* Global */
+
+* {
+  font-family: "Jetbrains Mono NF";
+  font-weight: bold;
+  min-height: 0;
+  font-size: 12px;
+}
+
+/* Waybar */
+
+window#waybar {
+  background-color: rgba(10, 10, 10, 0.8);
+  color: #ffffff;
+}
+
+/* Button */
+
+button {
+  border: none;
+}
+
+/* Workspace button */
+
+#workspaces button {
+  padding: 0 4px;
+  color: gray;
+}
+
+#workspaces button:hover,
+#workspaces button.active {
+  color: #ffffff;
+}
+
+/* Element */
+
+#idle_inhibitor,
+#clock,
+#memory,
+#user,
+#battery,
+#bluetooth,
+#cpu,
+#tray,
+#network,
+#temperature,
+#wireplumber {
+  padding: 0 5px;
+}
+
+/* Bluetooth */
+
+#bluetooth.on {
+  font-size: 0;
+  padding: 0 0px;
+}
+
+#bluetooth.off {
+  color: #ff0000;
+}
+
+#bluetooth.disabled {
+  color: #ff0000;
+}
+
+/* Network */
+
+#network {
+  color: #00ff00;
+}
+
+#network.linked {
+  color: #ffff00;
+}
+
+#network.disconnected {
+  font-size: 0;
+  padding: 0 0px;
+}
+
+/* Wireplumber */
+
+#wireplumber.muted {
+  color: #ff0000;
+}
+
+/* CPU */
+
+#cpu.warning {
+  color: #ffff00;
+}
+
+#cpu.critical {
+  color: #ff0000;
+}
+
+/* Temperature */
+
+#temperature.warning {
+  color: #ffff00;
+}
+#temperature.critical {
+  color: #ff0000;
+}
+
+/* Battery */
+
+#battery.warning {
+  color: #ffff00;
+}
+#battery.critical {
+  color: #ff0000;
+}
+
+/* Workspaces */
+
+#workspaces {
+  margin: 0 4px;
+  margin-left: 0;
+}

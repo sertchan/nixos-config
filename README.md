@@ -1,5 +1,5 @@
 <center>
-<h1>My NixOS Configuration</h1>
+<h1>Seyhan's NixOS Configuration</h1>
 </center>
 I'm using this NixOS configuration to maintain my device. Currently I'm using it with a single user and a single device, but in the future I plan to expand this to many devices and users.
 

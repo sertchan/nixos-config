@@ -1,0 +1,38 @@
+{ lib, ... }: {
+
+  services.resolved = {
+    enable = true;
+    settings = {
+      Resolve = {
+        FallbackDNS = [
+          "1.1.1.1"
+          "1.0.0.1"
+          "2606:4700:4700::1111"
+          "2606:4700:4700::1001"
+        ];
+        LLMNR = "false";
+        DNSSEC = "false";
+        Domains = [ "~." ];
+        DNSOverTLS = "true";
+        Cache = "true";
+        MulticastDNS = "false";
+      };
+    };
+  };
+
+  networking = {
+    nameservers = lib.mkDefault [
+      "162.55.58.40#ctif.hagezi.org"
+      "2a01:4f8:1c19:6c19::1#ctif.hagezi.org"
+    ];
+    networkmanager.enable = true;
+    usePredictableInterfaceNames = true;
+  };
+
+  systemd = {
+    services = {
+      systemd-networkd.stopIfChanged = false;
+      systemd-resolved.stopIfChanged = false;
+    };
+  };
+}

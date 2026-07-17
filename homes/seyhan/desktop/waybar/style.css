@@ -1,0 +1,108 @@
+
+* {
+  font-family: "Jetbrains Mono NF";
+  font-weight: bold;
+  min-height: 0;
+  font-size: 12px;
+}
+
+
+window#waybar {
+  background-color: rgba(10, 10, 10, 0.8);
+  color: #ffffff;
+}
+
+
+button {
+  border: none;
+}
+
+
+#workspaces button {
+  padding: 0 4px;
+  color: gray;
+}
+
+#workspaces button:hover,
+#workspaces button.active {
+  color: #ffffff;
+}
+
+
+#idle_inhibitor,
+#clock,
+#memory,
+#user,
+#battery,
+#bluetooth,
+#cpu,
+#tray,
+#network,
+#temperature,
+#wireplumber {
+  padding: 0 5px;
+}
+
+
+#bluetooth.on {
+  font-size: 0;
+  padding: 0 0px;
+}
+
+#bluetooth.off {
+  color: #ff0000;
+}
+
+#bluetooth.disabled {
+  color: #ff0000;
+}
+
+
+#network {
+  color: #00ff00;
+}
+
+#network.linked {
+  color: #ffff00;
+}
+
+#network.disconnected {
+  font-size: 0;
+  padding: 0 0px;
+}
+
+
+#wireplumber.muted {
+  color: #ff0000;
+}
+
+
+#cpu.warning {
+  color: #ffff00;
+}
+
+#cpu.critical {
+  color: #ff0000;
+}
+
+
+#temperature.warning {
+  color: #ffff00;
+}
+#temperature.critical {
+  color: #ff0000;
+}
+
+
+#battery.warning {
+  color: #ffff00;
+}
+#battery.critical {
+  color: #ff0000;
+}
+
+
+#workspaces {
+  margin: 0 4px;
+  margin-left: 0;
+}

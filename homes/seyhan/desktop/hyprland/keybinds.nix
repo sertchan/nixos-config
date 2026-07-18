@@ -13,6 +13,7 @@ _: {
       "$mainMod, O, exec, obs"
       "$mainMod, S, exec, spotify"
       "$mainMod, D, exec, discord"
+      "$mainMod, F, exec, nautilus"
 
       "$mainMod ALT, S, exec, systemctl suspend"
       "$mainMod ALT, P, exec, poweroff"

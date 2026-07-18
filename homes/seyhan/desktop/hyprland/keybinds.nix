@@ -15,6 +15,7 @@ _: {
       "$mainMod, O, exec, obs"
       "$mainMod, S, exec, spotify"
       "$mainMod, D, exec, discord"
+      "$mainMod, F, exec, nautilus"
 
       # Power management
       "$mainMod ALT, S, exec, systemctl suspend"

@@ -1,8 +1,7 @@
 { pkgs, ... }: {
-  # Enable Hyprland
   programs.hyprland.enable = true;
 
-  # For launching Hyprland on login
+  # Auto-login to Hyprland on startup
   services.greetd = {
     enable = true;
     settings = rec {
@@ -15,9 +14,9 @@
   };
 
   security.polkit.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Force Electron/Chromium apps to use Wayland natively
 
-  # Polkit authentication agent for such tasks wants root permissions
+  # Gnome Polkit agent for privilege escalation prompts
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     enable = true;
     description = "Polkit authentication agent of Gnome";

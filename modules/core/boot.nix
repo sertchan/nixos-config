@@ -6,9 +6,10 @@
 {
   boot = {
     loader = {
-      systemd-boot.enable = lib.mkDefault true; # UEFI boot manager, replaces GRUB
+      # UEFI boot manager, replacing legacy GRUB
+      systemd-boot.enable = lib.mkDefault true;
       efi.canTouchEfiVariables = lib.mkDefault true;
     };
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest; # Always use the latest kernel
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
   };
 }

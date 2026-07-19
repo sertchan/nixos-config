@@ -3,16 +3,16 @@
     fontconfig = {
       enable = true;
       antialias = true;
-      allowBitmaps = false;
+      allowBitmaps = false; # Force vector rendering, avoids ugly bitmaps on HiDPI
 
       hinting = {
         enable = true;
-        style = "slight";
+        style = "slight"; # Preserves font shape while snapping vertically to pixel grid
       };
 
       subpixel = {
-        rgba = "rgb";
-        lcdfilter = "default";
+        rgba = "rgb";          # Standard LCD subpixel layout
+        lcdfilter = "default"; # Reduces color fringing from subpixel rendering
       };
 
       defaultFonts = {
@@ -38,7 +38,7 @@
       nerd-fonts.jetbrains-mono
       noto-fonts
       noto-fonts-color-emoji
-      noto-fonts-cjk-sans
+      noto-fonts-cjk-sans  # Chinese, Japanese, Korean
       noto-fonts-cjk-serif
       liberation_ttf
     ];

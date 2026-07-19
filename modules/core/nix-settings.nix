@@ -34,30 +34,32 @@
       sandbox = true;
       sandbox-fallback = false; # fail build instead of silently running unsandboxed
 
+      # System features supported by the build machine
       system-features = [
         "nixos-test"
         "kvm"
         "recursive-nix"
         "big-parallel"
       ];
-      extra-platforms = config.boot.binfmt.emulatedSystems;
+      extra-platforms = config.boot.binfmt.emulatedSystems; # Emulated architectures via binfmt_misc
 
       keep-going = true;
       connect-timeout = 5;
       log-lines = 30;
 
+      # Experimental Nix features to enable
       extra-experimental-features = [
         "flakes"
         "nix-command"
         "recursive-nix"
       ];
 
-      warn-dirty = false;
+      warn-dirty = false; # Disable warnings about dirty Git repositories when using flakes
       http-connections = 50;
       accept-flake-config = false; # ignore nix.conf settings suggested by flakes
-      keep-derivations = true;
-      keep-outputs = true;
-      builders-use-substitutes = true;
+      keep-derivations = true; # Keep build-time dependencies (enables offline rebuilds)
+      keep-outputs = true; # Keep build outputs (prevents GC from removing run-time requirements of dev shells)
+      builders-use-substitutes = true; # Permit remote builders to download from caches
 
       # Binary caches. Official cache only
       substituters = [
@@ -73,8 +75,8 @@
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
-      persistent = true;
-      randomizedDelaySec = "30min";
+      persistent = true; # Run instantly on next boot if a scheduled run was missed
+      randomizedDelaySec = "30min"; # Delay execution randomly by up to 30 mins to avoid CPU spikes
       dates = "weekly";
     };
 

@@ -2,13 +2,13 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    disabledPlugins = [ "sap" ]; # SIM Access Profile, not needed
+    disabledPlugins = [ "sap" ]; # SIM Access Profile (SAP) is not needed
     settings = {
       General = {
         JustWorksRepairing = "always";
         MultiProfile = "multiple";
-        Experimental = true; # for showing battery info
-        FastConnectable = true; # reduces connection latency
+        Experimental = true;    # Show Bluetooth device battery levels
+        FastConnectable = true; # Reduce connection latency
       };
       Policy = {
         AutoEnable = true;
@@ -17,7 +17,7 @@
   };
 
   systemd.user.services.mpris-proxy = {
-    # Media player remote interfacing specification for bluetooth devices
+    # Forward media control keys (MPRIS) from Bluetooth devices
     enable = true;
     description = "MPRIS Proxy for Bluetooth devices";
     wantedBy = [ "default.target" ];

@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 let
@@ -21,10 +22,14 @@ in
       stateVersion = "24.11"; # DONT CHANGE unless you know what you're doing
 
       packages = with pkgs; [
+        (inputs.claude-desktop.packages.${system}.claude-desktop.override {
+          nodePackages = { inherit (pkgs) asar; };
+        })
         glib
         gsettings-desktop-schemas
         keepassxc
         google-chrome
+        claude-code
         loupe
         awww
         wev

@@ -1,15 +1,10 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
-{
+{ pkgs, ... }: {
   home-manager = {
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    extraSpecialArgs = { inherit pkgs inputs; };
+    extraSpecialArgs = { inherit pkgs; };
     users = {
       "seyhan" = ./seyhan;
     };

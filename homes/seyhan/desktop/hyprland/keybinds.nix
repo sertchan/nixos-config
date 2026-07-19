@@ -12,7 +12,6 @@ _: {
       "$mainMod, Return, exec, alacritty"
       "$mainMod, Z, exec, firefox"
       "$mainMod, X, exec, google-chrome"
-      "$mainMod, C, exec, claude-desktop"
       "$mainMod, O, exec, obs"
       "$mainMod, S, exec, spotify"
       "$mainMod, D, exec, discord"

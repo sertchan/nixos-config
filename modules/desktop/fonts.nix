@@ -11,7 +11,7 @@
       };
 
       subpixel = {
-        rgba = "rgb";          # Standard LCD subpixel layout
+        rgba = "rgb"; # Standard LCD subpixel layout
         lcdfilter = "default"; # Reduces color fringing from subpixel rendering
       };
 
@@ -38,8 +38,8 @@
       nerd-fonts.jetbrains-mono
       noto-fonts
       noto-fonts-color-emoji
-      noto-fonts-cjk-sans  # Chinese, Japanese, Korean
-      noto-fonts-cjk-serif
+      noto-fonts-cjk-sans # Chinese, Japanese, Korean
+      noto-fonts-cjk-serif # Chinese, Japanese, Korean
       liberation_ttf
     ];
   };

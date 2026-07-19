@@ -8,9 +8,9 @@ let
 in
 {
   imports = [
-    ./themes
     ./desktop
     ./programs
+    ./themes
   ];
 
   config = {
@@ -21,19 +21,13 @@ in
       stateVersion = "24.11"; # DONT CHANGE unless you know what you're doing
 
       packages = with pkgs; [
-        glib
-        gsettings-desktop-schemas
-        keepassxc
-        google-chrome
-        claude-code
-        loupe
+        antigravity-cli
         awww
-        wev
         bc
-        tree
         bluez
         bluez-tools
         btop
+        claude-code
         discord
         dragon-drop
         dust
@@ -42,16 +36,21 @@ in
         ffmpegthumbnailer
         ffsubsync
         geekbench
+        glib
+        google-chrome
         grimblast
+        gsettings-desktop-schemas
         imagemagick
         inotify-tools
         isort
         jq
         just
+        keepassxc
+        loupe
         mako
         mpv
-        nitch
         nautilus
+        nitch
         nixfmt
         p7zip
         pinentry-curses
@@ -60,9 +59,11 @@ in
         qbittorrent-nox
         ranger
         spotify
+        tree
         ueberzugpp
         unzip
         waifu2x-converter-cpp
+        wev
         wofi
         xdg-utils
         xdotool
@@ -72,15 +73,15 @@ in
     };
 
     programs = {
-      home-manager.enable = true;
-      git.enable = true;
-      gpg.enable = true;
-      gh.enable = true;
-
       firefox = {
         enable = true;
         configPath = "${config.xdg.configHome}/mozilla/firefox";
       };
+
+      gh.enable = true;
+      git.enable = true;
+      gpg.enable = true;
+      home-manager.enable = true;
 
       neovim = {
         enable = true;
@@ -89,21 +90,21 @@ in
 
         # Formatters/linters exposed to neovim via $PATH
         extraPackages = with pkgs; [
-          stylua
-          lua51Packages.luacheck
-          lua51Packages.tree-sitter-cli
-          vale
-          beautysh
-          taplo
-          rustfmt
-          prettierd
-          deadnix
-          statix
           alejandra
-          nixfmt
-          nixpkgs-fmt
+          beautysh
+          deadnix
           fixjson
           gcc
+          lua51Packages.luacheck
+          lua51Packages.tree-sitter-cli
+          nixfmt
+          nixpkgs-fmt
+          prettierd
+          rustfmt
+          statix
+          stylua
+          taplo
+          vale
         ];
 
         initLua = ''

@@ -44,6 +44,9 @@
         "nodev"
         "nosuid"
         "size=128M"
+        "uid=1000"
+        "gid=100"
+        "mode=0700"
       ];
     };
   };

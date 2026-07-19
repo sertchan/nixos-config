@@ -29,7 +29,6 @@ in
         awww
         wev
         bc
-        element-desktop
         tree
         bluez
         bluez-tools

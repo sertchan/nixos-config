@@ -4,6 +4,7 @@
     ./tlp.nix
 
     ../../modules/core
+
     ../../modules/hardware/intel-gpu.nix
     ../../modules/hardware/bluetooth.nix
 

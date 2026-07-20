@@ -25,16 +25,20 @@
     extraModulePackages = [ ];
     tmp.useTmpfs = true;
   };
+
   zramSwap.enable = true;
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
     };
+
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
+
     "/home/seyhan/Pictures/Screenshots" = {
       device = "tmpfs";
       fsType = "tmpfs";

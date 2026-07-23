@@ -22,6 +22,7 @@ in
 
       packages = with pkgs; [
         awww
+        prismlauncher
         bc
         bluez
         bluez-tools

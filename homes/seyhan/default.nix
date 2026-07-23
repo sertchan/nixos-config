@@ -23,6 +23,7 @@ in
       packages = with pkgs; [
         antigravity-cli
         awww
+        prismlauncher
         bc
         bluez
         bluez-tools

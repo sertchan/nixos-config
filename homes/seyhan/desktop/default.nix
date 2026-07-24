@@ -1,6 +1,6 @@
 {
   imports = [
-    ./hyprland
+    ./niri
     ./waybar
     ./mako
     ./wofi

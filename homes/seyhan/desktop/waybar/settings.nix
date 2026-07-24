@@ -5,8 +5,8 @@ _: {
     "fixed-center" = false;
 
     "modules-left" = [
-      "hyprland/workspaces"
-      "hyprland/window"
+      "niri/workspaces"
+      "niri/window"
     ];
 
     "modules-right" = [
@@ -23,10 +23,10 @@ _: {
       "clock"
     ];
 
-    "hyprland/workspaces" = {
+    "niri/workspaces" = {
       "on-click" = "activate";
     };
-    "hyprland/window" = {
+    "niri/window" = {
       format = "{}";
       "max-length" = 360;
     };

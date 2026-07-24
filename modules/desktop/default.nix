@@ -4,6 +4,6 @@
     ./clipboard.nix
     ./filemanagement.nix
     ./fonts.nix
-    ./hyprland.nix
+    ./niri.nix
   ];
 }

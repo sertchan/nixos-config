@@ -1,7 +1,6 @@
 { pkgs, ... }: {
-  # For torrent management, I prefer to use qbittorrent-nox
-
   systemd.user.services.qbittorrent-nox = {
+    # Headless qBittorrent daemon managed via Web UI interface
     enable = true;
     description = "Qbittorrent-nox";
     wants = [ "network-online.target" ];

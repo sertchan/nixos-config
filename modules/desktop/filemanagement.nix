@@ -1,8 +1,8 @@
 { pkgs, ... }: {
-  services.gvfs.enable = true; # Virtual filesystem, needed for trash/mtp/network mounts
+  services.gvfs.enable = true; # GVfs daemon for trash support, MTP device mounts, and SMB/NFS protocols
 
-  # Automounter for removable media such as usb, phones etc.
   systemd.user.services.udiskie = {
+    # Automounts USB flash drives, memory cards, and external hard drives upon connection
     enable = true;
     description = "Automounter for removable media";
     wantedBy = [ "default.target" ];

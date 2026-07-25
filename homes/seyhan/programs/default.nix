@@ -1,10 +1,8 @@
 {
   imports = [
-    # TTY
     ./alacritty
-    ./zsh
-    ./starship
-
     ./obs
+    ./starship
+    ./zsh
   ];
 }

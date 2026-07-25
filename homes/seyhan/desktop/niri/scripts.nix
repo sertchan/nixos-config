@@ -1,5 +1,6 @@
 { pkgs, ... }:
 let
+  # Toggles Wofi application menu by terminating existing instances or spawning a new instance
   wofiToggle = pkgs.writeShellApplication {
     name = "wofi-toggle";
     runtimeInputs = [
@@ -14,6 +15,7 @@ let
     '';
   };
 
+  # Periodically selects and applies a random wallpaper from ~/Pictures/Wallpapers using awww
   wallpaperDaemon = pkgs.writeShellApplication {
     name = "wallpaper-daemon";
     runtimeInputs = [

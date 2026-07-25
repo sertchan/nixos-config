@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   systemd.user.services = {
     cliphist = {
-      # Watches wl-paste and stores clipboard history for later retrieval
+      # Monitors Wayland clipboard selections and stores history in a local database
       enable = true;
       description = "Clipboard history service";
       wantedBy = [ "default.target" ];
@@ -12,8 +12,9 @@
         RestartSec = 5;
       };
     };
+
     wl-clip-persist = {
-      # Prevents clipboard from clearing when source app closes (Wayland limitation)
+      # Retains copied content in clipboard memory even after source applications close
       description = "Persistent clipboard for Wayland";
       wantedBy = [ "default.target" ];
       after = [ "graphical-session.target" ];

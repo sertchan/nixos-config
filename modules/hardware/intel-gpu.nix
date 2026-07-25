@@ -1,15 +1,14 @@
 { pkgs, ... }: {
-  # For newer GPUs on NixOS >24.05 or unstable
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver # VA-API (iHD) userspace
-      vpl-gpu-rt # oneVPL (QSV) runtime
-      intel-compute-runtime # OpenCL (NEO) + Level Zero for Arc/Xe
+      intel-media-driver # VA-API driver for Intel Gen8+ and Xe integrated/discrete GPUs (iHD)
+      vpl-gpu-rt # Intel oneVPL GPU runtime for QuickSync video encoding/decoding
+      intel-compute-runtime # OpenCL (NEO) and Level Zero runtime for Intel Graphics
     ];
   };
 
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD"; # For hardware video acceleration
+    LIBVA_DRIVER_NAME = "iHD"; # Force VA-API hardware acceleration to use Intel iHD driver
   };
 }

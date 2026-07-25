@@ -4,27 +4,26 @@
   ...
 }:
 {
-  environment.systemPackages = [ pkgs.zapret ];
+  environment.systemPackages = [ pkgs.zapret ]; # Anti-DPI censorship bypass tool
 
   users = {
-    # System user for running zapret/nfqws with least privilege
+    # Dedicated unprivileged system user for zapret daemon privilege-dropping
     users.zapret = {
       isSystemUser = true;
       group = "zapret";
       description = "zapret nfqws privilege-drop user";
-      shell = "${pkgs.shadow}/bin/nologin"; # no interactive login
+      shell = "${pkgs.shadow}/bin/nologin"; # Disable interactive login shell
     };
-    groups.zapret = { }; # Dedicated group for isolation
+    groups.zapret = { };
   };
 
   networking.nftables = {
     enable = true;
-    # Nftables rules for bol-van/zapret
     tables.zapret = {
       family = "inet";
-      # Reduces CPU and memory consumption by targeting only connection establishment:
-      # TCP 80/443 : Processes 3 ingress & 9 egress packets max
-      # UDP 443   : Processes 9 egress packets max (QUIC protocol)
+      # Targets connection establishment packets to reduce CPU/memory load:
+      # TCP 80/443 : Intercepts first 3 ingress and 9 egress packets
+      # UDP 443    : Intercepts first 9 egress packets (QUIC traffic)
       content = ''
         chain inbound {
           type filter hook input priority -10; policy accept;
@@ -42,7 +41,7 @@
 
   services.zapret = {
     enable = true;
-    # Fake packet DPI desync to bypass censorship/blocking. I also use Autohostlist to prevent websites from breaking
+    # Inject fake packets to desynchronize DPI middleboxes while using autohostlist to avoid site breakage
     params = [
       "--dpi-desync=fake"
       "--dpi-desync-ttl=3"
@@ -50,11 +49,11 @@
       "--hostlist-auto-fail-threshold=2"
       "--hostlist-auto-debug=/var/lib/zapret/zapret-hosts-auto-debug.log"
     ];
-    configureFirewall = false; # Handled manually via nftables above
+    configureFirewall = false; # Handled via custom nftables rules above
   };
 
   systemd = {
-    # Hardened sandbox for the zapret service, running as the dedicated non-root user
+    # Hardened systemd service wrapper running zapret as dedicated non-root user
     services.zapret = {
       serviceConfig = {
         DynamicUser = lib.mkForce false;
@@ -65,7 +64,7 @@
           "+${pkgs.coreutils}/bin/touch /run/nfqws.pid"
           "+${pkgs.coreutils}/bin/chown zapret:zapret /run/nfqws.pid"
         ];
-        # Needed for raw packet manipulation (DPI desync)
+        # Capabilities required for raw packet redirection and socket manipulation
         CapabilityBoundingSet = [
           "CAP_NET_ADMIN"
           "CAP_NET_RAW"
@@ -94,7 +93,8 @@
       after = [ "systemd-tmpfiles-setup.service" ];
       wants = [ "systemd-tmpfiles-setup.service" ];
     };
-    # Ownership/permissions for zapret's runtime state, since it drops to a non-root user
+
+    # State directory ownership and permission rules for non-root zapret user
     tmpfiles.rules = [
       "d /var/lib/zapret 0700 zapret zapret -"
       "f /var/lib/zapret/zapret-hosts-auto.txt 0600 zapret zapret -"

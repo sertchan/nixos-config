@@ -2,22 +2,23 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    disabledPlugins = [ "sap" ]; # SIM Access Profile (SAP) is not needed
+    disabledPlugins = [ "sap" ]; # Disable SIM Access Profile (unnecessary for modern desktop setups)
+
     settings = {
       General = {
-        JustWorksRepairing = "always";
-        MultiProfile = "multiple";
-        Experimental = true;    # Show Bluetooth device battery levels
-        FastConnectable = true; # Reduce connection latency
+        JustWorksRepairing = "always"; # Automatic re-pairing for devices using Just Works authentication
+        MultiProfile = "multiple"; # Allow multiple Bluetooth profiles simultaneously
+        Experimental = true; # Enable experimental features such as battery level reporting
+        FastConnectable = true; # Reduce connection page scan interval for faster device reconnection
       };
       Policy = {
-        AutoEnable = true;
+        AutoEnable = true; # Automatically enable Bluetooth adapter on detection
       };
     };
   };
 
   systemd.user.services.mpris-proxy = {
-    # Forward media control keys (MPRIS) from Bluetooth devices
+    # Proxies MPRIS media controls (play/pause/track) from Bluetooth headsets to media players
     enable = true;
     description = "MPRIS Proxy for Bluetooth devices";
     wantedBy = [ "default.target" ];

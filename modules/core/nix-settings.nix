@@ -7,61 +7,50 @@
 {
   nix = {
     settings = {
-      use-xdg-base-directories = true;
+      use-xdg-base-directories = true; # Store Nix user files according to XDG spec (~/.config/nix, ~/.local/state/nix)
       flake-registry = "/etc/nix/registry.json";
+      warn-dirty = false; # Disable warnings about uncommitted Git files when evaluating flakes
+      accept-flake-config = false; # Ignore custom nix.conf settings exported by external flakes
 
-      # Disk space thresholds for automatic GC
-      min-free = toString (5 * 1024 * 1024 * 1024); # 5 GiB
-      max-free = toString (10 * 1024 * 1024 * 1024); # 10 GiB
-
-      # Store optimisation runs on its own weekly timer instead (see nix.optimise below)
-      auto-optimise-store = false;
-
-      # Users allowed to run nix commands / use the daemon.
-      allowed-users = [
-        "root"
-        "@wheel"
-        "nix-builder"
-      ];
-
-      # Users allowed to bypass sandboxing and override daemon settings. Root only
-      trusted-users = [
-        "root"
-      ];
-
-      max-jobs = "auto";
-
-      sandbox = true;
-      sandbox-fallback = false; # fail build instead of silently running unsandboxed
-
-      # System features supported by the build machine
-      system-features = [
-        "nixos-test"
-        "kvm"
-        "recursive-nix"
-        "big-parallel"
-      ];
-      extra-platforms = config.boot.binfmt.emulatedSystems; # Emulated architectures via binfmt_misc
-
-      keep-going = true;
-      connect-timeout = 5;
-      log-lines = 30;
-
-      # Experimental Nix features to enable
       extra-experimental-features = [
         "flakes"
         "nix-command"
         "recursive-nix"
       ];
 
-      warn-dirty = false; # Disable warnings about dirty Git repositories when using flakes
-      http-connections = 50;
-      accept-flake-config = false; # ignore nix.conf settings suggested by flakes
-      keep-derivations = true; # Keep build-time dependencies (enables offline rebuilds)
-      keep-outputs = true; # Keep build outputs (prevents GC from removing run-time requirements of dev shells)
-      builders-use-substitutes = true; # Permit remote builders to download from caches
+      allowed-users = [
+        "root"
+        "@wheel"
+        "nix-builder"
+      ];
 
-      # Binary caches. Official cache only
+      trusted-users = [
+        "root"
+      ]; # Users with elevated daemon privileges (e.g., overriding binary caches)
+
+      sandbox = true;
+      sandbox-fallback = false; # Fail build immediately if sandboxing is unavailable
+      max-jobs = "auto"; # Scale maximum parallel build processes to CPU core count
+      system-features = [
+        "nixos-test"
+        "kvm"
+        "recursive-nix"
+        "big-parallel"
+      ];
+      extra-platforms = config.boot.binfmt.emulatedSystems; # Architectures supported via binfmt emulation
+
+      connect-timeout = 5;
+      http-connections = 50;
+      log-lines = 30; # Number of build log lines to retain and print on failure
+      keep-going = true; # Continue building independent derivations if one fails
+      builders-use-substitutes = true; # Permit remote builders to fetch pre-built outputs from binary caches
+
+      min-free = toString (5 * 1024 * 1024 * 1024); # Trigger GC if free disk space falls below 5 GiB
+      max-free = toString (10 * 1024 * 1024 * 1024); # Stop GC once free disk space reaches 10 GiB
+      auto-optimise-store = false; # Store optimization runs on a separate weekly timer (see nix.optimise below)
+      keep-derivations = true; # Retain build derivations to allow offline rebuilds
+      keep-outputs = true; # Retain build outputs to prevent GC of shell dependencies
+
       substituters = [
         "https://cache.nixos.org"
       ];
@@ -71,29 +60,23 @@
       ];
     };
 
-    # Weekly garbage collection
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
-      persistent = true; # Run instantly on next boot if a scheduled run was missed
-      randomizedDelaySec = "30min"; # Delay execution randomly by up to 30 mins to avoid CPU spikes
+      persistent = true; # Execute missed runs immediately on next system boot
+      randomizedDelaySec = "30min"; # Randomly delay trigger time up to 30 minutes to prevent resource contention
       dates = "weekly";
     };
 
-    # Weekly store optimisation (hardlinking identical files)
     optimise = {
       automatic = true;
       dates = [ "weekly" ];
     };
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
-  # nh: CLI wrapper for building/switching nix generations
+  # nh: Command-line wrapper for building and switching NixOS configurations
   programs.nh = {
     enable = true;
     package = pkgs.nh;

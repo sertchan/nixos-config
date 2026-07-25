@@ -36,9 +36,7 @@ _: {
       };
 
       git_status = {
-        # Nix indented string ('' ... '') used here instead of "..." so the
-        # backslashes stay literal, matching TOML's single-quoted literal
-        # string in the original file.
+        # Nix indented string ('' ... '') preserves literal backslashes without escaping
         format = ''([\[$all_status$ahead_behind\]]($style) )'';
         style = "cyan";
       };

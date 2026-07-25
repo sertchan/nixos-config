@@ -24,7 +24,7 @@ _: {
       "default-timeout" = 5000;
       "ignore-timeout" = 0;
       "max-visible" = 20;
-      layer = "overlay";
+      layer = "overlay"; # Render notifications above all desktop windows
       anchor = "top-right";
 
       "background-color" = "#151515";

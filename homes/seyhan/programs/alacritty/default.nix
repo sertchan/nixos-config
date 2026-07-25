@@ -62,14 +62,15 @@ _: {
           foreground = "#c8c093";
         };
 
+        # Extended 256-color palette overrides matching Kanagawa theme accents
         indexed_colors = [
           {
             index = 16;
-            color = "#ffa066";
+            color = "#ffa066"; # Surimi Orange
           }
           {
             index = 17;
-            color = "#ff5d62";
+            color = "#ff5d62"; # Peach Red
           }
         ];
       };

@@ -6,8 +6,8 @@
       isNormalUser = true;
       shell = pkgs.zsh;
       extraGroups = [
-        "wheel"
-        "networkmanager"
+        "wheel" # Superuser / sudo privileges
+        "networkmanager" # Network management permission
       ];
     };
   };

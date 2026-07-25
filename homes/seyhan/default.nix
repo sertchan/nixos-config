@@ -23,7 +23,6 @@ in
       packages = with pkgs; [
         antigravity-cli
         awww
-        prismlauncher
         bc
         bluez
         bluez-tools
@@ -55,6 +54,7 @@ in
         nixfmt
         p7zip
         pinentry-curses
+        prismlauncher
         psmisc
         pulsemixer
         qbittorrent-nox
@@ -76,7 +76,7 @@ in
     programs = {
       firefox = {
         enable = true;
-        configPath = "${config.xdg.configHome}/mozilla/firefox";
+        configPath = "${config.xdg.configHome}/mozilla/firefox"; # Store Firefox profile in XDG config directory
       };
 
       gh.enable = true;
@@ -86,8 +86,8 @@ in
 
       neovim = {
         enable = true;
-        withRuby = false;
-        withPython3 = false;
+        withRuby = false; # Disable Ruby host provider plugin for faster startup
+        withPython3 = false; # Disable Python 3 host provider plugin for faster startup
 
         # Formatters/linters exposed to neovim via $PATH
         extraPackages = with pkgs; [

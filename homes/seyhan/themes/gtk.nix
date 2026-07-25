@@ -29,7 +29,7 @@
         gtk-xft-hintstyle = "hintslight";
         gtk-xft-rgba = "rgb";
         gtk-error-bell = 0;
-        gtk-enable-primary-paste = false;
+        gtk-enable-primary-paste = false; # Disable middle-click primary selection clipboard paste
       };
     };
 
@@ -43,7 +43,7 @@
         gtk-xft-hinting = 1;
         gtk-xft-hintstyle = "hintslight";
         gtk-xft-rgba = "rgb";
-        gtk-enable-primary-paste = false;
+        gtk-enable-primary-paste = false; # Disable middle-click primary selection clipboard paste
         gtk-error-bell = 0;
         gtk-hint-font-metrics = 1;
       };
@@ -51,7 +51,7 @@
   };
 
   dconf.settings."org/gnome/desktop/interface" = {
-    color-scheme = "prefer-dark";
+    color-scheme = "prefer-dark"; # Request dark color scheme variant for GTK4 and libadwaita apps
     gtk-theme = "adw-gtk3-dark";
     icon-theme = "Adwaita";
   };

@@ -84,7 +84,7 @@ _: {
     };
     network = {
       interval = 1;
-      interface = "wlp0s20f3";
+      interface = "wlp0s20f3"; # Wireless Wi-Fi interface
       format = "W: {essid}";
       "format-linked" = "W: Connecting";
       "format-disconnected" = "";
@@ -92,7 +92,7 @@ _: {
     };
     "network#2" = {
       interval = 1;
-      interface = "enp6s0";
+      interface = "enp6s0"; # Wired Ethernet interface
       format = "E: Connected";
       "format-linked" = "E: Connecting";
       "format-disconnected" = "";
@@ -100,7 +100,7 @@ _: {
     };
     temperature = {
       interval = 1;
-      "hwmon-path" = "/sys/class/hwmon/hwmon4/temp1_input";
+      "hwmon-path" = "/sys/class/hwmon/hwmon4/temp1_input"; # Linux sysfs hardware monitor temperature sensor path
       tooltip = false;
       "warning-threshold" = 70;
       "critical-threshold" = 90;

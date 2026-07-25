@@ -5,7 +5,6 @@
   ...
 }:
 {
-  # Default hardware scan imports
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
@@ -22,23 +21,21 @@
       ];
       kernelModules = [ ];
     };
-    kernelModules = [ "kvm-intel" ]; # Intel CPU virtualization
+
+    kernelModules = [ "kvm-intel" ];
     kernelParams = [ "mem_sleep_default=deep" ]; # Force deep sleep (S3 suspend state)
     extraModulePackages = [ ];
-    tmp.useTmpfs = true; # Mount /tmp in RAM
+    tmp.useTmpfs = true;
   };
 
-  # Enable zram compressed swap space in RAM
   zramSwap.enable = true;
 
   fileSystems = {
-    # Root partition
     "/" = {
       device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
     };
 
-    # EFI system partition
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";

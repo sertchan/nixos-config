@@ -5,8 +5,6 @@ _: {
     settings = {
       format = "$username$hostname$directory$git_branch$git_state$git_status$git_metrics$fill$nodejs$cmd_duration $jobs $time$line_break$character";
 
-      nodejs.format = "[$symbol($version )]($style)";
-
       fill.symbol = " ";
 
       directory = {
@@ -28,13 +26,6 @@ _: {
         style = "bright-black";
       };
 
-      jobs = {
-        symbol = "[J]";
-        style = "bold red";
-        number_threshold = 1;
-        format = "[$symbol]($style)";
-      };
-
       git_status = {
         format = ''([\[$all_status$ahead_behind\]]($style) )'';
         style = "cyan";
@@ -46,6 +37,15 @@ _: {
       };
 
       git_metrics.disabled = false;
+
+      nodejs.format = "[$symbol($version )]($style)";
+
+      jobs = {
+        symbol = "[J]";
+        style = "bold red";
+        number_threshold = 1;
+        format = "[$symbol]($style)";
+      };
 
       cmd_duration = {
         format = "[$duration]($style)";

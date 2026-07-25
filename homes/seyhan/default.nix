@@ -44,7 +44,6 @@ in
         gsettings-desktop-schemas
         imagemagick
         inotify-tools
-        isort
         jq
         just
         keepassxc
@@ -94,11 +93,24 @@ in
 
         # Formatters/linters exposed to neovim via $PATH
         extraPackages = with pkgs; [
+          lua-language-server
+          pyright
+          rust-analyzer
+          nil
+          clang-tools
+          bash-language-server
+          vscode-langservers-extracted
+          typescript-language-server
+          marksman
+          taplo
+          yamlfix
           alejandra
           beautysh
           deadnix
           fixjson
           gcc
+          isort
+          black
           lua51Packages.luacheck
           lua51Packages.tree-sitter-cli
           nixfmt
@@ -112,18 +124,30 @@ in
         ];
 
         initLua = ''
-          -- Disable unnecessary provider plugins for faster startup time
+          -- Set leader keys before loading keymaps or plugins
+          vim.g.mapleader = " "
+          vim.g.maplocalleader = " "
+
+          -- Disable unused provider plugins to eliminate startup delays from provider detection
           vim.g.loaded_node_provider = 0
           vim.g.loaded_perl_provider = 0
           vim.g.loaded_ruby_provider = 0
           vim.g.loaded_python3_provider = 0
 
-          -- Load core settings and keybindings
-          require("core.keybinds")
+          -- Load native editor settings and keybindings
           require("core.options")
+          require("core.keymaps")
 
           -- Load plugin configurations
-          require("core.plugin_config")
+          require("plugins.theme")
+          require("plugins.ui")
+          require("plugins.treesitter")
+          require("plugins.explorer")
+          require("plugins.formatting")
+          require("plugins.linting")
+          require("plugins.completion")
+          require("plugins.lsp")
+          require("plugins.utils")
         '';
       };
     };

@@ -109,6 +109,7 @@ in
           black
           lua51Packages.luacheck
           lua51Packages.tree-sitter-cli
+          kdlfmt
           nixfmt
           nixpkgs-fmt
           prettierd

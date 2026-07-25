@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.gvfs.enable = true;
 
   systemd.user.services.udiskie = {

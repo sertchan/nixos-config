@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   systemd.user.services = {
     cliphist = {
       enable = true;

@@ -1,4 +1,5 @@
 { lib, ... }: {
+  # ----- Network Interfaces & Resolvers -----
   networking = {
     # Primary DNS resolvers using HaGeZi's Threat Intelligence Feed
     # Blocks ONLY Phishing, Malware, Scam, Fake, Cryptojacking and other harmful domains
@@ -9,9 +10,10 @@
     ];
 
     networkmanager.enable = true;
-    usePredictableInterfaceNames = true; # Maintain persistent interface naming across reboots (e.g., enp3s0)
+    usePredictableInterfaceNames = true;
   };
 
+  # ----- DNS Resolver Daemon -----
   services.resolved = {
     enable = true;
     settings = {
@@ -33,6 +35,7 @@
     };
   };
 
+  # ----- Service Lifetime Options -----
   systemd.services = {
     # Prevent network connection or DNS drops during nixos-rebuild switch
     systemd-networkd.stopIfChanged = false;

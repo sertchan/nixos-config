@@ -5,6 +5,7 @@
   ...
 }:
 {
+  # ----- Nix Daemon Settings -----
   nix = {
     settings = {
       use-xdg-base-directories = true; # Store Nix user files according to XDG spec (~/.config/nix, ~/.local/state/nix)
@@ -24,9 +25,10 @@
         "nix-builder"
       ];
 
+      # Users with elevated daemon privileges (e.g., overriding binary caches)
       trusted-users = [
         "root"
-      ]; # Users with elevated daemon privileges (e.g., overriding binary caches)
+      ];
 
       sandbox = true;
       sandbox-fallback = false; # Fail build immediately if sandboxing is unavailable
@@ -41,7 +43,7 @@
 
       connect-timeout = 5;
       http-connections = 50;
-      log-lines = 30; # Number of build log lines to retain and print on failure
+      log-lines = 30;
       keep-going = true; # Continue building independent derivations if one fails
       builders-use-substitutes = true; # Permit remote builders to fetch pre-built outputs from binary caches
 
@@ -74,8 +76,10 @@
     };
   };
 
+  # ----- Nixpkgs Configuration -----
   nixpkgs.config.allowUnfree = true;
 
+  # ----- Nix Helper Tools -----
   # nh: Command-line wrapper for building and switching NixOS configurations
   programs.nh = {
     enable = true;

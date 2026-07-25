@@ -1,5 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   fonts = {
+    # ----- Fontconfig Settings -----
     fontconfig = {
       enable = true;
       antialias = true;
@@ -34,6 +36,7 @@
       };
     };
 
+    # ----- Installed Fonts -----
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
 

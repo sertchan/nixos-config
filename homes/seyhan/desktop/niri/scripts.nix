@@ -1,4 +1,5 @@
 { pkgs, ... }:
+# ----- Desktop Utility Scripts -----
 let
   # Toggles Wofi application menu by terminating existing instances or spawning a new instance
   wofiToggle = pkgs.writeShellApplication {
@@ -66,6 +67,7 @@ let
   };
 in
 {
+  # ----- Package Declarations -----
   home.packages = [
     wofiToggle
     wallpaperDaemon

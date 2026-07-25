@@ -3,9 +3,8 @@ _: {
     enable = true;
 
     settings = {
+      # ----- Prompt Layout & Structure -----
       format = "$username$hostname$directory$git_branch$git_state$git_status$git_metrics$fill$nodejs$cmd_duration $jobs $time$line_break$character";
-
-      nodejs.format = "[$symbol($version )]($style)";
 
       fill.symbol = " ";
 
@@ -22,17 +21,11 @@ _: {
         vicmd_symbol = "[❮](green)";
       };
 
+      # ----- Git Version Control -----
       git_branch = {
         symbol = " ";
         format = "[$symbol$branch]($style) ";
         style = "bright-black";
-      };
-
-      jobs = {
-        symbol = "[J]";
-        style = "bold red";
-        number_threshold = 1;
-        format = "[$symbol]($style)";
       };
 
       git_status = {
@@ -47,6 +40,16 @@ _: {
       };
 
       git_metrics.disabled = false;
+
+      # ----- System & Runtime Indicators -----
+      nodejs.format = "[$symbol($version )]($style)";
+
+      jobs = {
+        symbol = "[J]";
+        style = "bold red";
+        number_threshold = 1;
+        format = "[$symbol]($style)";
+      };
 
       cmd_duration = {
         format = "[$duration]($style)";

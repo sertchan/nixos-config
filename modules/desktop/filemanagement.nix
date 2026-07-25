@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.gvfs.enable = true; # GVfs daemon for trash support, MTP device mounts, and SMB/NFS protocols
 
   systemd.user.services.udiskie = {

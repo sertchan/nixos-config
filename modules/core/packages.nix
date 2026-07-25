@@ -1,14 +1,14 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    bind.dnsutils # Provides DNS lookup utilities (dig, nslookup)
+    bind.dnsutils
     curl
     dmidecode
     lshw
     man-pages
-    mtr # Network diagnostic tool combining traceroute and ping
+    mtr
     pciutils
-    smartmontools # S.M.A.R.T. disk monitoring and diagnostic tools
-    sysstat # Performance monitoring utilities (sar, iostat, mpstat)
+    smartmontools
+    sysstat
     tcpdump
     traceroute
     wget

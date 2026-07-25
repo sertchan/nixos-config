@@ -1,4 +1,5 @@
 {
+  # ----- Module Imports -----
   imports = [
     ./system.nix
     ./tlp.nix
@@ -15,6 +16,7 @@
     ../../modules/desktop
   ];
 
+  # ----- Host Configuration -----
   networking.hostName = "arda-nirvana";
   time.timeZone = "Europe/Istanbul";
 

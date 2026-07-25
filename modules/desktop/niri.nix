@@ -1,5 +1,6 @@
 { pkgs, ... }: {
-  programs.niri.enable = true; # Enable Niri scrollable-tiling Wayland compositor
+  # ----- Wayland Compositor -----
+  programs.niri.enable = true;
 
   environment = {
     systemPackages = with pkgs; [
@@ -18,8 +19,10 @@
     };
   };
 
+  # ----- Desktop Authentication & Secrets -----
   security.polkit.enable = true; # Polkit authentication framework for privilege escalation dialogs
   services.gnome.gnome-keyring.enable = true; # Secret Service provider for storing user credentials and keys
 
+  # ----- Systemd Integration -----
   systemd.user.services.niri.enableDefaultPath = false; # Prevent systemd from overriding Niri's session PATH environment
 }

@@ -3,8 +3,10 @@ _: {
     enable = true;
 
     settings = {
+      # ----- Window Geometry & Appearance -----
       window.opacity = 0.90;
 
+      # ----- Typography -----
       font = {
         size = 10;
 
@@ -29,6 +31,7 @@ _: {
         };
       };
 
+      # ----- Color Palette -----
       colors = {
         primary = {
           background = "#0a0a0a";

@@ -1,5 +1,6 @@
 _: {
   programs.waybar.settings.mainBar = {
+    # ----- Bar Layout & Module Alignment -----
     layer = "top";
     position = "bottom";
     "fixed-center" = false;
@@ -18,11 +19,11 @@ _: {
       "memory"
       "bluetooth"
       "wireplumber"
-      #"battery"
       "clock#2"
       "clock"
     ];
 
+    # ----- Module Configurations -----
     "niri/workspaces" = {
       "on-click" = "activate";
     };

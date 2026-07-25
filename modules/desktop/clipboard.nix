@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   systemd.user.services = {
     cliphist = {
       # Monitors Wayland clipboard selections and stores history in a local database

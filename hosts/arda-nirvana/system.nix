@@ -5,8 +5,10 @@
   ...
 }:
 {
+  # ----- Module Imports -----
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
+  # ----- Boot Configuration -----
   boot = {
     initrd = {
       # Modules required to detect storage/USB devices during early boot stage
@@ -28,6 +30,7 @@
     tmp.useTmpfs = true;
   };
 
+  # ----- Storage & File Systems -----
   zramSwap.enable = true;
 
   fileSystems = {
@@ -58,6 +61,7 @@
     };
   };
 
+  # ----- Hardware & Platform -----
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

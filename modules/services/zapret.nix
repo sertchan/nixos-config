@@ -4,19 +4,22 @@
   ...
 }:
 {
+  # ----- System Packages -----
   environment.systemPackages = [ pkgs.zapret ]; # Anti-DPI censorship bypass tool
 
+  # ----- System User & Group -----
   users = {
     # Dedicated unprivileged system user for zapret daemon privilege-dropping
     users.zapret = {
       isSystemUser = true;
       group = "zapret";
       description = "zapret nfqws privilege-drop user";
-      shell = "${pkgs.shadow}/bin/nologin"; # Disable interactive login shell
+      shell = "${pkgs.shadow}/bin/nologin";
     };
     groups.zapret = { };
   };
 
+  # ----- Firewall & Traffic Queueing -----
   networking.nftables = {
     enable = true;
     tables.zapret = {
@@ -39,6 +42,7 @@
     };
   };
 
+  # ----- Zapret Daemon -----
   services.zapret = {
     enable = true;
     # Inject fake packets to desynchronize DPI middleboxes while using autohostlist to avoid site breakage
@@ -52,6 +56,7 @@
     configureFirewall = false; # Handled via custom nftables rules above
   };
 
+  # ----- Service Hardening & Temporary Files -----
   systemd = {
     # Hardened systemd service wrapper running zapret as dedicated non-root user
     services.zapret = {

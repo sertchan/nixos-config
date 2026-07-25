@@ -1,16 +1,17 @@
 {
   description = "seyhan";
 
+  # ----- Flake Inputs -----
   inputs = {
-    # Track rolling NixOS unstable channel
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
-      # Align home-manager's nixpkgs dependency with primary system input
+      # Ensure home-manager uses the same nixpkgs instance as the system
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
+  # ----- Flake Outputs -----
   outputs =
     {
       self,
@@ -21,7 +22,7 @@
     {
       nixosConfigurations.arda-nirvana = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        # Pass inputs into module arguments for global access across NixOS modules
+        # Forward flake inputs to all NixOS and Home Manager modules
         specialArgs = { inherit self inputs; };
         modules = [
           { nixpkgs.config.allowUnfree = true; }

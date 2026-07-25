@@ -7,18 +7,20 @@ let
   username = "seyhan"; # Change this to reuse the config for another user
 in
 {
+  # ----- Module Imports -----
   imports = [
     ./desktop
     ./programs
     ./themes
   ];
 
+  # ----- User Environment & Packages -----
   config = {
     home = {
       inherit username;
       homeDirectory = "/home/${username}";
 
-      stateVersion = "24.11"; # DONT CHANGE unless you know what you're doing
+      stateVersion = "24.11"; # State version compatibility for Home Manager
 
       packages = with pkgs; [
         antigravity-cli
@@ -73,6 +75,7 @@ in
       ];
     };
 
+    # ----- User Applications & Tools -----
     programs = {
       firefox = {
         enable = true;

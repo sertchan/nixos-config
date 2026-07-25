@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  # ----- GTK Configuration -----
   gtk = {
     enable = true;
     # Use adw-gtk3 dark theme to mimic GNOME's libadwaita look
@@ -50,6 +51,7 @@
     };
   };
 
+  # ----- GNOME Desktop Interface Settings -----
   dconf.settings."org/gnome/desktop/interface" = {
     color-scheme = "prefer-dark"; # Request dark color scheme variant for GTK4 and libadwaita apps
     gtk-theme = "adw-gtk3-dark";

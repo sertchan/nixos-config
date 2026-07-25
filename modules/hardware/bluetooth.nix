@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
+  # ----- Bluetooth Subsystem -----
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -12,11 +14,12 @@
         FastConnectable = true; # Reduce connection page scan interval for faster device reconnection
       };
       Policy = {
-        AutoEnable = true; # Automatically enable Bluetooth adapter on detection
+        AutoEnable = true;
       };
     };
   };
 
+  # ----- Media Control Proxy -----
   systemd.user.services.mpris-proxy = {
     # Proxies MPRIS media controls (play/pause/track) from Bluetooth headsets to media players
     enable = true;

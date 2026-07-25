@@ -109,13 +109,18 @@ in
         ];
 
         initLua = ''
-          -- General config
-          require('core.keybinds')
-          require('core.options')
+          -- Disable unnecessary provider plugins for faster startup time
+          vim.g.loaded_node_provider = 0
+          vim.g.loaded_perl_provider = 0
+          vim.g.loaded_ruby_provider = 0
+          vim.g.loaded_python3_provider = 0
 
-          -- Plugins
-          require('core.plugins')
-          require('core.plugin_config')
+          -- Load core settings and keybindings
+          require("core.keybinds")
+          require("core.options")
+
+          -- Load plugin configurations
+          require("core.plugin_config")
         '';
       };
     };

@@ -1,5 +1,6 @@
 {
   description = "seyhan";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
@@ -7,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs =
     {
       self,

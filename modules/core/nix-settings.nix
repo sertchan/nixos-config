@@ -9,11 +9,14 @@
     settings = {
       use-xdg-base-directories = true;
       flake-registry = "/etc/nix/registry.json";
+      warn-dirty = false;
+      accept-flake-config = false;
 
-      min-free = toString (5 * 1024 * 1024 * 1024);
-      max-free = toString (10 * 1024 * 1024 * 1024);
-
-      auto-optimise-store = false;
+      extra-experimental-features = [
+        "flakes"
+        "nix-command"
+        "recursive-nix"
+      ];
 
       allowed-users = [
         "root"
@@ -25,11 +28,9 @@
         "root"
       ];
 
-      max-jobs = "auto";
-
       sandbox = true;
       sandbox-fallback = false;
-
+      max-jobs = "auto";
       system-features = [
         "nixos-test"
         "kvm"
@@ -38,22 +39,17 @@
       ];
       extra-platforms = config.boot.binfmt.emulatedSystems;
 
-      keep-going = true;
       connect-timeout = 5;
-      log-lines = 30;
-
-      extra-experimental-features = [
-        "flakes"
-        "nix-command"
-        "recursive-nix"
-      ];
-
-      warn-dirty = false;
       http-connections = 50;
-      accept-flake-config = false;
+      log-lines = 30;
+      keep-going = true;
+      builders-use-substitutes = true;
+
+      min-free = toString (5 * 1024 * 1024 * 1024);
+      max-free = toString (10 * 1024 * 1024 * 1024);
+      auto-optimise-store = false;
       keep-derivations = true;
       keep-outputs = true;
-      builders-use-substitutes = true;
 
       substituters = [
         "https://cache.nixos.org"
@@ -78,11 +74,7 @@
     };
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   programs.nh = {
     enable = true;

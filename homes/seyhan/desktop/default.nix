@@ -1,8 +1,8 @@
 {
   imports = [
+    ./mako
     ./niri
     ./waybar
-    ./mako
     ./wofi
   ];
 }

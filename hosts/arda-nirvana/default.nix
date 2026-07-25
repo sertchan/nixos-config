@@ -16,7 +16,6 @@
   ];
 
   networking.hostName = "arda-nirvana";
-
   time.timeZone = "Europe/Istanbul";
 
   system.stateVersion = "24.11";

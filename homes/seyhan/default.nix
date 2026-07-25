@@ -22,7 +22,6 @@ in
 
       packages = with pkgs; [
         awww
-        prismlauncher
         bc
         bluez
         bluez-tools
@@ -55,6 +54,7 @@ in
         nixfmt
         p7zip
         pinentry-curses
+        prismlauncher
         psmisc
         pulsemixer
         qbittorrent-nox

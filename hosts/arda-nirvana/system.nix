@@ -20,6 +20,7 @@
       ];
       kernelModules = [ ];
     };
+
     kernelModules = [ "kvm-intel" ];
     kernelParams = [ "mem_sleep_default=deep" ];
     extraModulePackages = [ ];

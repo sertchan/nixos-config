@@ -11,6 +11,7 @@
         RestartSec = 5;
       };
     };
+
     wl-clip-persist = {
       description = "Persistent clipboard for Wayland";
       wantedBy = [ "default.target" ];

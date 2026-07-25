@@ -1,9 +1,8 @@
 {
   imports = [
     ./alacritty
-    ./zsh
-    ./starship
-
     ./obs
+    ./starship
+    ./zsh
   ];
 }

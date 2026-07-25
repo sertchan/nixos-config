@@ -12,10 +12,13 @@
       fi
     '';
 
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
   };
 
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
+
   systemd.user.services.niri.enableDefaultPath = false;
 }

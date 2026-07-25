@@ -1,22 +1,16 @@
 { pkgs, ... }: {
-  environment = {
-    systemPackages = with pkgs; [
-      curl
-      wget
-
-      stress
-      pciutils
-      lshw
-      dmidecode
-      sysstat
-      smartmontools
-
-      bind.dnsutils
-      traceroute
-      tcpdump
-      mtr
-
-      man-pages
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    bind.dnsutils
+    curl
+    dmidecode
+    lshw
+    man-pages
+    mtr
+    pciutils
+    smartmontools
+    sysstat
+    tcpdump
+    traceroute
+    wget
+  ];
 }

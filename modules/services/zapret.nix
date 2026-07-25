@@ -86,6 +86,7 @@
       after = [ "systemd-tmpfiles-setup.service" ];
       wants = [ "systemd-tmpfiles-setup.service" ];
     };
+
     tmpfiles.rules = [
       "d /var/lib/zapret 0700 zapret zapret -"
       "f /var/lib/zapret/zapret-hosts-auto.txt 0600 zapret zapret -"

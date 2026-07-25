@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-
   systemd.user.services.qbittorrent-nox = {
     enable = true;
     description = "Qbittorrent-nox";

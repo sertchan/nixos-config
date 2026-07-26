@@ -10,7 +10,7 @@
       package = pkgs.adwaita-icon-theme;
     };
     font = {
-      name = "Noto Sans Medium";
+      name = "Adwaita Sans";
       size = 10;
     };
 

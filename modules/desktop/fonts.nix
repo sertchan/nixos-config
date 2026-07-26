@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   fonts = {
     fontconfig = {
       enable = true;
@@ -18,16 +17,16 @@
 
       defaultFonts = {
         serif = [
+          "Literata"
           "Noto Serif"
-          "Liberation Serif"
         ];
         sansSerif = [
+          "Adwaita Sans"
           "Noto Sans"
-          "Liberation Sans"
         ];
         monospace = [
+          "Adwaita Mono"
           "Noto Sans Mono"
-          "Liberation Mono"
         ];
         emoji = [
           "Noto Color Emoji"
@@ -36,14 +35,14 @@
     };
 
     packages = with pkgs; [
+      literata
+      adwaita-fonts
       nerd-fonts.jetbrains-mono
 
       noto-fonts
       noto-fonts-color-emoji
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-
-      liberation_ttf
     ];
   };
 }

@@ -1,7 +1,7 @@
 /* Global */
 
 * {
-  font-family: "Jetbrains Mono NF";
+  font-family: "JetBrains Mono NF";
   font-weight: bold;
   min-height: 0;
   font-size: 12px;
@@ -45,7 +45,7 @@ button {
 #network,
 #temperature,
 #wireplumber {
-  padding: 0 5px;
+  padding: 0 6px;
 }
 
 /* Bluetooth */

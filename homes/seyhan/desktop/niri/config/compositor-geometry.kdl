@@ -24,6 +24,12 @@ layout {
 }
 // Request applications to hide client-side decorations in favor of compositor management
 prefer-no-csd
+// Disable the hot corners.
+gestures {
+    hot-corners {
+        off
+    }
+}
 hotkey-overlay {
     // Suppress keybindings cheat sheet popup on initial login
     skip-at-startup

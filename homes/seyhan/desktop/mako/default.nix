@@ -8,28 +8,51 @@ _: {
       "on-button-right" = "dismiss-all";
       "on-touch" = "dismiss";
 
-      font = "Jetbrains Mono Regular 10";
+      actions = 1;
+      anchor = "top-right";
+      "default-timeout" = 5000;
+      history = 1;
+      "ignore-timeout" = 0;
+      layer = "overlay";
+      "max-visible" = 20;
+      "text-alignment" = "right";
+
+      font = "Adwaita Sans 10";
       width = 400;
       height = 250;
-      margin = 4;
-      padding = 4;
-      "border-size" = 2;
-      icons = 1;
-      "max-icon-size" = 90;
-      "icon-location" = "left";
-      markup = 1;
-      actions = 1;
-      history = 1;
-      "text-alignment" = "right";
-      "default-timeout" = 5000;
-      "ignore-timeout" = 0;
-      "max-visible" = 20;
-      layer = "overlay";
-      anchor = "top-right";
+      margin = "8";
+      padding = "12,16";
+      "border-size" = 1;
+      "border-radius" = 10;
 
-      "background-color" = "#151515";
-      "text-color" = "#D0D0D0";
-      "border-color" = "#444545";
+      icons = 1;
+      "max-icon-size" = 64;
+      "icon-location" = "left";
+      "icon-border-radius" = 8;
+      markup = 1;
+
+      "background-color" = "#18181be0";
+      "text-color" = "#f0f0f0";
+      "border-color" = "#ffffff26";
+      "progress-color" = "over #7fb4ca88";
     };
+
+    extraConfig = ''
+      [urgency=low]
+      background-color=#141418d8
+      text-color=#a6a69c
+      border-color=#8ba4b040
+
+      [urgency=normal]
+      background-color=#18181be0
+      text-color=#f0f0f0
+      border-color=#ffffff26
+
+      [urgency=critical]
+      background-color=#221416f0
+      text-color=#ffffff
+      border-color=#e46876a0
+      progress-color=over #e46876ff
+    '';
   };
 }

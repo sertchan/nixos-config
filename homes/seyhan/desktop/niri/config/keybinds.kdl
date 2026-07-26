@@ -411,4 +411,4 @@ binds {
     }
 }
 // Strftime format template for saved screenshot filenames
-screenshot-path "~/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"

@@ -12,7 +12,7 @@ input {
         accel-profile "flat"
     }
     // Automatically center cursor on newly focused window when focus changes
-    warp-mouse-to-focus mode="center-xy-always"
+    warp-mouse-to-focus mode="center-xy"
     // Enable focus-follows-mouse while disabling automatic workspace scrolling at screen edges
     focus-follows-mouse max-scroll-amount="0%"
 }

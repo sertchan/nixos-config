@@ -12,7 +12,6 @@ input {
     warp-mouse-to-focus mode="center-xy-always"
     focus-follows-mouse max-scroll-amount="0%"
 }
-
 output "eDP-1" {
     off
 }

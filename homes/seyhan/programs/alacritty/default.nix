@@ -4,7 +4,7 @@ _: {
 
     settings = {
       # ----- Window Geometry & Appearance -----
-      window.opacity = 0.92;
+      window.opacity = 0.90;
 
       # ----- Typography -----
       font = {

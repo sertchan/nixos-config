@@ -1,0 +1,24 @@
+layer-rule {
+    match namespace="waybar"
+    background-effect {
+        blur true
+        // Xray blur renders directly against wallpaper, bypassing windows underneath for performance
+        xray true
+    }
+}
+// Force primary desktop applications (matched by Wayland app-id) to open maximized
+window-rule {
+    match app-id="^firefox$"
+    match app-id="^spotify$"
+    match app-id="^discord$"
+    match app-id="^org.gnome.Nautilus$"
+    match app-id="^org.prismlauncher.PrismLauncher$"
+    open-maximized true
+}
+// Apply backdrop blur behind translucent terminal windows
+window-rule {
+    match app-id="^Alacritty$"
+    background-effect {
+        blur true
+    }
+}

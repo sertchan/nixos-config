@@ -1,0 +1,29 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,tr"
+            // XKB options: Super+Space layout toggle, Right Alt compose key, Caps Lock remapped to Ctrl
+            options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+        }
+    }
+    mouse {
+        accel-speed 0.2
+        // Disable mouse acceleration curve for 1:1 raw pointer movement
+        accel-profile "flat"
+    }
+    // Automatically center cursor on newly focused window when focus changes
+    warp-mouse-to-focus mode="center-xy-always"
+    // Enable focus-follows-mouse while disabling automatic workspace scrolling at screen edges
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+// Disable internal laptop display panel
+output "eDP-1" {
+    off
+}
+// Configure primary external monitor resolution, refresh rate, and desktop coordinate position
+output "HDMI-A-1" {
+    mode "1920x1080@74.973"
+    transform "normal"
+    position x=1280 y=0
+}

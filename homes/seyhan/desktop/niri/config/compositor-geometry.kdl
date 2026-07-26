@@ -1,0 +1,33 @@
+layout {
+    gaps 5
+    // Prevent automatic horizontal scrolling to keep focused column centered
+    center-focused-column "never"
+    // Proportion presets of screen width available when cycling column widths
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    default-column-width {
+        proportion 0.5
+    }
+    // Disable visual border decorations in favor of clean window edges
+    focus-ring {
+        off
+    }
+    border {
+        off
+    }
+    shadow {
+        off
+    }
+}
+
+// Request applications to hide client-side decorations in favor of compositor management
+prefer-no-csd
+// Strftime format template for saved screenshot filenames
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+hotkey-overlay {
+    // Suppress keybindings cheat sheet popup on initial login
+    skip-at-startup
+}

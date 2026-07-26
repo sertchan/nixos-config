@@ -70,10 +70,10 @@ binds {
     // ----- Screenshot Shortcuts -----
     // Interactive, full screen, or active window screenshot capture
     Insert {
-        screenshot
+        screenshot show-pointer=false
     }
     Ctrl+Insert {
-        screenshot-screen
+        screenshot-screen show-pointer=false
     }
     Alt+Insert {
         screenshot-window

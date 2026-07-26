@@ -1,0 +1,23 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,tr"
+            options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+        }
+    }
+    mouse {
+        accel-speed 0.2
+        accel-profile "flat"
+    }
+    warp-mouse-to-focus mode="center-xy-always"
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+output "eDP-1" {
+    off
+}
+output "HDMI-A-1" {
+    mode "1920x1080@74.973"
+    transform "normal"
+    position x=1280 y=0
+}

@@ -1,2 +1,3 @@
 spawn-at-startup "waybar"
 spawn-at-startup "wallpaper-daemon"
+spawn-at-startup "discord --start-minimized"

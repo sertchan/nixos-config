@@ -1,29 +1,42 @@
 _: {
   programs.waybar.settings.mainBar = {
-    layer = "top";
-    position = "bottom";
+    layer = "bottom";
+    position = "top";
     "fixed-center" = false;
 
     "modules-left" = [
       "niri/workspaces"
-      "niri/window"
     ];
 
     "modules-right" = [
       "tray"
       "network#2"
       "network"
+      "bluetooth"
       "temperature"
       "cpu"
       "memory"
-      "bluetooth"
       "wireplumber"
-      "clock#2"
       "clock"
+      "clock#2"
     ];
 
     "niri/workspaces" = {
       "on-click" = "activate";
+      format = "{icon}";
+      "format-icons" = {
+        "1" = "I";
+        "2" = "II";
+        "3" = "III";
+        "4" = "IV";
+        "5" = "V";
+        "6" = "VI";
+        "7" = "VII";
+        "8" = "VIII";
+        "9" = "IX";
+        "10" = "X";
+        "default" = "{value}";
+      };
     };
     "niri/window" = {
       format = "{}";

@@ -24,8 +24,6 @@ layout {
 }
 // Request applications to hide client-side decorations in favor of compositor management
 prefer-no-csd
-// Strftime format template for saved screenshot filenames
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 hotkey-overlay {
     // Suppress keybindings cheat sheet popup on initial login
     skip-at-startup

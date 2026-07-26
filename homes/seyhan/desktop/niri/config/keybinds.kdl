@@ -410,3 +410,5 @@ binds {
         power-off-monitors
     }
 }
+// Strftime format template for saved screenshot filenames
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"

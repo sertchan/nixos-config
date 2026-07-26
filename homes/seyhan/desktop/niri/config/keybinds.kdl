@@ -60,10 +60,10 @@ binds {
         spawn "brightnessctl" "--class=backlight" "set" "10%-"
     }
     Insert {
-        screenshot
+        screenshot show-pointer=false
     }
     Ctrl+Insert {
-        screenshot-screen
+        screenshot-screen show-pointer=false
     }
     Alt+Insert {
         screenshot-window

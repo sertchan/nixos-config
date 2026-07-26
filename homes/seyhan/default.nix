@@ -41,7 +41,6 @@ in
         geekbench
         glib
         google-chrome
-        grimblast
         gsettings-desktop-schemas
         imagemagick
         inotify-tools

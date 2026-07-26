@@ -16,7 +16,6 @@ input {
     // Enable focus-follows-mouse while disabling automatic workspace scrolling at screen edges
     focus-follows-mouse max-scroll-amount="0%"
 }
-
 // Disable internal laptop display panel
 output "eDP-1" {
     off

@@ -7,7 +7,6 @@ binds {
     Mod+Escape allow-inhibiting=false {
         toggle-keyboard-shortcuts-inhibit
     }
-
     // ----- Application Launchers -----
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" {
         spawn "alacritty"
@@ -31,7 +30,6 @@ binds {
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null {
         spawn-sh "pkill orca || exec orca"
     }
-
     // ----- Audio & Media Controls -----
     // Volume controls via WirePlumber; capped at 100% volume limit
     XF86AudioRaiseVolume allow-when-locked=true {
@@ -62,7 +60,6 @@ binds {
     XF86AudioNext allow-when-locked=true {
         spawn-sh "playerctl next"
     }
-
     // ----- Display Brightness Controls -----
     XF86MonBrightnessUp allow-when-locked=true {
         spawn "brightnessctl" "--class=backlight" "set" "+10%"
@@ -70,7 +67,6 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true {
         spawn "brightnessctl" "--class=backlight" "set" "10%-"
     }
-
     // ----- Screenshot Shortcuts -----
     // Interactive, full screen, or active window screenshot capture
     Insert {
@@ -82,7 +78,6 @@ binds {
     Alt+Insert {
         screenshot-window
     }
-
     // ----- Window Overview & Lifecycle -----
     // Single-trigger binding to toggle spatial workspace overview grid
     Mod+O repeat=false {
@@ -91,7 +86,6 @@ binds {
     Mod+Shift+Q repeat=false {
         close-window
     }
-
     // ----- Focus Navigation -----
     // Navigate focus between horizontal columns and vertical window stacks
     Mod+Left {
@@ -124,7 +118,6 @@ binds {
     Mod+End {
         focus-column-last
     }
-
     // ----- Window & Column Movement -----
     // Move active column horizontally or window vertically within column
     Mod+Ctrl+Left {
@@ -157,7 +150,6 @@ binds {
     Mod+Ctrl+End {
         move-column-to-last
     }
-
     // ----- Multi-Monitor Navigation & Movement -----
     // Focus or move active column across multi-monitor setups
     Mod+Shift+Left {
@@ -208,7 +200,6 @@ binds {
     Mod+Shift+Ctrl+L {
         move-column-to-monitor-right
     }
-
     // ----- Workspace Navigation & Movement -----
     // Navigate or move columns/workspaces in Niri's vertical workspace layout
     Mod+Page_Down {
@@ -247,7 +238,6 @@ binds {
     Mod+Shift+I {
         move-workspace-up
     }
-
     // ----- Direct Workspace Shortcuts (1-9) -----
     Mod+1 {
         focus-workspace 1
@@ -303,7 +293,6 @@ binds {
     Mod+Shift+9 {
         move-column-to-workspace 9
     }
-
     // ----- Mouse & Scroll Wheel Controls -----
     // Scroll wheel workspace switching with 150ms debounce cooldown
     Mod+WheelScrollDown cooldown-ms=150 {
@@ -342,7 +331,6 @@ binds {
     Mod+Ctrl+Shift+WheelScrollUp {
         move-column-left
     }
-
     // ----- Column & Window Layout Controls -----
     // Merge window into adjacent column or expel window into standalone column
     Mod+BracketLeft {
@@ -411,7 +399,6 @@ binds {
     Mod+W {
         toggle-column-tabbed-display
     }
-
     // ----- Session Management & Power Controls -----
     Mod+Shift+C {
         quit

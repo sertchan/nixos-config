@@ -24,6 +24,7 @@ in
 
       packages = with pkgs; [
         antigravity-cli
+        vim
         awww
         bc
         bluez

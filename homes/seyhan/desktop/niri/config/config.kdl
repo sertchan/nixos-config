@@ -1,5 +1,4 @@
-// ----- Imports ----- 
-
+// ----- Imports -----
 include "hardware-devices.kdl"
 include "compositor-geometry.kdl"
 include "surface-rules.kdl"

@@ -22,7 +22,6 @@ layout {
         off
     }
 }
-
 // Request applications to hide client-side decorations in favor of compositor management
 prefer-no-csd
 // Strftime format template for saved screenshot filenames

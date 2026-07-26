@@ -2,7 +2,7 @@ layer-rule {
     match namespace="waybar"
     background-effect {
         blur true
-        // Xray blur renders directly against wallpaper, bypassing windows underneath for performance
+        // xray blur renders directly against wallpaper, bypassing windows underneath for performance
         xray true
     }
 }

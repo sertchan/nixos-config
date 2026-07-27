@@ -9,19 +9,17 @@ _: {
     ];
 
     "modules-center" = [
-      "clock"
-      "clock#2"
     ];
 
     "modules-right" = [
       "tray"
       "network#2"
       "network"
+      "bluetooth"
       "wireplumber"
       "niri/language"
-      "temperature"
-      "cpu"
-      "memory"
+      "clock"
+      "clock#2"
     ];
 
     "niri/workspaces" = {
@@ -46,8 +44,8 @@ _: {
       "max-length" = 360;
     };
     clock = {
-      interval = 60;
-      format = "{:%a, %b %d}";
+      interval = 1;
+      format = "{:%d/%m/%Y}";
     };
     "clock#2" = {
       interval = 1;
@@ -56,9 +54,9 @@ _: {
     bluetooth = {
       tooltip = false;
       "format-on" = "󰂯";
-      "format-connected" = "󰂯";
-      "format-off" = "󰂲 Down";
-      "format-disabled" = "󰂲 Disabled";
+      "format-connected" = "󰂯 {device_alias}";
+      "format-off" = "󰂯 Down";
+      "format-disabled" = "󰂯 Disabled";
     };
     wireplumber = {
       tooltip = false;

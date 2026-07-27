@@ -1,5 +1,11 @@
 layer-rule {
     match namespace="waybar"
+    popups {
+        background-effect {
+            blur true
+            xray false
+        }
+    }
     background-effect {
         blur true
         xray true

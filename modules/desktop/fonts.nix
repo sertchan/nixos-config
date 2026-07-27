@@ -39,7 +39,7 @@
     packages = with pkgs; [
       literata
       adwaita-fonts
-      nerd-fonts.jetbrains-mono
+      nerd-fonts.adwaita-mono
 
       noto-fonts
       noto-fonts-color-emoji

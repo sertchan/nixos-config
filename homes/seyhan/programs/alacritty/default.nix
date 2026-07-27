@@ -8,25 +8,25 @@ _: {
 
       # ----- Typography -----
       font = {
-        size = 10;
+        size = 12;
 
         normal = {
-          family = "Jetbrains Mono NF";
+          family = "AdwaitaMono Nerd Font";
           style = "Regular";
         };
 
         bold = {
-          family = "Jetbrains Mono NF";
+          family = "AdwaitaMono Nerd Font";
           style = "Bold";
         };
 
         italic = {
-          family = "Jetbrains Mono NF";
+          family = "AdwaitaMono Nerd Font";
           style = "Italic";
         };
 
         bold_italic = {
-          family = "Jetbrains Mono NF";
+          family = "AdwaitaMono Nerd Font";
           style = "Bold Italic";
         };
       };

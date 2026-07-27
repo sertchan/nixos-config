@@ -1,8 +1,13 @@
 layer-rule {
     match namespace="waybar"
+    popups {
+        background-effect {
+            blur true
+            xray false
+        }
+    }
     background-effect {
         blur true
-        // xray blur renders directly against wallpaper, bypassing windows underneath for performance
         xray true
     }
 }

@@ -65,12 +65,17 @@ _: {
     };
     wireplumber = {
       tooltip = false;
-      format = "  {volume}%";
-      "format-muted" = "  Muted";
+      format = "{icon}  {volume}%";
+      "format-muted" = "  Muted";
+      "format-icons" = [
+        ""
+        ""
+        ""
+      ];
     };
     tray = {
       tooltip = false;
-      "icon-size" = 15;
+      "icon-size" = 14;
       spacing = 10;
     };
     cpu = {
@@ -89,9 +94,16 @@ _: {
     network = {
       interval = 1;
       interface = "wlp0s20f3"; # Wireless Wi-Fi interface
-      format = "󰤨  {essid}";
+      format = "{icon}  {essid}";
       "format-linked" = "󰤩  Connecting";
       "format-disconnected" = "";
+      "format-icons" = [
+        "󰤯"
+        "󰤟"
+        "󰤢"
+        "󰤥"
+        "󰤨"
+      ];
       tooltip = false;
     };
     "network#2" = {

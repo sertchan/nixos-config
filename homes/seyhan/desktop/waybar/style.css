@@ -1,14 +1,14 @@
 
 * {
-  font-family: "JetBrains Mono NF";
+  font-family: "AdwaitaMono Nerd Font";
   font-weight: bold;
   min-height: 0;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 
 window#waybar {
-  background-color: rgba(10, 10, 10, 0.85);
+  background-color: rgba(10, 10, 10, 0.8);
   color: #ffffff;
 }
 
@@ -19,7 +19,7 @@ button {
 
 
 #workspaces button {
-  padding: 0 4px;
+  padding: 0 8px;
   color: gray;
 }
 
@@ -29,10 +29,8 @@ button {
 }
 
 
-#idle_inhibitor,
 #clock,
 #memory,
-#user,
 #battery,
 #bluetooth,
 #cpu,
@@ -40,7 +38,7 @@ button {
 #network,
 #temperature,
 #wireplumber {
-  padding: 0 6px;
+  padding: 0px 8px;
 }
 
 
@@ -57,10 +55,6 @@ button {
   color: #ff0000;
 }
 
-
-#network {
-  color: #00ff00;
-}
 
 #network.linked {
   color: #ffff00;

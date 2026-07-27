@@ -28,9 +28,7 @@
           "Adwaita Mono"
           "Noto Sans Mono"
         ];
-        emoji = [
-          "Noto Color Emoji"
-        ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
 

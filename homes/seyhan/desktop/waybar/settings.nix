@@ -15,12 +15,13 @@ _: {
 
     "modules-right" = [
       "tray"
-      "temperature"
-      "cpu"
-      "memory"
       "network#2"
       "network"
       "wireplumber"
+      "niri/language"
+      "temperature"
+      "cpu"
+      "memory"
     ];
 
     "niri/workspaces" = {
@@ -105,6 +106,11 @@ _: {
       "warning-threshold" = 70;
       "critical-threshold" = 90;
       format = "󰏈  {temperatureC}°C";
+    };
+    "niri/language" = {
+      format = "  {}";
+      "format-en" = "EN";
+      "format-tr" = "TR";
     };
   };
 }

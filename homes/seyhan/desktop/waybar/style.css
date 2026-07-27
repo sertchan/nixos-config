@@ -30,6 +30,7 @@ button {
 
 
 #clock,
+#language,
 #memory,
 #battery,
 #bluetooth,
@@ -55,6 +56,9 @@ button {
   color: #ff0000;
 }
 
+#network {
+  color: #00ff00;
+}
 
 #network.linked {
   color: #ffff00;

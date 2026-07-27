@@ -5,6 +5,13 @@ layer-rule {
         xray true
     }
 }
+layer-rule {
+    match namespace="notifications"
+    background-effect {
+        blur true
+        xray false
+    }
+}
 window-rule {
     match app-id="^firefox$"
     match app-id="^spotify$"

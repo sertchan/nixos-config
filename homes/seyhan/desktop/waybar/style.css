@@ -35,6 +35,7 @@ button {
 /* Element */
 
 #clock,
+#language,
 #memory,
 #battery,
 #bluetooth,
@@ -62,6 +63,9 @@ button {
 }
 
 /* Network */
+#network {
+  color: #00ff00;
+}
 
 #network.linked {
   color: #ffff00;

@@ -16,13 +16,13 @@ _: {
 
     "modules-right" = [
       "tray"
-      #"bluetooth"
-      "temperature"
-      "cpu"
-      "memory"
       "network#2"
       "network"
       "wireplumber"
+      "niri/language"
+      "temperature"
+      "cpu"
+      "memory"
     ];
 
     # ----- Module Configurations -----
@@ -108,6 +108,11 @@ _: {
       "warning-threshold" = 70;
       "critical-threshold" = 90;
       format = "󰏈  {temperatureC}°C";
+    };
+    "niri/language" = {
+      format = "  {}";
+      "format-en" = "EN";
+      "format-tr" = "TR";
     };
   };
 }

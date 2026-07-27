@@ -21,7 +21,7 @@ in
       stateVersion = "24.11";
 
       packages = with pkgs; [
-        vim
+        libnotify
         awww
         bc
         bluez

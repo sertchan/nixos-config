@@ -15,7 +15,6 @@ _: {
 
     "modules-right" = [
       "tray"
-      "bluetooth"
       "temperature"
       "cpu"
       "memory"

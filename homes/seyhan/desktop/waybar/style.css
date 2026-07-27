@@ -23,7 +23,7 @@ button {
 /* Workspace button */
 
 #workspaces button {
-  padding: 0 8px;
+  padding: 0 6px;
   color: gray;
 }
 
@@ -43,7 +43,7 @@ button {
 #network,
 #temperature,
 #wireplumber {
-  padding: 0px 8px;
+  padding: 0px 6px;
 }
 
 /* Bluetooth */
@@ -109,6 +109,6 @@ button {
 /* Workspaces */
 
 #workspaces {
-  margin: 0 4px;
+  margin: 0 6px;
   margin-left: 0;
 }

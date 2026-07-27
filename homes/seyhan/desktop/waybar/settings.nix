@@ -2,23 +2,26 @@ _: {
   programs.waybar.settings.mainBar = {
     layer = "bottom";
     position = "top";
-    "fixed-center" = false;
+    "fixed-center" = true;
 
     "modules-left" = [
       "niri/workspaces"
     ];
 
+    "modules-center" = [
+      "clock"
+      "clock#2"
+    ];
+
     "modules-right" = [
       "tray"
-      "network#2"
-      "network"
       "bluetooth"
       "temperature"
       "cpu"
       "memory"
+      "network#2"
+      "network"
       "wireplumber"
-      "clock"
-      "clock#2"
     ];
 
     "niri/workspaces" = {
@@ -44,38 +47,33 @@ _: {
     };
     clock = {
       interval = 60;
-      format = "{:%d/%m/%Y}";
+      format = "{:%a, %b %d}";
     };
     "clock#2" = {
       interval = 1;
       format = "{:%H:%M}";
     };
-    disk = {
-      interval = 10;
-      format = "{path}: {used}/{total}";
-      path = "/";
-    };
     bluetooth = {
       tooltip = false;
-      "format-on" = "";
-      "format-connected" = "B: {device_alias}";
-      "format-off" = "B: Down";
-      "format-disabled" = "B: Disabled";
+      "format-on" = "󰂯";
+      "format-connected" = "󰂯";
+      "format-off" = "󰂲 Down";
+      "format-disabled" = "󰂲 Disabled";
     };
     wireplumber = {
       tooltip = false;
-      format = "V: {volume}%";
-      "format-muted" = "V: Muted";
+      format = "  {volume}%";
+      "format-muted" = "  Muted";
     };
     tray = {
       tooltip = false;
-      "icon-size" = 14;
+      "icon-size" = 15;
       spacing = 10;
     };
     cpu = {
       interval = 1;
       tooltip = false;
-      format = "C: {usage}%";
+      format = "  {usage}%";
       states = {
         warning = 70;
         critical = 90;
@@ -83,30 +81,21 @@ _: {
     };
     memory = {
       interval = 1;
-      format = "M: {used:0.1f}G";
-    };
-    battery = {
-      interval = 1;
-      bat = "BAT0";
-      states = {
-        warning = 30;
-        critical = 15;
-      };
-      format = "BAT: {capacity}%";
+      format = "  {used:0.1f}G";
     };
     network = {
       interval = 1;
       interface = "wlp0s20f3";
-      format = "W: {essid}";
-      "format-linked" = "W: Connecting";
+      format = "󰤨  {essid}";
+      "format-linked" = "󰤩  Connecting";
       "format-disconnected" = "";
       tooltip = false;
     };
     "network#2" = {
       interval = 1;
       interface = "enp6s0";
-      format = "E: Connected";
-      "format-linked" = "E: Connecting";
+      format = "󰈀  Connected";
+      "format-linked" = "󰈀  Connecting";
       "format-disconnected" = "";
       tooltip = false;
     };
@@ -116,7 +105,7 @@ _: {
       tooltip = false;
       "warning-threshold" = 70;
       "critical-threshold" = 90;
-      format = "T: {temperatureC}°C";
+      format = "󰏈  {temperatureC}°C";
     };
   };
 }

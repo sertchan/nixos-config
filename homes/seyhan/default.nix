@@ -24,7 +24,7 @@ in
 
       packages = with pkgs; [
         antigravity-cli
-        vim
+        libnotify
         awww
         bc
         bluez

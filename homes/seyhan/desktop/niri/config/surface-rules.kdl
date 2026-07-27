@@ -6,6 +6,13 @@ layer-rule {
         xray true
     }
 }
+layer-rule {
+    match namespace="notifications"
+    background-effect {
+        blur true
+        xray false
+    }
+}
 // Force primary desktop applications (matched by Wayland app-id) to open maximized
 window-rule {
     match app-id="^firefox$"

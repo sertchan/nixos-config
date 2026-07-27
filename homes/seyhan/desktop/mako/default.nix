@@ -17,50 +17,58 @@ _: {
       "ignore-timeout" = 0;
       layer = "overlay"; # Render notifications above all desktop windows
       "max-visible" = 20;
-      "text-alignment" = "right";
+      "text-alignment" = "left";
 
       # ----- Typography & Layout -----
-      font = "Adwaita Sans 10";
+      # Monospace bold font matching waybar style (AdwaitaMono Nerd Font)
+      font = "AdwaitaMono Nerd Font 11";
       width = 400;
       height = 250;
-      margin = "8";
+      # Use outer-margin for screen edge spacing (handled by wlr-layer-shell)
+      # and margin = "0" to keep stacked notification cards flush without transparent
+      # internal gaps that cause compositor blur to bleed between cards.
+      "outer-margin" = "8";
+      margin = "0";
       padding = "12,16";
       "border-size" = 1;
-      "border-radius" = 10;
+      "border-radius" = 0;
 
       # ----- Icons & Media -----
       icons = 1;
       "max-icon-size" = 64;
       "icon-location" = "left";
-      "icon-border-radius" = 8;
+      "icon-border-radius" = 0;
       markup = 1;
 
       # ----- Global Visual Style -----
-      # Semi-transparent dark slate backdrop (~88% opacity) for a modern elevated look with high contrast text
-      "background-color" = "#18181be0";
-      "text-color" = "#f0f0f0";
+      # Dark backdrop matching waybar (rgba(10, 10, 10, 0.8) -> #0a0a0acc) with white text & waybar accent colors
+      "background-color" = "#0a0a0acc";
+      "text-color" = "#ffffff";
       "border-color" = "#ffffff26";
-      "progress-color" = "over #7fb4ca88";
+      "progress-color" = "over #00ff00cc";
     };
 
     # ----- Urgency Criteria Sections -----
     # Mako requires single-bracket criteria syntax [urgency=level]
+    # Urgency variants derive from waybar's palette: gray muted text for low, waybar green accent for normal, waybar red for critical
     extraConfig = ''
       [urgency=low]
-      background-color=#141418d8
-      text-color=#a6a69c
-      border-color=#8ba4b040
+      background-color=#0a0a0ab3
+      text-color=#a0a0a0
+      border-color=#ffffff1a
+      progress-color=over #ffff0088
 
       [urgency=normal]
-      background-color=#18181be0
-      text-color=#f0f0f0
+      background-color=#0a0a0acc
+      text-color=#ffffff
       border-color=#ffffff26
+      progress-color=over #00ff00cc
 
       [urgency=critical]
-      background-color=#221416f0
+      background-color=#140505e6
       text-color=#ffffff
-      border-color=#e46876a0
-      progress-color=over #e46876ff
+      border-color=#ff0000cc
+      progress-color=over #ff0000ff
     '';
   };
 }

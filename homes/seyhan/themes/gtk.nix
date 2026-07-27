@@ -15,6 +15,14 @@
     };
 
     gtk3 = {
+      extraCss = ''
+        menu,
+        menu *,
+        .menu,
+        .menu * {
+          border-radius: 0px;
+        }
+      '';
       extraConfig = {
         gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
         gtk-toolbar-icon-size = "GTK_ICON_SIZE_SMALL_TOOLBAR";

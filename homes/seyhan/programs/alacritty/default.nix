@@ -3,7 +3,7 @@ _: {
     enable = true;
 
     settings = {
-      window.opacity = 0.90;
+      window.opacity = 1.00;
 
       font = {
         size = 12;
@@ -31,7 +31,7 @@ _: {
 
       colors = {
         primary = {
-          background = "#0a0a0a";
+          background = "#181616";
           foreground = "#c5c9c5";
         };
 

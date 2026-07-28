@@ -4,7 +4,7 @@ _: {
 
     settings = {
       # ----- Window Geometry & Appearance -----
-      window.opacity = 0.90;
+      window.opacity = 1.00;
 
       # ----- Typography -----
       font = {
@@ -34,7 +34,7 @@ _: {
       # ----- Color Palette -----
       colors = {
         primary = {
-          background = "#0a0a0a";
+          background = "#181616";
           foreground = "#c5c9c5";
         };
 

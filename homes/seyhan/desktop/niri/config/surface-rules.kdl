@@ -13,6 +13,7 @@ layer-rule {
 }
 layer-rule {
     match namespace="notifications"
+    match namespace="wofi"
     background-effect {
         blur true
         xray false

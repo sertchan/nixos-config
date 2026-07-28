@@ -28,10 +28,3 @@ window-rule {
     match app-id="^org.prismlauncher.PrismLauncher$"
     open-maximized true
 }
-// Apply backdrop blur behind translucent terminal windows
-window-rule {
-    match app-id="^Alacritty$"
-    background-effect {
-        blur true
-    }
-}

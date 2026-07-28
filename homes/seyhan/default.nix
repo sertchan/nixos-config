@@ -26,6 +26,7 @@ in
         antigravity-cli
         libnotify
         awww
+        onlyoffice-desktopeditors
         bc
         bluez
         bluez-tools

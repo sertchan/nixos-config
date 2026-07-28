@@ -36,6 +36,7 @@
       literata
       adwaita-fonts
       nerd-fonts.adwaita-mono
+      corefonts
 
       noto-fonts
       noto-fonts-color-emoji

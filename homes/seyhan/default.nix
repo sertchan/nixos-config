@@ -23,6 +23,7 @@ in
       packages = with pkgs; [
         libnotify
         awww
+        onlyoffice-desktopeditors
         bc
         bluez
         bluez-tools

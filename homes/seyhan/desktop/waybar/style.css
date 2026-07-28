@@ -2,13 +2,12 @@
 * {
   font-family: "AdwaitaMono Nerd Font";
   font-weight: bold;
-  min-height: 0;
   font-size: 14px;
 }
 
 
 window#waybar {
-  background-color: rgba(10, 10, 10, 0.8);
+  background-color: rgba(24, 22, 22, 0.9);
   color: #ffffff;
 }
 

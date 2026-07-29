@@ -5,8 +5,8 @@ binds {
     Mod+Escape allow-inhibiting=false {
         toggle-keyboard-shortcuts-inhibit
     }
-    Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" {
-        spawn "alacritty"
+    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" {
+        spawn "ghostty"
     }
     Mod+Z hotkey-overlay-title="Run an Application: firefox" {
         spawn "firefox"

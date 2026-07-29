@@ -1,6 +1,6 @@
 {
   imports = [
-    ./alacritty
+    ./ghostty
     ./obs
     ./starship
     ./zsh

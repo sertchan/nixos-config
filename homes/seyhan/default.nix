@@ -25,6 +25,7 @@ in
       packages = with pkgs; [
         antigravity-cli
         libnotify
+        easyeffects
         awww
         onlyoffice-desktopeditors
         bc

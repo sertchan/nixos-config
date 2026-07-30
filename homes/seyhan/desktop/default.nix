@@ -4,5 +4,6 @@
     ./niri
     ./waybar
     ./wofi
+    ./quickshell
   ];
 }

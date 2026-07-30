@@ -28,3 +28,7 @@ window-rule {
     match app-id="^org.prismlauncher.PrismLauncher$"
     open-maximized true
 }
+window-rule {
+    match app-id="^mpv$"
+    open-floating true
+}

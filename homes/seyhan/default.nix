@@ -22,6 +22,7 @@ in
 
       packages = with pkgs; [
         libnotify
+        easyeffects
         awww
         onlyoffice-desktopeditors
         bc

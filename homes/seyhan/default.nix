@@ -31,7 +31,7 @@ in
         btop
         claude-code
         codex
-        discord
+        vesktop
         dragon-drop
         dust
         fastfetch

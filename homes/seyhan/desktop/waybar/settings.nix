@@ -1,7 +1,7 @@
 _: {
   programs.waybar.settings.mainBar = {
     layer = "bottom";
-    position = "top";
+    position = "bottom";
     "fixed-center" = true;
 
     "modules-left" = [

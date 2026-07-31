@@ -16,6 +16,7 @@
 
     sessionVariables = {
       NIXOS_OZONE_WL = "1"; # Force Electron and Chromium applications to run on Wayland natively
+      QT_SCALE_FACTOR = "1.25";
     };
   };
 

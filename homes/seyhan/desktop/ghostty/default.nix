@@ -1,12 +1,8 @@
 {
-  xdg.configFile."ghostty/cursor_sweep.glsl".source = ./cursor_sweep.glsl;
-
   programs.ghostty = {
     enable = true;
     settings = {
       background-opacity = 1.0;
-
-      custom-shader = "cursor_sweep.glsl";
 
       font-size = 12;
       font-family = "AdwaitaMono Nerd Font";

@@ -22,6 +22,10 @@ layout {
         off
     }
 }
+// Make animations faster
+animations {
+    slowdown 0.75
+}
 // Request applications to hide client-side decorations in favor of compositor management
 prefer-no-csd
 // Disable the hot corners.

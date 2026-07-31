@@ -1,9 +1,14 @@
 {
+  xdg.configFile."ghostty/cursor_sweep.glsl".source = ./cursor_sweep.glsl;
+
   programs.ghostty = {
     enable = true;
     settings = {
       # ----- Window -----
       background-opacity = 1.0;
+
+      # ----- Cursor Shader -----
+      custom-shader = "cursor_sweep.glsl";
 
       # ----- Font -----
       font-size = 12;

@@ -16,8 +16,11 @@ _: {
       "network#2"
       "network"
       "bluetooth"
-      "wireplumber"
+      "temperature"
+      "cpu"
+      "memory"
       "niri/language"
+      "wireplumber"
       "clock"
       "clock#2"
     ];

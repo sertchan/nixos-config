@@ -20,8 +20,8 @@ binds {
     Mod+X hotkey-overlay-title="Run an Application: nautilus" {
         spawn "nautilus"
     }
-    Mod+D hotkey-overlay-title="Run an Application: discord" {
-        spawn "discord"
+    Mod+D hotkey-overlay-title="Run an Application: vesktop" {
+        spawn "vesktop"
     }
     Mod+S hotkey-overlay-title="Run an Application: spotify" {
         spawn "spotify"

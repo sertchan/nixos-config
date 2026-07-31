@@ -33,7 +33,7 @@ in
         bluez-tools
         btop
         claude-code
-        discord
+        vesktop
         dragon-drop
         dust
         fastfetch

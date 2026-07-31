@@ -23,7 +23,7 @@ layer-rule {
 window-rule {
     match app-id="^firefox$"
     match app-id="^spotify$"
-    match app-id="^discord$"
+    match app-id="^vesktop$"
     match app-id="^org.gnome.Nautilus$"
     match app-id="^org.prismlauncher.PrismLauncher$"
     open-maximized true

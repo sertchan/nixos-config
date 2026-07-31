@@ -1,38 +1,28 @@
 /* Global */
-
 * {
   font-family: "AdwaitaMono Nerd Font";
   font-weight: bold;
   font-size: 14px;
 }
-
 /* Waybar */
-
 window#waybar {
   background-color: rgba(15, 15, 15, 0.9);
   color: #ffffff;
 }
-
 /* Button */
-
 button {
   border: none;
 }
-
 /* Workspace button */
-
 #workspaces button {
   padding: 0 6px;
   color: gray;
 }
-
 #workspaces button:hover,
 #workspaces button.active {
   color: #ffffff;
 }
-
 /* Element */
-
 #clock,
 #language,
 #memory,
@@ -45,72 +35,178 @@ button {
 #wireplumber {
   padding: 0px 6px;
 }
-
+/* Tray Icons & Interactive States */
+#tray {
+  padding: 0px 6px;
+}
+#tray > .passive {
+  -gtk-icon-effect: dim;
+  opacity: 0.6;
+}
+#tray > .active {
+  opacity: 1;
+}
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: rgba(255, 0, 0, 0.3);
+  border-radius: 0;
+}
+#tray > button {
+  padding: 0 4px;
+  border-radius: 0;
+  transition: background-color 150ms ease-in-out;
+}
+#tray > button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/* Modernized Tray Popup Menu & Context Menus */
+window.popup {
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  border: none;
+}
+/* Kill the GTK window-frame/shadow that sits behind popups.
+   This is a separate CSS node from window.popup, so it needs
+   its own explicit reset or it leaves a faint gray halo behind
+   the rounded menu corners. */
+window.popup decoration,
+decoration {
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+/* Legacy node name some GTK3 builds still use instead of `decoration` */
+.window-frame,
+.window-frame.popup {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+}
+menu,
+#tray menu {
+  background-color: rgba(15, 15, 15, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  padding: 6px;
+  margin: 4px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+menu menuitem,
+#tray menu menuitem {
+  padding: 6px 12px;
+  margin: 2px 0;
+  border-radius: 0;
+  color: #ffffff;
+  font-family: "AdwaitaMono Nerd Font";
+  font-size: 13px;
+  font-weight: bold;
+  background-color: transparent;
+  transition:
+    background-color 120ms ease-in-out,
+    color 120ms ease-in-out;
+}
+menu menuitem:hover,
+menu menuitem:selected,
+menu menuitem:focus,
+#tray menu menuitem:hover,
+#tray menu menuitem:selected,
+#tray menu menuitem:focus {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+menu menuitem:disabled,
+#tray menu menuitem:disabled {
+  color: rgba(255, 255, 255, 0.35);
+  background-color: transparent;
+}
+menu separator,
+#tray menu separator {
+  background-color: rgba(255, 255, 255, 0.12);
+  min-height: 1px;
+  margin: 4px 6px;
+}
+/* Submenu Arrow & Checkbox Indicators */
+menu menuitem arrow {
+  color: rgba(255, 255, 255, 0.7);
+  min-height: 14px;
+  min-width: 14px;
+}
+menu menuitem check,
+menu menuitem radio {
+  margin-right: 8px;
+  min-height: 14px;
+  min-width: 14px;
+}
+menu menuitem check:checked,
+menu menuitem radio:checked {
+  color: #00ff00;
+}
+/* Tooltip Styling */
+tooltip {
+  background-color: rgba(15, 15, 15, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+tooltip label {
+  color: #ffffff;
+  padding: 4px 8px;
+  font-family: "AdwaitaMono Nerd Font";
+  font-size: 12px;
+  font-weight: bold;
+}
 /* Bluetooth */
-
 #bluetooth.on {
   font-size: 0;
   padding: 0 0px;
 }
-
 #bluetooth.off {
   color: #ff0000;
 }
-
 #bluetooth.disabled {
   color: #ff0000;
 }
-
 /* Network */
 #network {
   color: #00ff00;
 }
-
 #network.linked {
   color: #ffff00;
 }
-
 #network.disconnected {
   font-size: 0;
   padding: 0 0px;
 }
-
 /* Wireplumber */
-
 #wireplumber.muted {
   color: #ff0000;
 }
-
 /* CPU */
-
 #cpu.warning {
   color: #ffff00;
 }
-
 #cpu.critical {
   color: #ff0000;
 }
-
 /* Temperature */
-
 #temperature.warning {
   color: #ffff00;
 }
 #temperature.critical {
   color: #ff0000;
 }
-
 /* Battery */
-
 #battery.warning {
   color: #ffff00;
 }
 #battery.critical {
   color: #ff0000;
 }
-
 /* Workspaces */
-
 #workspaces {
   margin: 0 6px;
   margin-left: 0;

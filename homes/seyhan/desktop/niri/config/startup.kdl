@@ -1,3 +1,2 @@
 spawn-at-startup "waybar"
 spawn-at-startup "wallpaper-daemon"
-spawn-sh-at-startup "vesktop --start-minimized"

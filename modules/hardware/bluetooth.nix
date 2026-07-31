@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   # ----- Bluetooth Subsystem -----
   hardware.bluetooth = {
     enable = true;

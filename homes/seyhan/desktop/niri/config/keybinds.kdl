@@ -23,6 +23,9 @@ binds {
     Mod+S hotkey-overlay-title="Run an Application: spotify" {
         spawn "spotify"
     }
+    Mod+P hotkey-overlay-title="Run an Application: prismlauncher" {
+        spawn "prismlauncher"
+    }
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null {
         spawn-sh "pkill orca || exec orca"
     }

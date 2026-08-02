@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, ... }:
 let
   username = "seyhan";
 in
@@ -75,11 +71,6 @@ in
     };
 
     programs = {
-      firefox = {
-        enable = true;
-        configPath = "${config.xdg.configHome}/mozilla/firefox";
-      };
-
       gh.enable = true;
       git.enable = true;
       gpg.enable = true;

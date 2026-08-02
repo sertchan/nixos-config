@@ -2,7 +2,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      background-opacity = 1.0;
+      background-opacity = 1.00;
 
       font-size = 12;
       font-family = "AdwaitaMono Nerd Font";

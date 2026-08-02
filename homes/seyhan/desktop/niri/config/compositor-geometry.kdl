@@ -1,5 +1,5 @@
 layout {
-    gaps 6
+    gaps 8
     // Prevent automatic horizontal scrolling to keep focused column centered
     center-focused-column "never"
     // Proportion presets of screen width available when cycling column widths

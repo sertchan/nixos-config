@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       # ----- Window -----
-      background-opacity = 1.0;
+      background-opacity = 1.00;
 
       # ----- Font -----
       font-size = 12;

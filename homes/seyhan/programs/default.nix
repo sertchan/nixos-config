@@ -3,5 +3,6 @@
     ./obs
     ./starship
     ./zsh
+    ./firefox
   ];
 }

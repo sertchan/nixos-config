@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, ... }:
 let
   username = "seyhan"; # Change this to reuse the config for another user
 in
@@ -78,11 +74,6 @@ in
 
     # ----- User Applications & Tools -----
     programs = {
-      firefox = {
-        enable = true;
-        configPath = "${config.xdg.configHome}/mozilla/firefox"; # Store Firefox profile in XDG config directory
-      };
-
       gh.enable = true;
       git.enable = true;
       gpg.enable = true;

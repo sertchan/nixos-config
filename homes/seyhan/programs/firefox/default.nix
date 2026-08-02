@@ -30,7 +30,7 @@
       NoDefaultBookmarks = true;
       OfferToSaveLoginsDefault = false;
 
-      # ----- PopupBlocking -----
+      # ----- Popup Blocking -----
       PopupBlocking.Default = true;
 
       # ----- Disable AI Related Features -----
@@ -68,7 +68,7 @@
       # ----- Post-Quantum key agreement for TLS -----
       PostQuantumKeyAgreementEnabled = true;
 
-      # ----- Diasble Website Translation -----
+      # ----- Disable Website Translation -----
       TranslateEnabled = false;
 
       # ----- Access Restrictions -----

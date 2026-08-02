@@ -14,7 +14,7 @@
 
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
-      QT_SCALE_FACTOR = "1.25";
+      QT_SCALE_FACTOR = "1.2";
     };
   };
 

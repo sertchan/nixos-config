@@ -37,8 +37,7 @@ window-rule {
 }
 // ----- Open Firefox Library Floating and not Maximized -----
 window-rule {
-    match app-id="^firefox$"
-    match title="Library"
+    match app-id="^firefox$" title="Library"
     open-floating true
     open-maximized false
 }

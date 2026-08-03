@@ -49,6 +49,7 @@ in
         nautilus
         nitch
         nixfmt
+        obsidian
         p7zip
         pinentry-curses
         prismlauncher

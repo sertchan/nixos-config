@@ -1,3 +1,4 @@
+// ----- Blur Waybar and Popups -----
 layer-rule {
     match namespace="waybar"
     popups {
@@ -11,6 +12,7 @@ layer-rule {
         xray true
     }
 }
+// ----- Blur Layers with Xray Disabled -----
 layer-rule {
     match namespace="notifications"
     match namespace="wofi"
@@ -19,19 +21,28 @@ layer-rule {
         xray false
     }
 }
-// Force primary desktop applications (matched by Wayland app-id) to open maximized
+// ----- Open Apps Maximized -----
 window-rule {
     match app-id="^firefox$"
     match app-id="^spotify$"
     match app-id="^vesktop$"
     open-maximized true
 }
+// ----- Open Apps Floating -----
 window-rule {
     match app-id="^mpv$"
     match app-id="^org.prismlauncher.PrismLauncher$"
     match app-id="^org.gnome.Loupe$"
     open-floating true
 }
+// ----- Open Firefox Library Floating and not Maximized -----
+window-rule {
+    match app-id="^firefox$"
+    match title="Library"
+    open-floating true
+    open-maximized false
+}
+// ----- Open Nautilus Floating with custom widht and height -----
 window-rule {
     match app-id="^org.gnome.Nautilus$"
     open-floating true

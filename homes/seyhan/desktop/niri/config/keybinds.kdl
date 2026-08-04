@@ -20,6 +20,9 @@ binds {
     Mod+X hotkey-overlay-title="Run an Application: nautilus" {
         spawn "nautilus"
     }
+    Mod+Q hotkey-overlay-title="Run an Application: qbittorrent" {
+        spawn "qbittorrent"
+    }
     Mod+D hotkey-overlay-title="Run an Application: vesktop" {
         spawn "vesktop"
     }

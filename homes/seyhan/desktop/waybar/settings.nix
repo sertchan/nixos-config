@@ -2,7 +2,7 @@ _: {
   programs.waybar.settings.mainBar = {
     # ----- Bar Layout & Module Alignment -----
     layer = "bottom";
-    position = "bottom";
+    position = "top";
     "fixed-center" = true;
 
     "modules-left" = [
@@ -10,6 +10,8 @@ _: {
     ];
 
     "modules-center" = [
+      "clock"
+      "clock#2"
     ];
 
     "modules-right" = [
@@ -22,8 +24,6 @@ _: {
       "memory"
       "niri/language"
       "wireplumber"
-      "clock"
-      "clock#2"
     ];
 
     # ----- Module Configurations -----

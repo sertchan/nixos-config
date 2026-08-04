@@ -4,7 +4,7 @@
   font-size: 14px;
 }
 window#waybar {
-  background-color: rgba(15, 15, 15, 0.9);
+  background-color: rgba(15, 15, 15, 0.95);
   color: #ffffff;
 }
 button {
@@ -76,7 +76,7 @@ decoration {
 }
 menu,
 #tray menu {
-  background-color: rgba(15, 15, 15, 0.9);
+  background-color: rgba(15, 15, 15, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0;
   padding: 6px;
@@ -133,7 +133,7 @@ menu menuitem radio:checked {
   color: #00ff00;
 }
 tooltip {
-  background-color: rgba(15, 15, 15, 0.9);
+  background-color: rgba(15, 15, 15, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);

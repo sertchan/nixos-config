@@ -9,8 +9,6 @@ _: {
     ];
 
     "modules-center" = [
-      "clock"
-      "clock#2"
     ];
 
     "modules-right" = [
@@ -18,11 +16,10 @@ _: {
       "network#2"
       "network"
       "bluetooth"
-      "temperature"
-      "cpu"
-      "memory"
-      "niri/language"
       "wireplumber"
+      "niri/language"
+      "clock"
+      "clock#2"
     ];
 
     "niri/workspaces" = {

@@ -1,7 +1,7 @@
 _: {
   programs.waybar.settings.mainBar = {
     layer = "bottom";
-    position = "top";
+    position = "bottom";
     "fixed-center" = true;
 
     "modules-left" = [
@@ -16,8 +16,11 @@ _: {
       "network#2"
       "network"
       "bluetooth"
-      "wireplumber"
+      "temperature"
+      "cpu"
+      "memory"
       "niri/language"
+      "wireplumber"
       "clock"
       "clock#2"
     ];

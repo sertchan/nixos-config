@@ -55,7 +55,7 @@ in
         prismlauncher
         psmisc
         pulsemixer
-        qbittorrent-nox
+        qbittorrent
         ranger
         spotify
         tree

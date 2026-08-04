@@ -10,7 +10,6 @@
 
     ../../modules/services/zapret.nix
     ../../modules/services/dns-content-blocking.nix
-    ../../modules/services/qbittorrent-nox.nix
 
     ../../modules/desktop
   ];

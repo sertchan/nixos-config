@@ -51,6 +51,7 @@ in
         nixfmt
         obsidian
         p7zip
+        openssl
         pinentry-curses
         prismlauncher
         psmisc

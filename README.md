@@ -6,7 +6,6 @@ I'm using this NixOS configuration to maintain my device. Currently I'm using it
 <h1> Screenshots  </h1>
 <img width="1920" height="1080" src="https://github.com/user-attachments/assets/59993bd7-3631-49e5-8881-9b94be6557e4" />
 <img width="1920" height="1080" src="https://github.com/user-attachments/assets/08baae63-6ff6-4d62-9314-92a1aebfab94" />
-<img width="1920" height="1080" src="https://github.com/user-attachments/assets/912969c7-154a-4c1d-9e32-fcab474f4726" />
 <img width="1920" height="1080" src="https://github.com/user-attachments/assets/fa291792-68cf-4e9e-be97-029e511d4713" />
 
 </center>

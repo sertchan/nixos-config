@@ -4,9 +4,9 @@
 I'm using this NixOS configuration to maintain my device. Currently I'm using it with a single user and a single device, but in the future I plan to expand this to many devices and users.
 
 <h1> Screenshots  </h1>
-<img width="1920" height="1080" src="https://github.com/user-attachments/assets/77e2adc0-0e88-4a5a-a507-39d1e3b2d793" />
-<img width="1920" height="1080" src="https://github.com/user-attachments/assets/7668924e-a007-4cf5-b1cb-aa87bbf0032e" />
-<img width="1920" height="1080" src="https://github.com/user-attachments/assets/31d2c06b-4472-4138-9aff-cd9fa84d32aa" />
-<img width="1920" height="1080" src="https://github.com/user-attachments/assets/10e5597b-7013-4d4b-b935-a51f1ef55f8a" />
+<img width="1920" height="1080" src="https://github.com/user-attachments/assets/59993bd7-3631-49e5-8881-9b94be6557e4" />
+<img width="1920" height="1080" src="https://github.com/user-attachments/assets/08baae63-6ff6-4d62-9314-92a1aebfab94" />
+<img width="1920" height="1080" src="https://github.com/user-attachments/assets/912969c7-154a-4c1d-9e32-fcab474f4726" />
+<img width="1920" height="1080" src="https://github.com/user-attachments/assets/fa291792-68cf-4e9e-be97-029e511d4713" />
 
 </center>

@@ -27,6 +27,7 @@ window-rule {
     match app-id="^spotify$"
     match app-id="^vesktop$"
     match app-id="^org.qbittorrent.qBittorrent$"
+    match app-id="Minecraft"
     open-maximized true
 }
 // ----- Open Apps Floating -----

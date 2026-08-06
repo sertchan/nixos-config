@@ -95,7 +95,7 @@
             install_url = moz "ublock-origin";
             installation_mode = "force_installed";
             updates_disabled = true;
-            default_area = "navbar";
+            default_area = "menupanel";
             private_browsing = true;
           };
 
@@ -115,8 +115,8 @@
             private_browsing = true;
           };
 
-          "dreamer-bold-colorway@mozilla.org" = {
-            install_url = moz "dreamer-bold";
+          "foto-bold-colorway@mozilla.org" = {
+            install_url = moz "foto-bold";
             installation_mode = "force_installed";
             updates_disabled = true;
           };

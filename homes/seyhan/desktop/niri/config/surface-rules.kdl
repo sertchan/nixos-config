@@ -28,6 +28,7 @@ window-rule {
     match app-id="^vesktop$"
     match app-id="^org.qbittorrent.qBittorrent$"
     match app-id="Minecraft"
+    match app-id="^com.obsproject.Studio$"
     open-maximized true
 }
 // ----- Open Apps Floating -----

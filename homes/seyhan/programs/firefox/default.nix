@@ -128,13 +128,18 @@
             "easyprivacy"
             "adguard-spyware-url"
 
-            "fanboy-cookiemonster"
-            "ublock-cookies-easylist"
+            "adguard-cookies"
+            "ublock-cookies-adguard"
 
+            "fanboy-ai-suggestions"
             "easylist-chat"
             "easylist-newsletters"
             "easylist-notifications"
             "easylist-annoyances"
+            "adguard-mobile-app-banners"
+            "adguard-other-annoyances"
+            "adguard-popup-overlays"
+            "adguard-widgets"
             "ublock-annoyances"
 
             "TUR-0"

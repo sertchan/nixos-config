@@ -95,7 +95,7 @@
             install_url = moz "ublock-origin";
             installation_mode = "force_installed";
             updates_disabled = true;
-            default_area = "menupanel";
+            default_area = "navbar";
             private_browsing = true;
           };
 

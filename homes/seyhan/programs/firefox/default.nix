@@ -114,12 +114,6 @@
             default_area = "menupanel";
             private_browsing = true;
           };
-
-          "dreamer-bold-colorway@mozilla.org" = {
-            install_url = moz "dreamer-bold";
-            installation_mode = "force_installed";
-            updates_disabled = true;
-          };
         };
 
       # ----- Extension configuration -----

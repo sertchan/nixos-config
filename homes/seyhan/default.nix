@@ -19,7 +19,6 @@ in
       stateVersion = "24.11"; # State version compatibility for Home Manager
 
       packages = with pkgs; [
-        antigravity-cli
         libnotify
         easyeffects
         awww
@@ -28,7 +27,6 @@ in
         bluez
         bluez-tools
         btop
-        claude-code
         vesktop
         dragon-drop
         dust

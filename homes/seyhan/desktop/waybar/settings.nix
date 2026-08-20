@@ -2,7 +2,7 @@ _: {
   programs.waybar.settings.mainBar = {
     # ----- Bar Layout & Module Alignment -----
     layer = "bottom";
-    position = "bottom";
+    position = "top";
     "fixed-center" = true;
 
     "modules-left" = [

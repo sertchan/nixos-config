@@ -75,13 +75,13 @@ binds {
     }
     // ----- Screenshot Shortcuts -----
     // Interactive, full screen, or active window screenshot capture
-    Insert {
+    Print {
         screenshot show-pointer=false
     }
-    Ctrl+Insert {
+    Ctrl+Print {
         screenshot-screen show-pointer=false
     }
-    Alt+Insert {
+    Alt+Print {
         screenshot-window
     }
     // ----- Window Overview & Lifecycle -----

@@ -22,10 +22,10 @@ in
         libnotify
         easyeffects
         awww
-        onlyoffice-desktopeditors
         bc
         bluez
         bluez-tools
+        brightnessctl
         btop
         vesktop
         dragon-drop

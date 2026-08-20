@@ -20,10 +20,10 @@ in
         libnotify
         easyeffects
         awww
-        onlyoffice-desktopeditors
         bc
         bluez
         bluez-tools
+        brightnessctl
         btop
         claude-code
         codex

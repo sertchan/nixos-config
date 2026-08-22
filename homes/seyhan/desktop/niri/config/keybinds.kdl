@@ -65,13 +65,13 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true {
         spawn "brightnessctl" "--class=backlight" "set" "10%-"
     }
-    Print {
+    Insert {
         screenshot show-pointer=false
     }
-    Ctrl+Print {
+    Ctrl+Insert {
         screenshot-screen show-pointer=false
     }
-    Alt+Print {
+    Alt+Insert {
         screenshot-window
     }
     Mod+O repeat=false {

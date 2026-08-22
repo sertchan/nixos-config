@@ -49,7 +49,6 @@ in
         nautilus
         nitch
         nixfmt
-        obsidian
         p7zip
         openssl
         pinentry-curses

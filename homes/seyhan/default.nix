@@ -59,6 +59,7 @@ in
         ranger
         spotify
         tree
+        tor-browser
         ueberzugpp
         unzip
         waifu2x-converter-cpp

@@ -20,6 +20,7 @@ in
         libnotify
         easyeffects
         awww
+        android-tools
         bc
         bluez
         bluez-tools

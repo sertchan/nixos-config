@@ -114,6 +114,11 @@
             default_area = "menupanel";
             private_browsing = true;
           };
+          "elemental-bold-colorway@mozilla.org" = {
+            install_url = moz "elemental-bold";
+            installation_mode = "force_installed";
+            updates_disabled = true;
+          };
         };
 
       # ----- Extension configuration -----

@@ -28,6 +28,7 @@ in
         bluez-tools
         brightnessctl
         btop
+        claude-code
         vesktop
         dragon-drop
         dust

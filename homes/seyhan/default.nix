@@ -17,10 +17,8 @@ in
       stateVersion = "24.11";
 
       packages = with pkgs; [
-        libnotify
-        easyeffects
-        awww
         android-tools
+        awww
         bc
         bluez
         bluez-tools
@@ -28,9 +26,9 @@ in
         btop
         claude-code
         codex
-        vesktop
         dragon-drop
         dust
+        easyeffects
         fastfetch
         ffmpeg_7-full
         ffmpegthumbnailer
@@ -44,14 +42,15 @@ in
         jq
         just
         keepassxc
+        libnotify
         loupe
         mako
         mpv
         nautilus
         nitch
         nixfmt
-        p7zip
         openssl
+        p7zip
         pinentry-curses
         prismlauncher
         psmisc
@@ -59,10 +58,11 @@ in
         qbittorrent
         ranger
         spotify
-        tree
         tor-browser
+        tree
         ueberzugpp
         unzip
+        vesktop
         waifu2x-converter-cpp
         wev
         wofi
@@ -85,35 +85,35 @@ in
         withPython3 = false;
 
         extraPackages = with pkgs; [
-          lua-language-server
-          pyright
-          rust-analyzer
-          nil
-          clang-tools
-          bash-language-server
-          vscode-langservers-extracted
-          typescript-language-server
-          marksman
-          taplo
-          yamlfix
           alejandra
+          bash-language-server
           beautysh
+          black
+          clang-tools
           deadnix
           fixjson
           gcc
           isort
-          black
+          kdlfmt
+          lua-language-server
           lua51Packages.luacheck
           lua51Packages.tree-sitter-cli
-          kdlfmt
+          marksman
+          nil
           nixfmt
           nixpkgs-fmt
           prettierd
+          pyright
+          rust-analyzer
           rustfmt
           statix
           stylua
           taplo
+          taplo
+          typescript-language-server
           vale
+          vscode-langservers-extracted
+          yamlfix
         ];
 
         initLua = ''

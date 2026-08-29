@@ -4,6 +4,11 @@ _: {
     layer = "bottom";
     position = "top";
     "fixed-center" = true;
+    height = 34;
+    spacing = 0;
+    "margin-top" = 4;
+    "margin-left" = 6;
+    "margin-right" = 6;
 
     "modules-left" = [
       "niri/workspaces"
@@ -14,17 +19,43 @@ _: {
 
     "modules-right" = [
       "tray"
-      "network#2"
-      "network"
-      "bluetooth"
-      "temperature"
-      "cpu"
-      "memory"
-      "niri/language"
-      "wireplumber"
-      "clock"
-      "clock#2"
+      "group/net"
+      "group/hardware"
+      "group/session"
+      "group/time"
     ];
+
+    # ----- Module Groups -----
+    "group/net" = {
+      orientation = "horizontal";
+      modules = [
+        "network#2"
+        "network"
+        "bluetooth"
+      ];
+    };
+    "group/hardware" = {
+      orientation = "horizontal";
+      modules = [
+        "temperature"
+        "cpu"
+        "memory"
+      ];
+    };
+    "group/session" = {
+      orientation = "horizontal";
+      modules = [
+        "niri/language"
+        "wireplumber"
+      ];
+    };
+    "group/time" = {
+      orientation = "horizontal";
+      modules = [
+        "clock"
+        "clock#2"
+      ];
+    };
 
     # ----- Module Configurations -----
     "niri/workspaces" = {

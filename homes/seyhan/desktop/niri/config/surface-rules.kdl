@@ -1,3 +1,12 @@
+// ----- Blur Layers with Xray Disabled -----
+layer-rule {
+    match namespace="notifications"
+    match namespace="wofi"
+    background-effect {
+        blur true
+        xray false
+    }
+}
 // ----- Blur Waybar and Popups -----
 layer-rule {
     match namespace="waybar"
@@ -7,19 +16,11 @@ layer-rule {
             xray false
         }
     }
-    background-effect {
-        blur true
-        xray true
-    }
 }
-// ----- Blur Layers with Xray Disabled -----
-layer-rule {
-    match namespace="notifications"
-    match namespace="wofi"
-    background-effect {
-        blur true
-        xray false
-    }
+// ----- Round Windows -----
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 // ----- Open Apps Maximized -----
 window-rule {

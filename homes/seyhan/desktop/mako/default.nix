@@ -32,7 +32,7 @@ _: {
       "icon-border-radius" = 0;
       markup = 1;
 
-      "background-color" = "#0a0a0acc";
+      "background-color" = "#0a0a0ae6";
       "text-color" = "#ffffff";
       "border-color" = "#ffffff26";
       "progress-color" = "over #00ff00cc";
@@ -46,7 +46,7 @@ _: {
       progress-color=over #ffff0088
 
       [urgency=normal]
-      background-color=#0a0a0acc
+      background-color=#0a0a0ae6
       text-color=#ffffff
       border-color=#ffffff26
       progress-color=over #00ff00cc

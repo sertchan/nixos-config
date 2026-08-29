@@ -1,4 +1,12 @@
 layer-rule {
+    match namespace="notifications"
+    match namespace="wofi"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+layer-rule {
     match namespace="waybar"
     popups {
         background-effect {
@@ -6,18 +14,10 @@ layer-rule {
             xray false
         }
     }
-    background-effect {
-        blur true
-        xray true
-    }
 }
-layer-rule {
-    match namespace="notifications"
-    match namespace="wofi"
-    background-effect {
-        blur true
-        xray false
-    }
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 window-rule {
     match app-id="^firefox$"

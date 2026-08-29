@@ -2,20 +2,46 @@
   font-family: "AdwaitaMono Nerd Font";
   font-weight: 600;
   font-size: 14px;
+  min-height: 0;
+  border: none;
+  box-shadow: none;
 }
 window#waybar {
-  background-color: rgba(15, 15, 15, 0.9);
+  background-color: transparent;
   color: #ffffff;
 }
 button {
   border: none;
+  background-image: none;
+}
+#workspaces,
+#tray,
+#net,
+#hardware,
+#session,
+#time {
+  background-color: rgba(15, 15, 15, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0 4px;
+  margin: 3px 2px;
 }
 #workspaces button {
-  padding: 0 6px;
+  padding: 0 8px;
+  margin: 2px 2px;
+  border-radius: 9px;
   color: gray;
+  background-color: transparent;
+  transition:
+    background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
 }
-#workspaces button:hover,
+#workspaces button:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
 #workspaces button.active {
+  background-color: rgba(255, 255, 255, 0.14);
   color: #ffffff;
 }
 #clock,
@@ -28,10 +54,10 @@ button {
 #network,
 #temperature,
 #wireplumber {
-  padding: 0px 6px;
+  padding: 0px 8px;
 }
 #tray {
-  padding: 0px 6px;
+  padding: 0px 8px;
 }
 #tray > .passive {
   -gtk-icon-effect: dim;
@@ -43,11 +69,11 @@ button {
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: rgba(255, 0, 0, 0.3);
-  border-radius: 0;
+  border-radius: 8px;
 }
 #tray > button {
   padding: 0 4px;
-  border-radius: 0;
+  border-radius: 8px;
   transition: background-color 150ms ease-in-out;
 }
 #tray > button:hover {
@@ -59,6 +85,7 @@ window.popup {
   box-shadow: none;
   border: none;
 }
+
 window.popup decoration,
 decoration {
   background-color: transparent;
@@ -135,7 +162,7 @@ menu menuitem radio:checked {
 tooltip {
   background-color: rgba(15, 15, 15, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0;
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 tooltip label {
@@ -145,9 +172,13 @@ tooltip label {
   font-size: 12px;
   font-weight: bold;
 }
-#bluetooth.on {
+#bluetooth.on,
+#network.disconnected {
   font-size: 0;
-  padding: 0 0px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
 }
 #bluetooth.off {
   color: #ff0000;
@@ -160,10 +191,6 @@ tooltip label {
 }
 #network.linked {
   color: #ffff00;
-}
-#network.disconnected {
-  font-size: 0;
-  padding: 0 0px;
 }
 #wireplumber.muted {
   color: #ff0000;
@@ -185,8 +212,4 @@ tooltip label {
 }
 #battery.critical {
   color: #ff0000;
-}
-#workspaces {
-  margin: 0 6px;
-  margin-left: 0;
 }

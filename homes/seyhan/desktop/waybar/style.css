@@ -20,7 +20,8 @@ button {
 /* Module Pills */
 #workspaces,
 #tray,
-#net,
+#network,
+#bluetooth,
 #hardware,
 #session,
 #time {
@@ -49,18 +50,26 @@ button {
   background-color: rgba(255, 255, 255, 0.14);
   color: #ffffff;
 }
+/* A lone workspace is always the active one, so leave it unhighlighted */
+#workspaces button:only-child {
+  background-color: transparent;
+  color: gray;
+}
 /* Element */
 #clock,
 #language,
 #memory,
 #battery,
-#bluetooth,
 #cpu,
 #tray,
-#network,
 #temperature,
 #wireplumber {
   padding: 0px 8px;
+}
+/* Connection elements are their own pills, so they carry the pill padding */
+#network,
+#bluetooth {
+  padding: 0px 12px;
 }
 /* Tray Icons & Interactive States */
 #tray {
@@ -182,15 +191,6 @@ tooltip label {
   font-family: "AdwaitaMono Nerd Font";
   font-size: 12px;
   font-weight: bold;
-}
-/* Hidden States */
-#bluetooth.on,
-#network.disconnected {
-  font-size: 0;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-  border: none;
 }
 /* Bluetooth */
 #bluetooth.off {

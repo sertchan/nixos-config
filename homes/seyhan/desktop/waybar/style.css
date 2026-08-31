@@ -16,7 +16,8 @@ button {
 }
 #workspaces,
 #tray,
-#net,
+#network,
+#bluetooth,
 #hardware,
 #session,
 #time {
@@ -44,17 +45,23 @@ button {
   background-color: rgba(255, 255, 255, 0.14);
   color: #ffffff;
 }
+#workspaces button:only-child {
+  background-color: transparent;
+  color: gray;
+}
 #clock,
 #language,
 #memory,
 #battery,
-#bluetooth,
 #cpu,
 #tray,
-#network,
 #temperature,
 #wireplumber {
   padding: 0px 8px;
+}
+#network,
+#bluetooth {
+  padding: 0px 12px;
 }
 #tray {
   padding: 0px 8px;
@@ -171,14 +178,6 @@ tooltip label {
   font-family: "AdwaitaMono Nerd Font";
   font-size: 12px;
   font-weight: bold;
-}
-#bluetooth.on,
-#network.disconnected {
-  font-size: 0;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-  border: none;
 }
 #bluetooth.off {
   color: #ff0000;

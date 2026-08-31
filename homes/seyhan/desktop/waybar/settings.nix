@@ -18,20 +18,14 @@ _: {
 
     "modules-right" = [
       "tray"
-      "group/net"
+      "network#2"
+      "network"
+      "bluetooth"
       "group/hardware"
       "group/session"
       "group/time"
     ];
 
-    "group/net" = {
-      orientation = "horizontal";
-      modules = [
-        "network#2"
-        "network"
-        "bluetooth"
-      ];
-    };
     "group/hardware" = {
       orientation = "horizontal";
       modules = [
@@ -86,7 +80,7 @@ _: {
     };
     bluetooth = {
       tooltip = false;
-      "format-on" = "󰂯";
+      "format-on" = "";
       "format-connected" = "󰂯 {device_alias}";
       "format-off" = "󰂯 Down";
       "format-disabled" = "󰂯 Disabled";

@@ -7,16 +7,19 @@
   border: none;
   box-shadow: none;
 }
+
 /* Waybar */
 window#waybar {
   background-color: transparent;
   color: #ffffff;
 }
+
 /* Button */
 button {
   border: none;
   background-image: none;
 }
+
 /* Module Pills */
 #workspaces,
 #tray,
@@ -31,6 +34,7 @@ button {
   padding: 0 4px;
   margin: 3px 2px;
 }
+
 /* Workspace button */
 #workspaces button {
   padding: 0 8px;
@@ -50,12 +54,14 @@ button {
   background-color: rgba(255, 255, 255, 0.14);
   color: #ffffff;
 }
+
 /* A lone workspace is always the active one, so leave it unhighlighted */
 #workspaces button:only-child {
   background-color: transparent;
   color: gray;
 }
-/* Element */
+
+/* Elements */
 #clock,
 #language,
 #memory,
@@ -66,11 +72,13 @@ button {
 #wireplumber {
   padding: 0px 8px;
 }
+
 /* Connection elements are their own pills, so they carry the pill padding */
 #network,
 #bluetooth {
   padding: 0px 12px;
 }
+
 /* Tray Icons & Interactive States */
 #tray {
   padding: 0px 8px;
@@ -95,7 +103,8 @@ button {
 #tray > button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-/* Modernized Tray Popup Menu & Context Menus */
+
+/* Tray Popup Menu & Context Menus */
 window.popup {
   background-color: transparent;
   background-image: none;
@@ -111,7 +120,8 @@ decoration {
   border: none;
   border-radius: 0;
 }
-/* Legacy node name some GTK3 builds still use instead of `decoration` */
+
+/* Legacy node name some GTK3 builds still use instead of decoration */
 .window-frame,
 .window-frame.popup {
   background-color: transparent;
@@ -162,6 +172,7 @@ menu separator,
   min-height: 1px;
   margin: 4px 6px;
 }
+
 /* Submenu Arrow & Checkbox Indicators */
 menu menuitem arrow {
   color: rgba(255, 255, 255, 0.7);
@@ -178,6 +189,7 @@ menu menuitem check:checked,
 menu menuitem radio:checked {
   color: #00ff00;
 }
+
 /* Tooltip Styling */
 tooltip {
   background-color: rgba(15, 15, 15, 0.85);
@@ -192,6 +204,7 @@ tooltip label {
   font-size: 12px;
   font-weight: bold;
 }
+
 /* Bluetooth */
 #bluetooth.off {
   color: #ff0000;
@@ -199,6 +212,7 @@ tooltip label {
 #bluetooth.disabled {
   color: #ff0000;
 }
+
 /* Network */
 #network {
   color: #00ff00;
@@ -206,10 +220,12 @@ tooltip label {
 #network.linked {
   color: #ffff00;
 }
+
 /* Wireplumber */
 #wireplumber.muted {
   color: #ff0000;
 }
+
 /* CPU */
 #cpu.warning {
   color: #ffff00;
@@ -217,6 +233,7 @@ tooltip label {
 #cpu.critical {
   color: #ff0000;
 }
+
 /* Temperature */
 #temperature.warning {
   color: #ffff00;
@@ -224,6 +241,7 @@ tooltip label {
 #temperature.critical {
   color: #ff0000;
 }
+
 /* Battery */
 #battery.warning {
   color: #ffff00;

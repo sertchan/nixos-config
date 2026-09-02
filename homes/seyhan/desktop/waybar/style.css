@@ -18,12 +18,38 @@ button {
 }
 
 #workspaces,
-#right {
+#connectivity,
+#system,
+#io,
+#time {
   background-color: rgba(15, 15, 15, 1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 0 4px;
   margin: 3px 2px;
+}
+
+#connectivity,
+#system,
+#io,
+#time {
+  padding: 0;
+}
+
+#workspaces {
+  padding: 0 4px;
+}
+
+#connectivity > *:first-child > *,
+#system > *:first-child > *,
+#io > *:first-child > *,
+#time > *:first-child > * {
+  padding-left: 12px;
+}
+#connectivity > *:last-child > *,
+#system > *:last-child > *,
+#io > *:last-child > *,
+#time > *:last-child > * {
+  padding-right: 12px;
 }
 
 #workspaces button {
@@ -55,7 +81,6 @@ button {
 #memory,
 #battery,
 #cpu,
-#tray,
 #temperature,
 #network,
 #bluetooth,
@@ -64,7 +89,7 @@ button {
 }
 
 #tray {
-  padding: 0px 8px;
+  padding: 0px 4px;
 }
 #tray > .passive {
   -gtk-icon-effect: dim;
@@ -182,13 +207,6 @@ tooltip label {
   font-family: "AdwaitaMono Nerd Font";
   font-size: 12px;
   font-weight: bold;
-}
-
-#bluetooth.off {
-  color: #ff0000;
-}
-#bluetooth.disabled {
-  color: #ff0000;
 }
 
 #network {

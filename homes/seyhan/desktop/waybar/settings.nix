@@ -18,34 +18,23 @@ _: {
     ];
 
     "modules-right" = [
-      "tray"
-      "network#2"
-      "network"
-      "bluetooth"
-      "group/hardware"
-      "group/session"
-      "group/time"
+      "group/right"
     ];
 
     # ----- Module Groups -----
-    "group/hardware" = {
+    # Everything on the right shares one group so it renders as a single pill
+    "group/right" = {
       orientation = "horizontal";
       modules = [
+        "tray"
+        "network#2"
+        "network"
+        "bluetooth"
         "temperature"
         "cpu"
         "memory"
-      ];
-    };
-    "group/session" = {
-      orientation = "horizontal";
-      modules = [
         "niri/language"
         "wireplumber"
-      ];
-    };
-    "group/time" = {
-      orientation = "horizontal";
-      modules = [
         "clock"
         "clock#2"
       ];

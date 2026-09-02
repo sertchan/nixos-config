@@ -22,12 +22,7 @@ button {
 
 /* Module Pills */
 #workspaces,
-#tray,
-#network,
-#bluetooth,
-#hardware,
-#session,
-#time {
+#right {
   background-color: rgba(15, 15, 15, 1);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
@@ -69,14 +64,10 @@ button {
 #cpu,
 #tray,
 #temperature,
+#network,
+#bluetooth,
 #wireplumber {
   padding: 0px 8px;
-}
-
-/* Connection elements are their own pills, so they carry the pill padding */
-#network,
-#bluetooth {
-  padding: 0px 12px;
 }
 
 /* Tray Icons & Interactive States */

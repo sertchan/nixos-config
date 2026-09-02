@@ -18,23 +18,40 @@ _: {
     ];
 
     "modules-right" = [
-      "group/right"
+      "group/connectivity"
+      "group/system"
+      "group/io"
+      "group/time"
     ];
 
     # ----- Module Groups -----
-    # Everything on the right shares one group so it renders as a single pill
-    "group/right" = {
+    "group/connectivity" = {
       orientation = "horizontal";
       modules = [
         "tray"
         "network#2"
         "network"
         "bluetooth"
+      ];
+    };
+    "group/system" = {
+      orientation = "horizontal";
+      modules = [
         "temperature"
         "cpu"
         "memory"
+      ];
+    };
+    "group/io" = {
+      orientation = "horizontal";
+      modules = [
         "niri/language"
         "wireplumber"
+      ];
+    };
+    "group/time" = {
+      orientation = "horizontal";
+      modules = [
         "clock"
         "clock#2"
       ];
@@ -72,10 +89,11 @@ _: {
     };
     bluetooth = {
       tooltip = false;
-      "format-on" = "";
       "format-connected" = "󰂯 {device_alias}";
-      "format-off" = "󰂯 Down";
-      "format-disabled" = "󰂯 Disabled";
+      "format-on" = "";
+      "format-off" = "";
+      "format-disabled" = "";
+      "format-no-controller" = "";
     };
     wireplumber = {
       tooltip = false;

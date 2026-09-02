@@ -21,13 +21,49 @@ button {
 }
 
 /* Module Pills */
+/* The outline is an inset shadow rather than a border on purpose: a border is
+   part of the box, so a group whose modules are all hidden would still draw a
+   2px sliver. An inset shadow on a zero-width box draws nothing at all. */
 #workspaces,
-#right {
+#connectivity,
+#system,
+#io,
+#time {
   background-color: rgba(15, 15, 15, 1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 0 4px;
   margin: 3px 2px;
+}
+
+/* Groups carry no padding of their own, so hiding every module inside one
+   collapses it to zero width and the pill vanishes completely. The inner
+   padding of a pill comes from its modules instead. */
+#connectivity,
+#system,
+#io,
+#time {
+  padding: 0;
+}
+
+#workspaces {
+  padding: 0 4px;
+}
+
+/* A little extra breathing room at the two ends of a pill. GTK skips hidden
+   widgets when matching :first-child / :last-child, so this always lands on
+   the module that is actually showing and an all-hidden group still
+   collapses to nothing. */
+#connectivity > *:first-child > *,
+#system > *:first-child > *,
+#io > *:first-child > *,
+#time > *:first-child > * {
+  padding-left: 12px;
+}
+#connectivity > *:last-child > *,
+#system > *:last-child > *,
+#io > *:last-child > *,
+#time > *:last-child > * {
+  padding-right: 12px;
 }
 
 /* Workspace button */
@@ -62,7 +98,6 @@ button {
 #memory,
 #battery,
 #cpu,
-#tray,
 #temperature,
 #network,
 #bluetooth,
@@ -71,8 +106,10 @@ button {
 }
 
 /* Tray Icons & Interactive States */
+/* The tray sits inside the connectivity pill and waybar hides it on its own
+   once no items are left, so it takes no space when empty */
 #tray {
-  padding: 0px 8px;
+  padding: 0px 4px;
 }
 #tray > .passive {
   -gtk-icon-effect: dim;
@@ -194,14 +231,6 @@ tooltip label {
   font-family: "AdwaitaMono Nerd Font";
   font-size: 12px;
   font-weight: bold;
-}
-
-/* Bluetooth */
-#bluetooth.off {
-  color: #ff0000;
-}
-#bluetooth.disabled {
-  color: #ff0000;
 }
 
 /* Network */

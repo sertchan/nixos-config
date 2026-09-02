@@ -17,33 +17,21 @@ _: {
     ];
 
     "modules-right" = [
-      "tray"
-      "network#2"
-      "network"
-      "bluetooth"
-      "group/hardware"
-      "group/session"
-      "group/time"
+      "group/right"
     ];
 
-    "group/hardware" = {
+    "group/right" = {
       orientation = "horizontal";
       modules = [
+        "tray"
+        "network#2"
+        "network"
+        "bluetooth"
         "temperature"
         "cpu"
         "memory"
-      ];
-    };
-    "group/session" = {
-      orientation = "horizontal";
-      modules = [
         "niri/language"
         "wireplumber"
-      ];
-    };
-    "group/time" = {
-      orientation = "horizontal";
-      modules = [
         "clock"
         "clock#2"
       ];

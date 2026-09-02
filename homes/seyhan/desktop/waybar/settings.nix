@@ -89,11 +89,10 @@ _: {
     };
     bluetooth = {
       tooltip = false;
-      "format-connected" = "󰂯 {device_alias}";
       "format-on" = "";
-      "format-off" = "";
-      "format-disabled" = "";
-      "format-no-controller" = "";
+      "format-connected" = "󰂯 {device_alias}";
+      "format-off" = "󰂯 Down";
+      "format-disabled" = "󰂯 Disabled";
     };
     wireplumber = {
       tooltip = false;

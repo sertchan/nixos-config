@@ -127,8 +127,13 @@
             "easyprivacy"
             "adguard-spyware-url"
 
+            "fanboy-cookiemonster"
+            "ublock-cookies-easylist"
             "adguard-cookies"
             "ublock-cookies-adguard"
+
+            "fanboy-social"
+            "fanboy-thirdparty_social"
 
             "fanboy-ai-suggestions"
             "easylist-chat"

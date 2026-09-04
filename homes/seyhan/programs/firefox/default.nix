@@ -145,8 +145,14 @@
             "adguard-spyware-url"
 
             # ----- Cookie notices -----
+            "fanboy-cookiemonster"
+            "ublock-cookies-easylist"
             "adguard-cookies"
             "ublock-cookies-adguard"
+
+            # ----- Social widgets -----
+            "fanboy-social"
+            "fanboy-thirdparty_social"
 
             # ----- Annoyances -----
             "fanboy-ai-suggestions"

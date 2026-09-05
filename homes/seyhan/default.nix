@@ -36,7 +36,6 @@ in
         ffsubsync
         geekbench
         glib
-        google-chrome
         gsettings-desktop-schemas
         imagemagick
         inotify-tools

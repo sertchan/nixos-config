@@ -30,6 +30,7 @@ window-rule {
     match app-id="^org.qbittorrent.qBittorrent$"
     match app-id="Minecraft"
     match app-id="^com.obsproject.Studio$"
+    match app-id="^org.wireshark.Wireshark$"
     open-maximized true
 }
 // ----- Open Apps Floating -----

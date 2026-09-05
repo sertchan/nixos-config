@@ -18,11 +18,7 @@
 
     gtk3 = {
       extraConfig = {
-        gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
-        gtk-toolbar-icon-size = "GTK_ICON_SIZE_SMALL_TOOLBAR";
         gtk-decoration-layout = "appmenu:none";
-        gtk-button-images = 1;
-        gtk-menu-images = 1;
         gtk-enable-event-sounds = 0;
         gtk-enable-input-feedback-sounds = 0;
         gtk-xft-antialias = 1;

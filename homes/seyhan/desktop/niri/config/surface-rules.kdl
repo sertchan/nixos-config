@@ -31,6 +31,7 @@ window-rule {
     match app-id="Minecraft"
     match app-id="^com.obsproject.Studio$"
     match app-id="^org.wireshark.Wireshark$"
+    match app-id="^Tor Browser$"
     open-maximized true
 }
 // ----- Open Apps Floating -----

@@ -5,7 +5,7 @@
   <li><a href="#screenshots">Screenshots</a></li>
   <li><a href="#devices">Devices</a></li>
   <li><a href="#repository-structure">Structure</a></li>
-  <li><a href="#design-considerations">Design</a></li>
+  <li><a href="#design-practices">Design</a></li>
 </ul>
 
 ## Preface
@@ -72,24 +72,15 @@ No other device yet...
   and never a new wiring block. [`homes/seyhan/`](homes/seyhan) splits into `desktop`, `programs`
   and `themes`, indexed in [`homes/seyhan/README.md`](homes/seyhan/README.md).
 
-## Design considerations
+## Design practices
 
-These are the rules the tree is held to, and they are the reason it looks the way it does:
-
-- `with lib;` and `with builtins;` do not appear. Names are inherited at the top of a `let`
-  block, from the narrowest namespace that provides them, so a reader can tell where any
-  identifier came from without evaluating the file in their head.
-- The categorised namespaces are preferred over flat `lib`: `lib.modules`, `lib.options`,
-  `lib.types`, `lib.lists`.
-- A file never imports upwards and never more than one level down. Reaching past a directory
-  means its own entry file has stopped being the truth about what it contains.
-- Custom options are namespaced under `modules.<area>.<name>`, and the top level of the NixOS
-  option tree is left alone.
-- A hardware fact (`has*`) is never the same option as a behaviour switch (`enable`), because
-  owning the radio is not a reason to leave it listening.
-- Two settings that cannot both hold are guarded by an assertion that names the conflict and the
-  way out, rather than by a comment asking the reader not to.
-- Evaluation is pure. An expression that needs `--impure` is wrong.
+- Avoid using `with lib;` or `with builtins;`. Instead, bring in the names you need at the top of a `let` block, and take them from the smallest namespace that has them. That way a future reader can see where each name comes from
+- Use the grouped namespaces instead of plain `lib`: `lib.modules`, `lib.options`, `lib.types`, `lib.lists`
+- A file can import from its own directory or one level below it. It should never import from a directory above. If you need to reach deeper into another directory, that directory's entry file is no longer doing its job
+- Put custom options under `modules.<area>.<name>`. Please don't add anything to the top level of the NixOS option tree
+- Keep hardware options (`has*`) separate from behaviour options (`enable`). Some devices can have a radio without turning it on
+- If two settings cannot be used together, add an assertion that says what the conflict is and how to fix it
+- Keep evaluation pure. If an expression needs `--impure`, something is wrong in that code
 
 ## License
 

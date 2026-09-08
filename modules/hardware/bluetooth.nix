@@ -6,13 +6,10 @@
 }: let
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
 
   cfg = config.modules.system.bluetooth;
   dev = config.modules.device;
 in {
-  options.modules.system.bluetooth.enable = mkEnableOption "the bluetooth stack";
-
   config = mkIf cfg.enable {
     assertions = [
       {

@@ -12,7 +12,6 @@
   intelGpu = modulePath + /hardware/intel-gpu.nix;
 
   dnsContentBlocking = modulePath + /services/dns-content-blocking.nix;
-  wifiGateway = modulePath + /services/wifi-gateway.nix;
   wireshark = modulePath + /services/wireshark.nix;
   zapret = modulePath + /services/zapret.nix;
 
@@ -37,7 +36,6 @@ in {
       intelGpu
 
       dnsContentBlocking
-      wifiGateway
       wireshark
       zapret
 

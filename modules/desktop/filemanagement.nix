@@ -2,7 +2,6 @@
   services.gvfs.enable = true;
 
   systemd.user.services.udiskie = {
-    enable = true;
     description = "Automounter for removable media";
     wantedBy = ["default.target"];
     after = ["graphical-session.target"];

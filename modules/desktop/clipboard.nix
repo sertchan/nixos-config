@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   systemd.user.services = {
     cliphist = {
-      enable = true;
       description = "Clipboard history service";
       wantedBy = ["default.target"];
       after = ["graphical-session.target"];

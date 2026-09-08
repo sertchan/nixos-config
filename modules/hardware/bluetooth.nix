@@ -5,10 +5,21 @@
   ...
 }: let
   inherit (lib.modules) mkIf;
+  inherit (lib.options) mkEnableOption;
 
+  cfg = config.modules.system.bluetooth;
   dev = config.modules.device;
 in {
-  config = mkIf dev.hasBluetooth {
+  options.modules.system.bluetooth.enable = mkEnableOption "the bluetooth stack";
+
+  config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = dev.hasBluetooth;
+        message = "${config.networking.hostName} runs the bluetooth stack without a radio to run it on. Set modules.device.hasBluetooth in the host configuration, or clear modules.system.bluetooth.enable.";
+      }
+    ];
+
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

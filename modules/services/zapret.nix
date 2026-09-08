@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (lib.lists) concatMap;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkForce;
 
@@ -21,14 +20,6 @@
   autoHostlistDebugLog = "${stateDir}/zapret-hosts-auto-debug.log";
 in {
   environment.systemPackages = [config.services.zapret.package];
-
-  networking.networkmanager = {
-    wifi = {
-      macAddress = "permanent";
-      scanRandMacAddress = false;
-    };
-    ethernet.macAddress = "permanent";
-  };
 
   boot.kernel.sysctl = {"net.netfilter.nf_conntrack_tcp_be_liberal" = 1;};
 
@@ -83,7 +74,6 @@ in {
       "--dpi-desync-fwmark=${mark}"
       "--hostlist-exclude=${excludeHostlist}"
       "--hostlist-auto=${autoHostlist}"
-      "--hostlist-auto-fail-threshold=3"
       "--hostlist-auto-fail-time=180"
       "--hostlist-auto-debug=${autoHostlistDebugLog}"
     ];
@@ -93,7 +83,6 @@ in {
   systemd = {
     services.zapret = {
       serviceConfig = {
-        DynamicUser = false;
         User = user;
         Group = group;
         ReadWritePaths = [stateDir];
@@ -127,16 +116,11 @@ in {
         SystemCallFilter = ["@system-service"];
         SystemCallErrorNumber = "EPERM";
       };
-      after = ["systemd-tmpfiles-setup.service"];
-      wants = ["systemd-tmpfiles-setup.service"];
     };
 
     tmpfiles.rules =
       ["d ${stateDir} 0700 ${user} ${group} -"]
-      ++ concatMap (path: [
-        "f ${path} 0600 ${user} ${group} -"
-        "z ${path} 0600 ${user} ${group} -"
-      ]) [
+      ++ map (path: "f ${path} 0600 ${user} ${group} -") [
         autoHostlist
         excludeHostlist
         autoHostlistDebugLog

@@ -53,7 +53,7 @@
       DontCheckDefaultBrowser = true;
       HardwareAcceleration = true;
       OfferToSaveLogins = false;
-      DefaultDownloadDirectory = "${config.xdg.configHome}/Downloads";
+      DefaultDownloadDirectory = config.xdg.userDirs.download;
       ExtensionSettings = let
         moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
       in {

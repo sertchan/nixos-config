@@ -145,7 +145,8 @@ in {
     };
     temperature = {
       interval = 1;
-      "hwmon-path" = "/sys/class/hwmon/hwmon4/temp1_input";
+      "hwmon-path-abs" = "/sys/devices/platform/coretemp.0/hwmon";
+      "input-filename" = "temp1_input";
       tooltip = false;
       "warning-threshold" = 70;
       "critical-threshold" = 90;

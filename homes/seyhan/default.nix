@@ -36,7 +36,6 @@ in {
         libnotify
         loupe
         losslesscut
-        mako
         mpv
         nautilus
         openssl
@@ -53,7 +52,6 @@ in {
         unzip
         vesktop
         waifu2x-converter-cpp
-        wofi
         xdg-utils
         yt-dlp
         zip

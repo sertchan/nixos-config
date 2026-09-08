@@ -5,6 +5,10 @@
   ...
 }: let
   inherit (lib.modules) mkDefault;
+
+  gib = 1024 * 1024 * 1024;
+  collectBelow = 5 * gib;
+  stopCollectingAt = 10 * gib;
 in {
   nix = {
     settings = {
@@ -38,8 +42,8 @@ in {
       log-lines = 30;
       keep-going = true;
       builders-use-substitutes = true;
-      min-free = toString (5 * 1024 * 1024 * 1024);
-      max-free = toString (10 * 1024 * 1024 * 1024);
+      min-free = toString collectBelow;
+      max-free = toString stopCollectingAt;
       auto-optimise-store = false;
       keep-derivations = true;
       keep-outputs = true;

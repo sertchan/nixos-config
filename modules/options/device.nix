@@ -43,8 +43,8 @@ in {
         networking.usePredictableInterfaceNames, which encodes bus topology
         and so holds across reboots.
 
-        The gateway, the DPI bypass rules and the bar all point at it, so it
-        carries no default and a host that leaves it out fails evaluation.
+        The DPI bypass rules and the bar both point at it, so it carries no
+        default and a host that leaves it out fails evaluation.
       '';
     };
   };

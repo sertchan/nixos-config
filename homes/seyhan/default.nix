@@ -42,6 +42,7 @@ in {
         nautilus
         openssl
         p7zip
+        playerctl
         prismlauncher
         psmisc
         pulsemixer

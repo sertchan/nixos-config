@@ -66,18 +66,6 @@ I will expand this configuration when I install it to other devices that I get i
   directory; no additional wiring is needed. [`homes/seyhan/`](homes/seyhan) is split into `desktop`,
   `programs` and `themes`. See: [`homes/seyhan/README.md`](homes/seyhan/README.md)
 
-## Code principles
-
-I'm writing this down for people who want to contribute to this configuration, or for those who fork it for their own use. I use these Nix principles, and I strongly recommend following them
-
-- Please avoid using `with lib;` or `with builtins;`. Instead, bring in the names you need at the top of a `let` block, and take them from the smallest namespace that has them. That way a future reader can see where each name comes from
-- Use the grouped namespaces instead of plain `lib`: `lib.modules`, `lib.options`, `lib.types`, `lib.lists`
-- A file can import from its own directory or one level below it. It should never import from a directory above. If you need to reach deeper into another directory, that directory's entry file is no longer doing its job
-- Put custom options under `modules.<area>.<name>`. Please don't add anything to the top level of the NixOS option tree
-- Keep hardware options (`has*`) separate from behaviour options (`enable`). Some devices can have a radio without turning it on
-- If two settings cannot be used together, add an assertion that says what the conflict is and how to fix it
-- Keep evaluation pure. If an expression needs `--impure`, something is wrong in that code
-
 ## License
 
 [GPL-3.0](LICENSE)

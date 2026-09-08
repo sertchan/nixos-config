@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{config, ...}: {
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
@@ -93,7 +89,7 @@
         "uBlock0@raymondhill.net".adminSettings = {
           userSettings = {
             uiTheme = "dark";
-            cloudStorageEnabled = lib.mkForce false;
+            cloudStorageEnabled = false;
           };
           selectedFilterLists = [
             "ublock-filters"

@@ -1,6 +1,13 @@
-_: {
+{
+  osConfig,
+  lib,
+  ...
+}: let
+  inherit (lib.lists) optional;
+
+  dev = osConfig.modules.device;
+in {
   programs.waybar.settings.mainBar = {
-    # ----- Bar Layout & Module Alignment -----
     layer = "bottom";
     position = "top";
     "fixed-center" = true;
@@ -9,30 +16,23 @@ _: {
     "margin-top" = 4;
     "margin-left" = 6;
     "margin-right" = 6;
-
-    "modules-left" = [
-      "niri/workspaces"
-    ];
-
-    "modules-center" = [
-    ];
-
+    "modules-left" = ["niri/workspaces"];
+    "modules-center" = [];
     "modules-right" = [
       "group/connectivity"
       "group/system"
       "group/io"
       "group/time"
     ];
-
-    # ----- Module Groups -----
     "group/connectivity" = {
       orientation = "horizontal";
-      modules = [
-        "tray"
-        "network#2"
-        "network"
-        "bluetooth"
-      ];
+      modules =
+        [
+          "tray"
+          "network#2"
+          "network"
+        ]
+        ++ optional dev.hasBluetooth "bluetooth";
     };
     "group/system" = {
       orientation = "horizontal";
@@ -56,8 +56,6 @@ _: {
         "clock#2"
       ];
     };
-
-    # ----- Module Configurations -----
     "niri/workspaces" = {
       "on-click" = "activate";
       format = "{icon}";
@@ -124,7 +122,7 @@ _: {
     };
     network = {
       interval = 1;
-      interface = "wlp0s20f3"; # Wireless Wi-Fi interface
+      interface = "wlp0s20f3";
       format = "{icon}  {essid}";
       "format-linked" = "󰤩  Connecting";
       "format-disconnected" = "";
@@ -139,7 +137,7 @@ _: {
     };
     "network#2" = {
       interval = 1;
-      interface = "enp6s0"; # Wired Ethernet interface
+      interface = "enp6s0";
       format = "󰈀  Connected";
       "format-linked" = "󰈀  Connecting";
       "format-disconnected" = "";
@@ -147,7 +145,7 @@ _: {
     };
     temperature = {
       interval = 1;
-      "hwmon-path" = "/sys/class/hwmon/hwmon4/temp1_input"; # Linux sysfs hardware monitor temperature sensor path
+      "hwmon-path" = "/sys/class/hwmon/hwmon4/temp1_input";
       tooltip = false;
       "warning-threshold" = 70;
       "critical-threshold" = 90;

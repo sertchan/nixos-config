@@ -5,7 +5,6 @@
   <li><a href="#screenshots">Screenshots</a></li>
   <li><a href="#devices">Devices</a></li>
   <li><a href="#repository-structure">Repository structure</a></li>
-  <li><a href="#code-principles">Code principles</a></li>
 </ul>
 
 ## Introduction

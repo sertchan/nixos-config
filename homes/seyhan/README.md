@@ -1,10 +1,9 @@
 # homes/seyhan
 
 ```nix
-./desktop  # the session surface: compositor, bar, launcher, notifications, terminal
-./programs # things launched on purpose rather than by the session
-./themes   # gtk, qt and cursor, the parts both toolkits have to agree on
+./desktop  # session surface: compositor, bar, launcher, notifications, terminal etc
+./programs # things that launched on a purpose rather than by a session
+./themes   # gtk, qt and global, parts theming toolkits have to follow
 ```
 
-`homes/` itself holds only `default.nix` and this tree, so the index lives here rather than a
-level up.
+`homes/` only has `default.nix` and this tree, so the index is here instead of the parent dir

@@ -1,14 +1,24 @@
 {
+  osConfig,
+  lib,
+  ...
+}: let
+  inherit (lib.strings) removePrefix;
+
+  inherit (osConfig.modules.style) colors;
+
+  terminalFont = "AdwaitaMono Nerd Font";
+in {
   programs.ghostty = {
     enable = true;
     settings = {
       background-opacity = 1.00;
       font-size = 12;
-      font-family = "AdwaitaMono Nerd Font";
-      font-family-bold = "AdwaitaMono Nerd Font";
-      font-family-italic = "AdwaitaMono Nerd Font";
-      font-family-bold-italic = "AdwaitaMono Nerd Font";
-      background = "0f0f0f";
+      font-family = terminalFont;
+      font-family-bold = terminalFont;
+      font-family-italic = terminalFont;
+      font-family-bold-italic = terminalFont;
+      background = removePrefix "#" colors.base;
       foreground = "c5c9c5";
       selection-background = "2d4f67";
       selection-foreground = "c8c093";

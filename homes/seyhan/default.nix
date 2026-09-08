@@ -1,33 +1,24 @@
-{ pkgs, ... }:
-let
-  username = "seyhan"; # Change this to reuse the config for another user
-in
-{
-  # ----- Module Imports -----
+{pkgs, ...}: let
+  username = "seyhan";
+in {
   imports = [
     ./desktop
     ./programs
     ./themes
   ];
 
-  # ----- User Environment & Packages -----
   config = {
     home = {
       inherit username;
       homeDirectory = "/home/${username}";
-
-      stateVersion = "24.11"; # State version compatibility for Home Manager
-
+      stateVersion = "24.11";
       packages = with pkgs; [
         android-tools
         awww
         bc
-        bluez
-        bluez-tools
         brightnessctl
         btop
         claude-code
-        dragon-drop
         dust
         easyeffects
         fastfetch
@@ -44,19 +35,16 @@ in
         keepassxc
         libnotify
         loupe
+        losslesscut
         mako
         mpv
         nautilus
-        nitch
-        nixfmt
         openssl
         p7zip
-        pinentry-curses
         prismlauncher
         psmisc
         pulsemixer
         qbittorrent
-        ranger
         spotify
         tor-browser
         tree
@@ -64,28 +52,22 @@ in
         unzip
         vesktop
         waifu2x-converter-cpp
-        wev
         wofi
         xdg-utils
-        xdotool
         yt-dlp
         zip
       ];
     };
 
-    # ----- User Applications & Tools -----
     programs = {
       gh.enable = true;
       git.enable = true;
       gpg.enable = true;
       home-manager.enable = true;
-
       neovim = {
         enable = true;
-        withRuby = false; # Disable Ruby host provider plugin for faster startup
-        withPython3 = false; # Disable Python 3 host provider plugin for faster startup
-
-        # Formatters/linters exposed to neovim via $PATH
+        withRuby = false;
+        withPython3 = false;
         extraPackages = with pkgs; [
           alejandra
           bash-language-server
@@ -111,29 +93,23 @@ in
           statix
           stylua
           taplo
-          taplo
           typescript-language-server
           vale
           vscode-langservers-extracted
           yamlfix
         ];
-
         initLua = ''
-          -- Set leader keys before loading keymaps or plugins
           vim.g.mapleader = " "
           vim.g.maplocalleader = " "
 
-          -- Disable unused provider plugins to eliminate startup delays from provider detection
           vim.g.loaded_node_provider = 0
           vim.g.loaded_perl_provider = 0
           vim.g.loaded_ruby_provider = 0
           vim.g.loaded_python3_provider = 0
 
-          -- Load native editor settings and keybindings
           require("core.options")
           require("core.keymaps")
 
-          -- Load plugin configurations
           require("plugins.theme")
           require("plugins.ui")
           require("plugins.treesitter")

@@ -16,13 +16,11 @@ in {
         android-tools
         awww
         bc
-        brightnessctl
-        btop
         claude-code
         codex
+        brightnessctl
         dust
         easyeffects
-        fastfetch
         ffmpeg_7-full
         ffmpegthumbnailer
         ffsubsync
@@ -31,13 +29,11 @@ in {
         gsettings-desktop-schemas
         imagemagick
         inotify-tools
-        jq
         just
         keepassxc
         libnotify
         loupe
         losslesscut
-        mpv
         nautilus
         openssl
         p7zip
@@ -51,19 +47,21 @@ in {
         tree
         ueberzugpp
         unzip
-        vesktop
         waifu2x-converter-cpp
         xdg-utils
-        yt-dlp
         zip
       ];
     };
 
     programs = {
+      btop.enable = true;
+      fastfetch.enable = true;
       gh.enable = true;
       git.enable = true;
       gpg.enable = true;
       home-manager.enable = true;
+      jq.enable = true;
+      mpv.enable = true;
       neovim = {
         enable = true;
         withRuby = false;
@@ -121,6 +119,8 @@ in {
           require("plugins.utils")
         '';
       };
+      vesktop.enable = true;
+      yt-dlp.enable = true;
     };
   };
 }

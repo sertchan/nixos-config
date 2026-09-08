@@ -1,4 +1,10 @@
-_: {
+{osConfig, ...}: let
+  inherit (osConfig.modules.style) colors;
+
+  surface = "#0a0a0a";
+  criticalSurface = "#140505";
+  dimmedText = "#a0a0a0";
+in {
   services.mako = {
     enable = true;
     settings = {
@@ -27,30 +33,30 @@ _: {
       "icon-location" = "left";
       "icon-border-radius" = 0;
       markup = 1;
-      "background-color" = "#0a0a0ae6";
-      "text-color" = "#ffffff";
-      "border-color" = "#ffffff26";
-      "progress-color" = "over #00ff00cc";
+      "background-color" = "${surface}e6";
+      "text-color" = colors.foreground;
+      "border-color" = "${colors.foreground}26";
+      "progress-color" = "over ${colors.good}cc";
     };
 
     extraConfig = ''
       [urgency=low]
-      background-color=#0a0a0ab3
-      text-color=#a0a0a0
-      border-color=#ffffff1a
-      progress-color=over #ffff0088
+      background-color=${surface}b3
+      text-color=${dimmedText}
+      border-color=${colors.foreground}1a
+      progress-color=over ${colors.warning}88
 
       [urgency=normal]
-      background-color=#0a0a0ae6
-      text-color=#ffffff
-      border-color=#ffffff26
-      progress-color=over #00ff00cc
+      background-color=${surface}e6
+      text-color=${colors.foreground}
+      border-color=${colors.foreground}26
+      progress-color=over ${colors.good}cc
 
       [urgency=critical]
-      background-color=#140505e6
-      text-color=#ffffff
-      border-color=#ff0000cc
-      progress-color=over #ff0000ff
+      background-color=${criticalSurface}e6
+      text-color=${colors.foreground}
+      border-color=${colors.critical}cc
+      progress-color=over ${colors.critical}ff
     '';
   };
 }

@@ -6,6 +6,7 @@
   inherit (lib.lists) optional;
 
   dev = osConfig.modules.device;
+  sys = osConfig.modules.system;
 in {
   programs.waybar.settings.mainBar = {
     layer = "bottom";
@@ -32,7 +33,7 @@ in {
           "network#2"
           "network"
         ]
-        ++ optional dev.hasBluetooth "bluetooth";
+        ++ optional sys.bluetooth.enable "bluetooth";
     };
     "group/system" = {
       orientation = "horizontal";
@@ -122,7 +123,7 @@ in {
     };
     network = {
       interval = 1;
-      interface = "wlp0s20f3";
+      interface = dev.wirelessInterface;
       format = "{icon}  {essid}";
       "format-linked" = "󰤩  Connecting";
       "format-disconnected" = "";

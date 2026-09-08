@@ -1,5 +1,5 @@
-let
-  iface = "wlp0s20f3";
+{config, ...}: let
+  iface = config.modules.device.wirelessInterface;
 in {
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;

@@ -29,9 +29,6 @@ binds {
     Mod+P hotkey-overlay-title="Run an Application: prismlauncher" {
         spawn "prismlauncher"
     }
-    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null {
-        spawn-sh "pkill orca || exec orca"
-    }
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"
     }

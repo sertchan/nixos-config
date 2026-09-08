@@ -1,7 +1,7 @@
 {lib, ...}: let
   inherit (lib.modules) mkRemovedOptionModule;
   inherit (lib.options) mkOption;
-  inherit (lib.types) bool;
+  inherit (lib.types) bool str;
 in {
   imports = [
     (mkRemovedOptionModule ["modules" "device" "type"] ''
@@ -32,6 +32,19 @@ in {
 
         Defaults to true because everything with a screen has one.
         modules.system.audio.enable starts pipewire on top of it.
+      '';
+    };
+
+    wirelessInterface = mkOption {
+      type = str;
+      example = "wlp0s20f3";
+      description = ''
+        The name the wireless interface carries under
+        networking.usePredictableInterfaceNames, which encodes bus topology
+        and so holds across reboots.
+
+        The gateway, the DPI bypass rules and the bar all point at it, so it
+        carries no default and a host that leaves it out fails evaluation.
       '';
     };
   };

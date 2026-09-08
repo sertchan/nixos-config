@@ -1,0 +1,4 @@
+[formatter.nix]
+command = "alejandra"
+options = ["--quiet"]
+includes = ["*.nix"]

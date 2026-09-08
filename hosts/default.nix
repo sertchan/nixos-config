@@ -3,6 +3,7 @@
 
   modulePath = ../modules;
   deviceOptions = modulePath + /options/device.nix;
+  systemOptions = modulePath + /options/system.nix;
   core = modulePath + /core;
   desktop = modulePath + /desktop;
 
@@ -22,6 +23,7 @@ in {
     specialArgs = {inherit inputs;};
     modules = [
       deviceOptions
+      systemOptions
 
       homeManager
       homes

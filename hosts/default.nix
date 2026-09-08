@@ -4,6 +4,7 @@
   modulePath = ../modules;
   deviceOptions = modulePath + /options/device.nix;
   systemOptions = modulePath + /options/system.nix;
+  styleOptions = modulePath + /options/style.nix;
   core = modulePath + /core;
   desktop = modulePath + /desktop;
 
@@ -24,6 +25,7 @@ in {
     modules = [
       deviceOptions
       systemOptions
+      styleOptions
 
       homeManager
       homes

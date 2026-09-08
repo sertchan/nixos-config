@@ -74,6 +74,7 @@ No other device yet...
 
 ## Design practices
 
+I'm writing this down for the people who want contribute to this configuration, or those who fork for their own use
 - Avoid using `with lib;` or `with builtins;`. Instead, bring in the names you need at the top of a `let` block, and take them from the smallest namespace that has them. That way a future reader can see where each name comes from
 - Use the grouped namespaces instead of plain `lib`: `lib.modules`, `lib.options`, `lib.types`, `lib.lists`
 - A file can import from its own directory or one level below it. It should never import from a directory above. If you need to reach deeper into another directory, that directory's entry file is no longer doing its job

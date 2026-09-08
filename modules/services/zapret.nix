@@ -70,14 +70,6 @@ in {
           oifname "${iface}" udp dport 443 ct original packets 1-9 \
             meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
         }
-
-        chain forward-postnat {
-          type filter hook postrouting priority 101; policy accept;
-          iifname "${iface}" oifname "${iface}" tcp dport { 80, 443 } ct original packets 1-9 \
-            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
-          iifname "${iface}" oifname "${iface}" udp dport 443 ct original packets 1-9 \
-            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
-        }
       '';
     };
   };

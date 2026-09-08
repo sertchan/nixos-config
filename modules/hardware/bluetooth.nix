@@ -36,7 +36,6 @@ in {
     };
 
     systemd.user.services.mpris-proxy = {
-      enable = true;
       description = "MPRIS Proxy for Bluetooth devices";
       wantedBy = ["default.target"];
       after = [

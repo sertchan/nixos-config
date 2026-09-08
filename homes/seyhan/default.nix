@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   username = "seyhan";
-in
-{
+in {
   imports = [
     ./desktop
     ./programs
@@ -13,20 +11,15 @@ in
     home = {
       inherit username;
       homeDirectory = "/home/${username}";
-
       stateVersion = "24.11";
-
       packages = with pkgs; [
         android-tools
         awww
         bc
-        bluez
-        bluez-tools
         brightnessctl
         btop
         claude-code
         codex
-        dragon-drop
         dust
         easyeffects
         fastfetch
@@ -43,19 +36,16 @@ in
         keepassxc
         libnotify
         loupe
+        losslesscut
         mako
         mpv
         nautilus
-        nitch
-        nixfmt
         openssl
         p7zip
-        pinentry-curses
         prismlauncher
         psmisc
         pulsemixer
         qbittorrent
-        ranger
         spotify
         tor-browser
         tree
@@ -63,10 +53,8 @@ in
         unzip
         vesktop
         waifu2x-converter-cpp
-        wev
         wofi
         xdg-utils
-        xdotool
         yt-dlp
         zip
       ];
@@ -77,12 +65,10 @@ in
       git.enable = true;
       gpg.enable = true;
       home-manager.enable = true;
-
       neovim = {
         enable = true;
         withRuby = false;
         withPython3 = false;
-
         extraPackages = with pkgs; [
           alejandra
           bash-language-server
@@ -108,13 +94,11 @@ in
           statix
           stylua
           taplo
-          taplo
           typescript-language-server
           vale
           vscode-langservers-extracted
           yamlfix
         ];
-
         initLua = ''
           vim.g.mapleader = " "
           vim.g.maplocalleader = " "

@@ -1,14 +1,14 @@
 <h1 align="left">Seyhan's NixOS Configuration</h1>
 
 <ul align="left">
-  <li><a href="#preface">Preface</a></li>
+  <li><a href="#introduction">Introduction</a></li>
   <li><a href="#screenshots">Screenshots</a></li>
   <li><a href="#devices">Devices</a></li>
   <li><a href="#repository-structure">Structure</a></li>
   <li><a href="#code-principles">Code Principles</a></li>
 </ul>
 
-## Preface
+## Introduction
 
 [nix]: https://nix.dev/manual/nix/stable/
 [nixos]: https://nixos.org/manual/nixos/stable/

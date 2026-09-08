@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (lib.meta) getExe;
+in {
   services.gvfs.enable = true;
 
   systemd.user.services.udiskie = {
@@ -6,7 +12,7 @@
     wantedBy = ["default.target"];
     after = ["graphical-session.target"];
     serviceConfig = {
-      ExecStart = "${pkgs.udiskie}/bin/udiskie";
+      ExecStart = getExe pkgs.udiskie;
       Restart = "on-failure";
       RestartSec = 5;
     };

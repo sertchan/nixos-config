@@ -1,11 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (lib.meta) getExe getExe';
+in {
   systemd.user.services = {
     cliphist = {
       description = "Clipboard history service";
       wantedBy = ["default.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
+        ExecStart = "${getExe' pkgs.wl-clipboard "wl-paste"} --watch ${getExe pkgs.cliphist} store";
         Restart = "on-failure";
         RestartSec = 5;
       };
@@ -15,7 +21,7 @@
       wantedBy = ["default.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both";
+        ExecStart = "${getExe pkgs.wl-clip-persist} --clipboard both";
         Restart = "on-failure";
         RestartSec = 5;
       };

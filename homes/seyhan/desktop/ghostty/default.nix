@@ -3,19 +3,15 @@
     enable = true;
     settings = {
       background-opacity = 1.00;
-
       font-size = 12;
       font-family = "AdwaitaMono Nerd Font";
       font-family-bold = "AdwaitaMono Nerd Font";
       font-family-italic = "AdwaitaMono Nerd Font";
       font-family-bold-italic = "AdwaitaMono Nerd Font";
-
       background = "0f0f0f";
       foreground = "c5c9c5";
-
       selection-background = "2d4f67";
       selection-foreground = "c8c093";
-
       palette = [
         "0=#0c0b0b"
         "1=#c4746e"
@@ -33,7 +29,6 @@
         "13=#938AA9"
         "14=#7AA89F"
         "15=#c5c9c5"
-
         "16=#ffa066"
         "17=#ff5d62"
       ];

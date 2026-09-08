@@ -3,9 +3,8 @@
   lib,
   modulesPath,
   ...
-}:
-{
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+}: {
+  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot = {
     initrd = {
@@ -18,12 +17,11 @@
         "sd_mod"
         "rtsx_usb_sdmmc"
       ];
-      kernelModules = [ ];
+      kernelModules = [];
     };
-
-    kernelModules = [ "kvm-intel" ];
-    kernelParams = [ "mem_sleep_default=deep" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-intel"];
+    kernelParams = ["mem_sleep_default=deep"];
+    extraModulePackages = [];
     tmp.useTmpfs = true;
   };
 
@@ -34,12 +32,10 @@
       device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
     };
-
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
-
     "/home/seyhan/Pictures/Screenshots" = {
       device = "tmpfs";
       fsType = "tmpfs";

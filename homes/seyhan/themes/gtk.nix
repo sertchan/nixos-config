@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   gtk = {
     enable = true;
     theme = {
@@ -13,7 +13,6 @@
       name = "Adwaita Sans";
       size = 11;
     };
-
     gtk3 = {
       extraConfig = {
         gtk-decoration-layout = "appmenu:none";
@@ -27,7 +26,6 @@
         gtk-enable-primary-paste = false;
       };
     };
-
     gtk4 = {
       theme = null;
       extraConfig = {

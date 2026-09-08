@@ -1,20 +1,17 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts = {
     fontconfig = {
       enable = true;
       antialias = true;
       allowBitmaps = false;
-
       hinting = {
         enable = true;
         style = "slight";
       };
-
       subpixel = {
         rgba = "rgb";
         lcdfilter = "default";
       };
-
       defaultFonts = {
         serif = [
           "Literata"
@@ -28,7 +25,7 @@
           "Adwaita Mono"
           "Noto Sans Mono"
         ];
-        emoji = [ "Noto Color Emoji" ];
+        emoji = ["Noto Color Emoji"];
       };
     };
 
@@ -37,7 +34,6 @@
       adwaita-fonts
       nerd-fonts.adwaita-mono
       corefonts
-
       noto-fonts
       noto-fonts-color-emoji
       noto-fonts-cjk-sans

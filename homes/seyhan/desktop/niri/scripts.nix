@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   wofiToggle = pkgs.writeShellApplication {
     name = "wofi-toggle";
     runtimeInputs = [
@@ -59,8 +58,7 @@ let
       done
     '';
   };
-in
-{
+in {
   home.packages = [
     wofiToggle
     wallpaperDaemon

@@ -1,8 +1,5 @@
-{ ... }:
-{
-  imports = [
-    ./settings.nix
-  ];
+{...}: {
+  imports = [./settings.nix];
 
   programs.wofi = {
     enable = true;

@@ -1,10 +1,9 @@
-{ lib, ... }: {
+{lib, ...}: {
   networking = {
     nameservers = lib.mkDefault [
       "162.55.58.40#ctif.hagezi.org"
       "2a01:4f8:1c19:6c19::1#ctif.hagezi.org"
     ];
-
     networkmanager.enable = true;
     usePredictableInterfaceNames = true;
   };
@@ -15,11 +14,10 @@
       Resolve = {
         DNSOverTLS = "true";
         Cache = "true";
-        Domains = [ "~." ];
+        Domains = ["~."];
         LLMNR = "false";
         MulticastDNS = "false";
         DNSSEC = "false";
-
         FallbackDNS = [
           "1.1.1.1"
           "1.0.0.1"

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
@@ -9,7 +8,5 @@
     ];
   };
 
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  };
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 }

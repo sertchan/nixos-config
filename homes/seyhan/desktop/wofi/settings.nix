@@ -1,7 +1,7 @@
 _: {
   programs.wofi.settings = {
     prompt = "Apps";
-    term = "alacritty";
+    term = "ghostty";
     columns = 2;
     hide_scroll = true;
     no_actions = true;

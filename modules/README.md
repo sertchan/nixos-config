@@ -2,11 +2,8 @@
 
 ```nix
 ./core     # defaults every machine gets, imported as a directory
-./desktop  # the niri session and everything that needs a display attached
-./hardware # one file per piece of silicon, so a host takes only what it has
+./desktop  # niri session and everything that needs a display attached
+./hardware # each chip gets its own file, so the system only takes what is installed
 ./services # daemons and network plumbing, opted into per host
 ```
-
-`core` and `desktop` are imported whole through their `default.nix`. `hardware` and `services`
-are named file by file in `hosts/default.nix`, since neither carries an aggregator to import
-wholesale.
+import all of `core` and `desktop` at once through their `default.nix` files. however, i list `hardware` and `services` file by file in `hosts/default.nix` because they don't have a main file to group them

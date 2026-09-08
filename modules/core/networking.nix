@@ -1,6 +1,8 @@
-{lib, ...}: {
+{lib, ...}: let
+  inherit (lib.modules) mkDefault;
+in {
   networking = {
-    nameservers = lib.mkDefault [
+    nameservers = mkDefault [
       "162.55.58.40#ctif.hagezi.org"
       "2a01:4f8:1c19:6c19::1#ctif.hagezi.org"
     ];

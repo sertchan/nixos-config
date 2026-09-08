@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (lib.modules) mkDefault;
+in {
   nix = {
     settings = {
       use-xdg-base-directories = true;
@@ -70,6 +72,6 @@
   programs.nh = {
     enable = true;
     package = pkgs.nh;
-    flake = lib.mkDefault "${config.users.users.seyhan.home}/.nixos";
+    flake = mkDefault "${config.users.users.seyhan.home}/.nixos";
   };
 }

@@ -47,7 +47,7 @@ I will expand this configuration when I install it to other devices that I get i
 ## Repository structure
 
 - [`flake.nix`](flake.nix) declares two inputs and delegates everything else:
-  `outputs = inputs: import ./parts {inherit inputs;};`. The actual output definitions are in [`parts/`](parts), not here.
+  `outputs = inputs: import ./parts {inherit inputs;};`. The actual output definitions are in [`parts/`](parts), not here
 - [`parts/`](parts) contains one file per flake output. `parts/default.nix` lists them, with a short
   comment on each line describing what that file produces. The system architecture is written once,
   as a plain string, rather than mapped over a single element list

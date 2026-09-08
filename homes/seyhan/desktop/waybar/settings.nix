@@ -1,4 +1,12 @@
-_: {
+{
+  osConfig,
+  lib,
+  ...
+}: let
+  inherit (lib.lists) optional;
+
+  dev = osConfig.modules.device;
+in {
   programs.waybar.settings.mainBar = {
     layer = "bottom";
     position = "top";
@@ -8,29 +16,23 @@ _: {
     "margin-top" = 4;
     "margin-left" = 6;
     "margin-right" = 6;
-
-    "modules-left" = [
-      "niri/workspaces"
-    ];
-
-    "modules-center" = [
-    ];
-
+    "modules-left" = ["niri/workspaces"];
+    "modules-center" = [];
     "modules-right" = [
       "group/connectivity"
       "group/system"
       "group/io"
       "group/time"
     ];
-
     "group/connectivity" = {
       orientation = "horizontal";
-      modules = [
-        "tray"
-        "network#2"
-        "network"
-        "bluetooth"
-      ];
+      modules =
+        [
+          "tray"
+          "network#2"
+          "network"
+        ]
+        ++ optional dev.hasBluetooth "bluetooth";
     };
     "group/system" = {
       orientation = "horizontal";
@@ -54,7 +56,6 @@ _: {
         "clock#2"
       ];
     };
-
     "niri/workspaces" = {
       "on-click" = "activate";
       format = "{icon}";

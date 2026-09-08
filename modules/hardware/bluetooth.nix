@@ -4,6 +4,7 @@
   lib,
   ...
 }: let
+  inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption;
 
@@ -43,7 +44,7 @@ in {
         "sound.target"
       ];
       serviceConfig = {
-        ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+        ExecStart = getExe' pkgs.bluez "mpris-proxy";
         Restart = "on-failure";
         RestartSec = 5;
       };

@@ -5,6 +5,7 @@
   ...
 }: let
   iface = "wlp0s20f3";
+  mark = "0x40000000";
   qnum = toString config.services.zapret.qnum;
 in {
   environment.systemPackages = [pkgs.zapret];
@@ -31,18 +32,39 @@ in {
 
   networking.nftables = {
     enable = true;
+    tables.zapret-raw = {
+      family = "inet";
+      content = ''
+        chain output {
+          type filter hook output priority raw; policy accept;
+          meta mark and ${mark} == ${mark} counter notrack
+        }
+      '';
+    };
+
     tables.zapret = {
       family = "inet";
       content = ''
-        chain inbound {
-          type filter hook input priority -10; policy accept;
-          iifname "${iface}" tcp sport { 80, 443 } ct reply packets 1-3 queue num ${qnum} bypass
+        chain ingress {
+          type filter hook prerouting priority -150; policy accept;
+          iifname "${iface}" tcp sport { 80, 443 } ct reply packets 1-3 \
+            counter queue num ${qnum} bypass
         }
 
         chain outbound {
           type filter hook output priority -10; policy accept;
-          oifname "${iface}" tcp dport { 80, 443 } ct original packets 1-9 queue num ${qnum} bypass
-          oifname "${iface}" udp dport 443 ct original packets 1-9 queue num ${qnum} bypass
+          oifname "${iface}" tcp dport { 80, 443 } ct original packets 1-9 \
+            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
+          oifname "${iface}" udp dport 443 ct original packets 1-9 \
+            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
+        }
+
+        chain forward-postnat {
+          type filter hook postrouting priority 101; policy accept;
+          iifname "${iface}" oifname "${iface}" tcp dport { 80, 443 } ct original packets 1-9 \
+            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
+          iifname "${iface}" oifname "${iface}" udp dport 443 ct original packets 1-9 \
+            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
         }
       '';
     };
@@ -54,6 +76,7 @@ in {
       "--dpi-desync=fake"
       "--dpi-desync-autottl"
       "--dpi-desync-ttl=3"
+      "--dpi-desync-fwmark=${mark}"
       "--hostlist-exclude=/var/lib/zapret/zapret-hosts-exclude.txt"
       "--hostlist-auto=/var/lib/zapret/zapret-hosts-auto.txt"
       "--hostlist-auto-fail-threshold=3"

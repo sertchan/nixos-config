@@ -18,9 +18,9 @@ in {
       description = ''
         Whether the machine has a bluetooth radio.
 
-        This is a fact about the hardware and not a request to run anything. The
-        stack is still turned on separately, because owning the radio is not a
-        reason to leave it listening.
+        This is a fact about the hardware and not a request to run anything.
+        modules.system.bluetooth.enable starts the stack, because owning the
+        radio is a separate question from leaving it listening.
       '';
     };
 
@@ -30,8 +30,8 @@ in {
       description = ''
         Whether the machine has an audio device worth configuring.
 
-        Defaults to true because everything with a screen has one. A headless
-        host sets it false and drops the whole audio stack with it.
+        Defaults to true because everything with a screen has one.
+        modules.system.audio.enable starts pipewire on top of it.
       '';
     };
   };

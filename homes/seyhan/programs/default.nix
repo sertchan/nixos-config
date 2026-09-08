@@ -1,5 +1,6 @@
 {
   imports = [
+    ./gpg
     ./obs
     ./starship
     ./zsh

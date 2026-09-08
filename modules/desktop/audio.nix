@@ -1,11 +1,21 @@
 {
-  security.rtkit.enable = true; # RealtimeKit daemon for high-priority audio processing threads
+  config,
+  lib,
+  ...
+}: let
+  inherit (lib.modules) mkIf;
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true; # 32-bit ALSA emulation for 32-bit applications and games
-    pulse.enable = true; # PulseAudio server emulation layer for legacy clients
-    wireplumber.enable = true; # Modular session manager for PipeWire
+  dev = config.modules.device;
+in {
+  config = mkIf dev.hasSound {
+    security.rtkit.enable = true;
+
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
   };
 }

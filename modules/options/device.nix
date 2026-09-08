@@ -1,20 +1,17 @@
 {lib, ...}: let
+  inherit (lib.modules) mkRemovedOptionModule;
   inherit (lib.options) mkOption;
-  inherit (lib.types) bool enum;
+  inherit (lib.types) bool;
 in {
+  imports = [
+    (mkRemovedOptionModule ["modules" "device" "type"] ''
+      Removed, because nothing read it. Branch on the specific fact a module
+      needs, such as modules.device.hasBluetooth, and declare a new one beside
+      the module that reads it.
+    '')
+  ];
+
   options.modules.device = {
-    type = mkOption {
-      type = enum ["laptop" "desktop"];
-      description = ''
-        What the machine physically is.
-
-        Read by both trees. The system side uses it for power and firmware
-        decisions, the user side uses it to leave out anything a desktop has no
-        use for. There is no default on purpose. A host that does not state it fails
-        evaluation with the module system saying so, which beats guessing.
-      '';
-    };
-
     hasBluetooth = mkOption {
       type = bool;
       default = false;

@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     awww
     brightnessctl
-    easyeffects
     glib
     gsettings-desktop-schemas
     keepassxc

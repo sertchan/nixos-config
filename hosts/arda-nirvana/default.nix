@@ -11,6 +11,7 @@
     device = {
       hasBluetooth = true;
       hasSound = true;
+      wirelessInterface = "wlp0s20f3";
     };
 
     system = {

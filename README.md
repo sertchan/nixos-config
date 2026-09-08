@@ -4,8 +4,8 @@
   <li><a href="#introduction">Introduction</a></li>
   <li><a href="#screenshots">Screenshots</a></li>
   <li><a href="#devices">Devices</a></li>
-  <li><a href="#repository-structure">Structure</a></li>
-  <li><a href="#code-principles">Code Principles</a></li>
+  <li><a href="#repository-structure">Repository structure</a></li>
+  <li><a href="#code-principles">Code principles</a></li>
 </ul>
 
 ## Introduction
@@ -51,28 +51,27 @@ No other device yet...
 
 ## Repository structure
 
-- [`flake.nix`](flake.nix) names two inputs and delegates. The whole of its output is
-  `outputs = inputs: import ./parts {inherit inputs;};`, so the assembly sits somewhere other
-  than the file everyone opens first.
-- [`parts/`](parts) holds one file per output family, indexed by `parts/default.nix`, where each
-  line carries its own trailing note about what it is for. The system is named once as a string
-  rather than mapped over a one-element list, because an abstraction over one element is an
-  abstraction with nothing to generalise.
-- [`hosts/default.nix`](hosts/default.nix) is the device registry and the only file allowed to
-  reach into `modules/`. That single restriction is what keeps every file under
-  `hosts/arda-nirvana/` free of `../..` paths. `modules/options/device.nix` is first in the
-  module list, because both trees branch on what it declares.
-- [`modules/`](modules) splits four ways, and the split is meaningful. `core` and `desktop` are
-  imported whole through a `default.nix` that contains imports and nothing else. `hardware` and
-  `services` have no aggregator, so a host takes only the silicon it physically has and only the
-  daemons it opted into. The index is in [`modules/README.md`](modules/README.md).
-- [`hosts/arda-nirvana/`](hosts/arda-nirvana) carries host configurations only: the hardware scan, the
-  filesystems, the timezone, the device declaration and the TLP profile.
-- [`homes/`](homes) maps a user name onto a directory, so adding a user is a name and a directory
-  and never a new wiring block. [`homes/seyhan/`](homes/seyhan) splits into `desktop`, `programs`
-  and `themes`, indexed in [`homes/seyhan/README.md`](homes/seyhan/README.md).
+- [`flake.nix`](flake.nix) is kept short for a reason. It names two inputs and then hands the rest over:
+  `outputs = inputs: import ./parts {inherit inputs;};`. The file you open first is not the file
+  that does the work
+- [`parts/`](parts) keeps one file per output. `parts/default.nix` lists them, and each line should
+  end with an explanation what that file is for. The system is named once, as a plain string. There is no point in mapping over a single-item list: wrapping one thing in a loop generalizes nothing
+  and absolutely pointless
+- [`hosts/default.nix`](hosts/default.nix) is device registry, and the only file allowed to
+  reach into `modules/`. That rule explains why no file under `hosts/arda-nirvana/` ever needs a
+  `../..` path. `modules/options/device.nix` comes first in the module list, since both trees decide
+  what to do based on what it declares 
+- [`modules/`](modules) splits four ways, and the split does real work. `core` and `desktop` come in
+  as a whole, through a `default.nix` that holds imports (and nothing else). `hardware` and `services`
+  have no `default.nix` file, so a host picks up only part it really has and only the daemons it asked
+  for. It has own index. see: [`modules/README.md`](modules/README.md)
+- [`hosts/arda-nirvana/`](hosts/arda-nirvana) holds host settings only: initial hardware scan (Which nixos generates during installation process. You know what I'm saying),
+  filesystems, timezone, device declaration, TLP profile etc. 
+- [`homes/`](homes) maps a user name onto a directory. Adding a user is a name and a directory,
+  nothing more; there is no new wiring block to write. [`homes/seyhan/`](homes/seyhan) splits into
+  `desktop`, `programs` and `themes`, listed in [`homes/seyhan/README.md`](homes/seyhan/README.md).
 
-## Code Principles
+## Code principles
 
 I'm writing this down for people who want to contribute to this configuration, or for those who fork it for their own use. I use these Nix principles, and I strongly recommend following them
 - Avoid using `with lib;` or `with builtins;`. Instead, bring in the names you need at the top of a `let` block, and take them from the smallest namespace that has them. That way a future reader can see where each name comes from

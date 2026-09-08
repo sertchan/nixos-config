@@ -2,21 +2,16 @@
   imports = [
     ./system.nix
     ./tlp.nix
-
-    ../../modules/core
-
-    ../../modules/hardware/intel-gpu.nix
-    ../../modules/hardware/bluetooth.nix
-
-    ../../modules/services/zapret.nix
-    ../../modules/services/dns-content-blocking.nix
-    ../../modules/services/wireshark.nix
-
-    ../../modules/desktop
   ];
 
   networking.hostName = "arda-nirvana";
   time.timeZone = "Europe/Istanbul";
+
+  modules.device = {
+    type = "laptop";
+    hasBluetooth = true;
+    hasSound = true;
+  };
 
   system.stateVersion = "24.11";
 }

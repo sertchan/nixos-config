@@ -9,23 +9,5 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    {
-      nixosConfigurations.arda-nirvana = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit self inputs; };
-        modules = [
-          { nixpkgs.config.allowUnfree = true; }
-          home-manager.nixosModules.home-manager
-          ./hosts/arda-nirvana/default.nix
-          ./homes
-        ];
-      };
-    };
+  outputs = inputs: import ./parts {inherit inputs;};
 }

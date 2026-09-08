@@ -11,7 +11,7 @@
   user = config.users.users.zapret.name;
   group = config.users.groups.zapret.name;
 
-  iface = "wlp0s20f3";
+  iface = config.modules.device.wirelessInterface;
   mark = "0x40000000";
   qnum = toString config.services.zapret.qnum;
 

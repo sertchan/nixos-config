@@ -2,25 +2,16 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      # ----- Window -----
       background-opacity = 1.00;
-
-      # ----- Font -----
       font-size = 12;
       font-family = "AdwaitaMono Nerd Font";
       font-family-bold = "AdwaitaMono Nerd Font";
       font-family-italic = "AdwaitaMono Nerd Font";
       font-family-bold-italic = "AdwaitaMono Nerd Font";
-
-      # ----- Base colors -----
       background = "0f0f0f";
       foreground = "c5c9c5";
-
-      # ----- Selection -----
       selection-background = "2d4f67";
       selection-foreground = "c8c093";
-
-      # ----- 16-color ANSI palette (0-15) -----
       palette = [
         "0=#0c0b0b"
         "1=#c4746e"
@@ -38,8 +29,6 @@
         "13=#938AA9"
         "14=#7AA89F"
         "15=#c5c9c5"
-
-        # ----- Extended palette (Kanagawa accents) -----
         "16=#ffa066"
         "17=#ff5d62"
       ];

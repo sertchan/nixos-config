@@ -1,8 +1,6 @@
 layout {
     gaps 8
-    // Prevent automatic horizontal scrolling to keep focused column centered
     center-focused-column "never"
-    // Proportion presets of screen width available when cycling column widths
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
@@ -11,7 +9,6 @@ layout {
     default-column-width {
         proportion 0.5
     }
-    // Disable visual border decorations in favor of clean window edges
     focus-ring {
         off
     }
@@ -22,19 +19,15 @@ layout {
         off
     }
 }
-// Make animations faster
 animations {
     slowdown 0.75
 }
-// Request applications to hide client-side decorations in favor of compositor management
 prefer-no-csd
-// Disable the hot corners.
 gestures {
     hot-corners {
         off
     }
 }
 hotkey-overlay {
-    // Suppress keybindings cheat sheet popup on initial login
     skip-at-startup
 }

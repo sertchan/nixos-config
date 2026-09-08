@@ -1,15 +1,11 @@
 _: {
   services.mako = {
     enable = true;
-
-    # ----- Global Configuration Options -----
     settings = {
-      # ----- Behavior & Interaction -----
       "on-button-left" = "dismiss";
       "on-button-middle" = "none";
       "on-button-right" = "dismiss-all";
       "on-touch" = "dismiss";
-
       actions = 1;
       anchor = "top-right";
       "default-timeout" = 5000;
@@ -18,8 +14,6 @@ _: {
       layer = "overlay";
       "max-visible" = 20;
       "text-alignment" = "left";
-
-      # ----- Typography & Layout -----
       font = "AdwaitaMono Nerd Font 11";
       width = 400;
       height = 250;
@@ -28,22 +22,17 @@ _: {
       padding = "12,16";
       "border-size" = 1;
       "border-radius" = 0;
-
-      # ----- Icons & Media -----
       icons = 1;
       "max-icon-size" = 64;
       "icon-location" = "left";
       "icon-border-radius" = 0;
       markup = 1;
-
-      # ----- Global Visual Style -----
       "background-color" = "#0a0a0ae6";
       "text-color" = "#ffffff";
       "border-color" = "#ffffff26";
       "progress-color" = "over #00ff00cc";
     };
 
-    # ----- Urgency Criteria Sections -----
     extraConfig = ''
       [urgency=low]
       background-color=#0a0a0ab3

@@ -3,61 +3,48 @@
   pkgs,
   lib,
   ...
-}:
-{
-  # ----- Nix Daemon Settings -----
+}: {
   nix = {
     settings = {
-      use-xdg-base-directories = true; # Store Nix user files according to XDG spec (~/.config/nix, ~/.local/state/nix)
+      use-xdg-base-directories = true;
       flake-registry = "/etc/nix/registry.json";
-      warn-dirty = false; # Disable warnings about uncommitted Git files when evaluating flakes
-      accept-flake-config = false; # Ignore custom nix.conf settings exported by external flakes
-
+      warn-dirty = false;
+      accept-flake-config = false;
       extra-experimental-features = [
         "flakes"
         "nix-command"
         "recursive-nix"
       ];
-
       allowed-users = [
         "root"
         "@wheel"
         "nix-builder"
       ];
-
-      # Users with elevated daemon privileges (e.g., overriding binary caches)
-      trusted-users = [
-        "root"
-      ];
-
+      trusted-users = ["root"];
       sandbox = true;
-      sandbox-fallback = false; # Fail build immediately if sandboxing is unavailable
-      max-jobs = "auto"; # Scale maximum parallel build processes to CPU core count
+      sandbox-fallback = false;
+      max-jobs = "auto";
       system-features = [
         "nixos-test"
         "kvm"
         "recursive-nix"
         "big-parallel"
       ];
-      extra-platforms = config.boot.binfmt.emulatedSystems; # Architectures supported via binfmt emulation
-
+      extra-platforms = config.boot.binfmt.emulatedSystems;
       connect-timeout = 5;
       http-connections = 50;
       log-lines = 30;
-      keep-going = true; # Continue building independent derivations if one fails
-      builders-use-substitutes = true; # Permit remote builders to fetch pre-built outputs from binary caches
-
-      min-free = toString (5 * 1024 * 1024 * 1024); # Trigger GC if free disk space falls below 5 GiB
-      max-free = toString (10 * 1024 * 1024 * 1024); # Stop GC once free disk space reaches 10 GiB
-      auto-optimise-store = false; # Store optimization runs on a separate weekly timer (see nix.optimise below)
-      keep-derivations = true; # Retain build derivations to allow offline rebuilds
-      keep-outputs = true; # Retain build outputs to prevent GC of shell dependencies
-
+      keep-going = true;
+      builders-use-substitutes = true;
+      min-free = toString (5 * 1024 * 1024 * 1024);
+      max-free = toString (10 * 1024 * 1024 * 1024);
+      auto-optimise-store = false;
+      keep-derivations = true;
+      keep-outputs = true;
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
       ];
-
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -67,22 +54,19 @@
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
-      persistent = true; # Execute missed runs immediately on next system boot
-      randomizedDelaySec = "30min"; # Randomly delay trigger time up to 30 minutes to prevent resource contention
+      persistent = true;
+      randomizedDelaySec = "30min";
       dates = "weekly";
     };
 
     optimise = {
       automatic = true;
-      dates = [ "weekly" ];
+      dates = ["weekly"];
     };
   };
 
-  # ----- Nixpkgs Configuration -----
   nixpkgs.config.allowUnfree = true;
 
-  # ----- Nix Helper Tools -----
-  # nh: Command-line wrapper for building and switching NixOS configurations
   programs.nh = {
     enable = true;
     package = pkgs.nh;

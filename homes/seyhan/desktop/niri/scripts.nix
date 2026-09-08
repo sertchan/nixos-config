@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-# ----- Desktop Utility Scripts -----
-let
-  # Toggles Wofi application menu by terminating existing instances or spawning a new instance
+{pkgs, ...}: let
   wofiToggle = pkgs.writeShellApplication {
     name = "wofi-toggle";
     runtimeInputs = [
@@ -16,7 +13,6 @@ let
     '';
   };
 
-  # Periodically selects and applies a random wallpaper from ~/Pictures/Wallpapers using awww
   wallpaperDaemon = pkgs.writeShellApplication {
     name = "wallpaper-daemon";
     runtimeInputs = [
@@ -55,9 +51,6 @@ let
           fi
         done
 
-        # "|| true" added so a single failed awww call doesn't kill the whole
-        # daemon under writeShellApplication's "set -euo pipefail" — matches
-        # the original script's behavior, which just kept looping on failure.
         awww img "$current_wallpaper" -t center --transition-duration 0.7 --transition-fps 75 || true
 
         last_wallpaper="$current_wallpaper"
@@ -65,9 +58,7 @@ let
       done
     '';
   };
-in
-{
-  # ----- Package Declarations -----
+in {
   home.packages = [
     wofiToggle
     wallpaperDaemon

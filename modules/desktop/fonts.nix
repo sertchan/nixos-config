@@ -1,21 +1,17 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts = {
-    # ----- Fontconfig Settings -----
     fontconfig = {
       enable = true;
       antialias = true;
-      allowBitmaps = false; # Force vector font rendering to prevent blurry bitmap fonts on HiDPI displays
-
+      allowBitmaps = false;
       hinting = {
         enable = true;
-        style = "slight"; # Preserves font glyph outlines while aligning vertical stems to pixel grid
+        style = "slight";
       };
-
       subpixel = {
         rgba = "rgb";
-        lcdfilter = "default"; # Reduce color fringing caused by subpixel rendering
+        lcdfilter = "default";
       };
-
       defaultFonts = {
         serif = [
           "Literata"
@@ -29,21 +25,19 @@
           "Adwaita Mono"
           "Noto Sans Mono"
         ];
-        emoji = [ "Noto Color Emoji" ];
+        emoji = ["Noto Color Emoji"];
       };
     };
 
-    # ----- Installed Fonts -----
     packages = with pkgs; [
       literata
       adwaita-fonts
       nerd-fonts.adwaita-mono
       corefonts
-
       noto-fonts
       noto-fonts-color-emoji
-      noto-fonts-cjk-sans # Chinese, Japanese, and Korean sans-serif fonts
-      noto-fonts-cjk-serif # Chinese, Japanese, and Korean serif fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
     ];
   };
 }

@@ -1,13 +1,10 @@
 binds {
-    // ----- Help & Shortcut Inhibition -----
     Mod+Shift+Slash {
         show-hotkey-overlay
     }
-    // Shortcut inhibitor toggle for pass-through to virtual machines or games
     Mod+Escape allow-inhibiting=false {
         toggle-keyboard-shortcuts-inhibit
     }
-    // ----- Application Launchers -----
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" {
         spawn "ghostty"
     }
@@ -32,12 +29,9 @@ binds {
     Mod+P hotkey-overlay-title="Run an Application: prismlauncher" {
         spawn "prismlauncher"
     }
-    // Toggle Orca screen reader process; allowed when session is locked
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null {
         spawn-sh "pkill orca || exec orca"
     }
-    // ----- Audio & Media Controls -----
-    // Volume controls via WirePlumber; capped at 100% volume limit
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"
     }
@@ -50,7 +44,6 @@ binds {
     XF86AudioMicMute allow-when-locked=true {
         spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
     }
-    // Media playback controls via Playerctl
     XF86AudioPlay allow-when-locked=true {
         spawn-sh "playerctl play-pause"
     }
@@ -66,15 +59,12 @@ binds {
     XF86AudioNext allow-when-locked=true {
         spawn-sh "playerctl next"
     }
-    // ----- Display Brightness Controls -----
     XF86MonBrightnessUp allow-when-locked=true {
         spawn "brightnessctl" "--class=backlight" "set" "+10%"
     }
     XF86MonBrightnessDown allow-when-locked=true {
         spawn "brightnessctl" "--class=backlight" "set" "10%-"
     }
-    // ----- Screenshot Shortcuts -----
-    // Interactive, full screen, or active window screenshot capture
     Insert {
         screenshot show-pointer=false
     }
@@ -84,16 +74,12 @@ binds {
     Alt+Insert {
         screenshot-window
     }
-    // ----- Window Overview & Lifecycle -----
-    // Single-trigger binding to toggle spatial workspace overview grid
     Mod+O repeat=false {
         toggle-overview
     }
     Mod+Shift+Q repeat=false {
         close-window
     }
-    // ----- Focus Navigation -----
-    // Navigate focus between horizontal columns and vertical window stacks
     Mod+Left {
         focus-column-left
     }
@@ -124,8 +110,6 @@ binds {
     Mod+End {
         focus-column-last
     }
-    // ----- Window & Column Movement -----
-    // Move active column horizontally or window vertically within column
     Mod+Ctrl+Left {
         move-column-left
     }
@@ -156,8 +140,6 @@ binds {
     Mod+Ctrl+End {
         move-column-to-last
     }
-    // ----- Multi-Monitor Navigation & Movement -----
-    // Focus or move active column across multi-monitor setups
     Mod+Shift+Left {
         focus-monitor-left
     }
@@ -206,8 +188,6 @@ binds {
     Mod+Shift+Ctrl+L {
         move-column-to-monitor-right
     }
-    // ----- Workspace Navigation & Movement -----
-    // Navigate or move columns/workspaces in Niri's vertical workspace layout
     Mod+Page_Down {
         focus-workspace-down
     }
@@ -244,7 +224,6 @@ binds {
     Mod+Shift+I {
         move-workspace-up
     }
-    // ----- Direct Workspace Shortcuts (1-9) -----
     Mod+1 {
         focus-workspace 1
     }
@@ -299,8 +278,6 @@ binds {
     Mod+Shift+9 {
         move-column-to-workspace 9
     }
-    // ----- Mouse & Scroll Wheel Controls -----
-    // Scroll wheel workspace switching with 150ms debounce cooldown
     Mod+WheelScrollDown cooldown-ms=150 {
         focus-workspace-down
     }
@@ -337,8 +314,6 @@ binds {
     Mod+Ctrl+Shift+WheelScrollUp {
         move-column-left
     }
-    // ----- Column & Window Layout Controls -----
-    // Merge window into adjacent column or expel window into standalone column
     Mod+BracketLeft {
         consume-or-expel-window-left
     }
@@ -351,7 +326,6 @@ binds {
     Mod+Period {
         expel-window-from-column
     }
-    // Cycle active column width forward/backward through preset proportions
     Mod+R {
         switch-preset-column-width
     }
@@ -364,7 +338,6 @@ binds {
     Mod+Ctrl+R {
         reset-window-height
     }
-    // Dimension and expansion controls (column maximize vs true fullscreen vs edge expansion)
     Mod+F {
         maximize-column
     }
@@ -401,11 +374,9 @@ binds {
     Mod+Shift+V {
         switch-focus-between-floating-and-tiling
     }
-    // Toggle tabbed window layout inside active column
     Mod+W {
         toggle-column-tabbed-display
     }
-    // ----- Session Management & Power Controls -----
     Mod+Shift+C {
         quit
     }
@@ -416,5 +387,4 @@ binds {
         power-off-monitors
     }
 }
-// Strftime format template for saved screenshot filenames
 screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"

@@ -1,8 +1,6 @@
-{ pkgs, ... }: {
-  # ----- GTK Configuration -----
+{pkgs, ...}: {
   gtk = {
     enable = true;
-    # Use adw-gtk3 dark theme to mimic GNOME's libadwaita look
     theme = {
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
@@ -15,7 +13,6 @@
       name = "Adwaita Sans";
       size = 11;
     };
-
     gtk3 = {
       extraConfig = {
         gtk-decoration-layout = "appmenu:none";
@@ -26,10 +23,9 @@
         gtk-xft-hintstyle = "hintslight";
         gtk-xft-rgba = "rgb";
         gtk-error-bell = 0;
-        gtk-enable-primary-paste = false; # Disable middle-click primary selection clipboard paste
+        gtk-enable-primary-paste = false;
       };
     };
-
     gtk4 = {
       theme = null;
       extraConfig = {
@@ -40,16 +36,15 @@
         gtk-xft-hinting = 1;
         gtk-xft-hintstyle = "hintslight";
         gtk-xft-rgba = "rgb";
-        gtk-enable-primary-paste = false; # Disable middle-click primary selection clipboard paste
+        gtk-enable-primary-paste = false;
         gtk-error-bell = 0;
         gtk-hint-font-metrics = 1;
       };
     };
   };
 
-  # ----- GNOME Desktop Interface Settings -----
   dconf.settings."org/gnome/desktop/interface" = {
-    color-scheme = "prefer-dark"; # Request dark color scheme variant for GTK4 and libadwaita apps
+    color-scheme = "prefer-dark";
     gtk-theme = "adw-gtk3-dark";
     icon-theme = "Adwaita";
   };

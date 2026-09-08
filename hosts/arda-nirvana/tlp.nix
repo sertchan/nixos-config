@@ -12,36 +12,28 @@
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
       CPU_MAX_PERF_ON_BAT = 80;
-
       INTEL_GPU_MIN_FREQ_ON_AC = 100;
       INTEL_GPU_MIN_FREQ_ON_BAT = 100;
       INTEL_GPU_MAX_FREQ_ON_AC = 1300;
       INTEL_GPU_MAX_FREQ_ON_BAT = 900;
       INTEL_GPU_BOOST_FREQ_ON_AC = 1300;
       INTEL_GPU_BOOST_FREQ_ON_BAT = 900;
-
       PCIE_ASPM_ON_AC = "performance";
       PCIE_ASPM_ON_BAT = "powersupersave";
-
-      USB_AUTOSUSPEND = 0; # Disable USB autosuspend to prevent peripheral disconnections
-
+      USB_AUTOSUSPEND = 0;
       WIFI_PWR_ON_AC = "off";
       WIFI_PWR_ON_BAT = "on";
-
       SOUND_POWER_SAVE_ON_AC = 0;
       SOUND_POWER_SAVE_ON_BAT = 1;
       SOUND_POWER_SAVE_CONTROLLER = "Y";
-
-      DISK_IOSCHED = [ "none" ]; # Defer I/O scheduling to NVMe kernel defaults
+      DISK_IOSCHED = ["none"];
       SATA_LINKPWR_ON_AC = "max_performance";
       SATA_LINKPWR_ON_BAT = "min_power";
       AHCI_RUNTIME_PM_ON_AC = "on";
       AHCI_RUNTIME_PM_ON_BAT = "auto";
-
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";
-
-      NMI_WATCHDOG = 0; # Disable NMI watchdog timer to reduce CPU wakeups and save power
+      NMI_WATCHDOG = 0;
       RESTORE_DEVICE_STATE_ON_STARTUP = 1;
     };
   };

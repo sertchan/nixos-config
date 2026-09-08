@@ -4,11 +4,23 @@
   pkgs,
   ...
 }: let
+  inherit (lib.lists) concatMap;
+  inherit (lib.meta) getExe';
+  inherit (lib.modules) mkForce;
+
+  user = config.users.users.zapret.name;
+  group = config.users.groups.zapret.name;
+
   iface = "wlp0s20f3";
   mark = "0x40000000";
   qnum = toString config.services.zapret.qnum;
+
+  stateDir = "/var/lib/zapret";
+  autoHostlist = "${stateDir}/zapret-hosts-auto.txt";
+  excludeHostlist = "${stateDir}/zapret-hosts-exclude.txt";
+  autoHostlistDebugLog = "${stateDir}/zapret-hosts-auto-debug.log";
 in {
-  environment.systemPackages = [pkgs.zapret];
+  environment.systemPackages = [config.services.zapret.package];
 
   networking.networkmanager = {
     wifi = {
@@ -23,9 +35,9 @@ in {
   users = {
     users.zapret = {
       isSystemUser = true;
-      group = "zapret";
+      inherit group;
       description = "zapret nfqws privilege-drop user";
-      shell = "${pkgs.shadow}/bin/nologin";
+      shell = getExe' pkgs.shadow "nologin";
     };
     groups.zapret = {};
   };
@@ -77,11 +89,11 @@ in {
       "--dpi-desync-autottl"
       "--dpi-desync-ttl=3"
       "--dpi-desync-fwmark=${mark}"
-      "--hostlist-exclude=/var/lib/zapret/zapret-hosts-exclude.txt"
-      "--hostlist-auto=/var/lib/zapret/zapret-hosts-auto.txt"
+      "--hostlist-exclude=${excludeHostlist}"
+      "--hostlist-auto=${autoHostlist}"
       "--hostlist-auto-fail-threshold=3"
       "--hostlist-auto-fail-time=180"
-      "--hostlist-auto-debug=/var/lib/zapret/zapret-hosts-auto-debug.log"
+      "--hostlist-auto-debug=${autoHostlistDebugLog}"
     ];
     configureFirewall = false;
   };
@@ -89,14 +101,14 @@ in {
   systemd = {
     services.zapret = {
       serviceConfig = {
-        DynamicUser = lib.mkForce false;
-        User = lib.mkForce "zapret";
-        Group = lib.mkForce "zapret";
-        ReadWritePaths = ["/var/lib/zapret"];
-        RuntimeMaxSec = lib.mkForce "6h";
+        DynamicUser = false;
+        User = user;
+        Group = group;
+        ReadWritePaths = [stateDir];
+        RuntimeMaxSec = mkForce "6h";
         ExecStartPre = [
-          "+${pkgs.coreutils}/bin/touch /run/nfqws.pid"
-          "+${pkgs.coreutils}/bin/chown zapret:zapret /run/nfqws.pid"
+          "+${getExe' pkgs.coreutils "touch"} /run/nfqws.pid"
+          "+${getExe' pkgs.coreutils "chown"} ${user}:${group} /run/nfqws.pid"
         ];
         CapabilityBoundingSet = [
           "CAP_NET_ADMIN"
@@ -127,14 +139,15 @@ in {
       wants = ["systemd-tmpfiles-setup.service"];
     };
 
-    tmpfiles.rules = [
-      "d /var/lib/zapret 0700 zapret zapret -"
-      "f /var/lib/zapret/zapret-hosts-auto.txt 0600 zapret zapret -"
-      "z /var/lib/zapret/zapret-hosts-auto.txt 0600 zapret zapret -"
-      "f /var/lib/zapret/zapret-hosts-exclude.txt 0600 zapret zapret -"
-      "z /var/lib/zapret/zapret-hosts-exclude.txt 0600 zapret zapret -"
-      "f /var/lib/zapret/zapret-hosts-auto-debug.log 0600 zapret zapret -"
-      "z /var/lib/zapret/zapret-hosts-auto-debug.log 0600 zapret zapret -"
-    ];
+    tmpfiles.rules =
+      ["d ${stateDir} 0700 ${user} ${group} -"]
+      ++ concatMap (path: [
+        "f ${path} 0600 ${user} ${group} -"
+        "z ${path} 0600 ${user} ${group} -"
+      ]) [
+        autoHostlist
+        excludeHostlist
+        autoHostlistDebugLog
+      ];
   };
 }

@@ -20,7 +20,7 @@ layout {
     }
 }
 animations {
-    slowdown 0.75
+    slowdown 0.5
 }
 prefer-no-csd
 gestures {

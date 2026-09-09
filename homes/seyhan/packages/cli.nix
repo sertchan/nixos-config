@@ -3,6 +3,7 @@
     android-tools
     bc
     claude-code
+    codex
     dust
     geekbench
     inotify-tools

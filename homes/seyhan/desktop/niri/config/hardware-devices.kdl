@@ -10,21 +10,17 @@ input {
         accel-profile "flat"
     }
     warp-mouse-to-focus mode="center-xy"
-
     focus-follows-mouse max-scroll-amount="0%"
 }
-
 cursor {
     xcursor-theme "Adwaita"
     xcursor-size 24
 }
-
 output "eDP-1" {
     off
     mode "1920x1080@60.001"
     scale 1.2
 }
-
 output "HDMI-A-1" {
     mode "1920x1080@74.973"
     transform "normal"

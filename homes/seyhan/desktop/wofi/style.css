@@ -1,48 +1,47 @@
 * {
-    font-family: "AdwaitaMono Nerd Font";
-    font-size: 18px;
-    font-weight: 600;
+  font-family: "Adwaita Sans";
+  font-size: 15px;
+  font-weight: 600;
 }
 
 #window {
-	background-color: rgba(0, 0, 0, 0.92);
-	color: @foreground;
-	border: none;
-	border-radius: 8px;
+  background-color: rgba(10, 10, 10, 0.92);
+  color: @foreground;
+  border: none;
+  border-radius: 8px;
 }
 
 #outer-box {
-	padding: 20px;
+  padding: 20px;
 }
 
 #input {
-	border: none;
-	padding: 8px 12px;
+  border: none;
+  padding: 8px 12px;
 }
 
 #scroll {
-	margin-top: 20px;
-	margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-
 #img {
-	padding-right: 10px;
+  padding-right: 10px;
 }
 
 #text {
-	color: @foreground;
+  color: @foreground;
 }
 
 #text:selected {
-	color: white;
+  color: white;
 }
 
 #entry {
-	padding: 6px;
+  padding: 6px;
 }
 
 #entry:selected {
-        background: rgba(33, 33, 33, 0.8);
-	color: transparent;
+  background: alpha(@foreground, 0.14);
+  color: transparent;
 }

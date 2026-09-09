@@ -2,3 +2,8 @@
 command = "alejandra"
 options = ["--quiet"]
 includes = ["*.nix"]
+
+[formatter.lua]
+command = "stylua"
+options = ["--search-parent-directories"]
+includes = ["*.lua"]

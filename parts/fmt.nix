@@ -4,6 +4,7 @@ pkgs.writeShellApplication {
   runtimeInputs = [
     pkgs.treefmt
     pkgs.alejandra
+    pkgs.stylua
     pkgs.git
   ];
   text = ''

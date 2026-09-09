@@ -6,7 +6,6 @@ layer-rule {
         xray false
     }
 }
-
 layer-rule {
     match namespace="waybar"
     popups {
@@ -16,12 +15,10 @@ layer-rule {
         }
     }
 }
-
 window-rule {
     geometry-corner-radius 8
     clip-to-geometry true
 }
-
 window-rule {
     match app-id="^firefox$"
     match app-id="^spotify$"
@@ -34,20 +31,17 @@ window-rule {
     match app-id="^losslesscut$"
     open-maximized true
 }
-
 window-rule {
     match app-id="^mpv$"
     match app-id="^org.prismlauncher.PrismLauncher$"
     match app-id="^org.gnome.Loupe$"
     open-floating true
 }
-
 window-rule {
     match app-id="^firefox$" title="Library"
     open-floating true
     open-maximized false
 }
-
 window-rule {
     match app-id="^org.gnome.Nautilus$"
     open-floating true

@@ -1,0 +1,32 @@
+{pkgs, ...}: {
+  programs.neovim.extraPackages = with pkgs; [
+    alejandra
+    bash-language-server
+    beautysh
+    clang-tools
+    deadnix
+    fd
+    fixjson
+    git
+    kdlfmt
+    lua-language-server
+    lua51Packages.luacheck
+    markdownlint-cli2
+    marksman
+    nil
+    prettierd
+    pyright
+    ripgrep
+    ruff
+    rust-analyzer
+    rustfmt
+    shellcheck
+    statix
+    stylua
+    taplo
+    typescript-language-server
+    vscode-langservers-extracted
+    yamlfix
+    yamllint
+  ];
+}

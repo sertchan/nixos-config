@@ -11,6 +11,7 @@
   bluetooth = modulePath + /hardware/bluetooth.nix;
   intelGpu = modulePath + /hardware/intel-gpu.nix;
 
+  coredump = modulePath + /services/coredump.nix;
   dnsContentBlocking = modulePath + /services/dns-content-blocking.nix;
   wireshark = modulePath + /services/wireshark.nix;
   zapret = modulePath + /services/zapret.nix;
@@ -35,6 +36,7 @@ in {
       bluetooth
       intelGpu
 
+      coredump
       dnsContentBlocking
       wireshark
       zapret

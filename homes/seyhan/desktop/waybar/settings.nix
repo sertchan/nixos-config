@@ -74,16 +74,10 @@ in {
         "default" = "{value}";
       };
     };
-    "niri/window" = {
-      format = "{}";
-      "max-length" = 360;
-    };
     clock = {
-      interval = 1;
       format = "{:%d/%m/%Y}";
     };
     "clock#2" = {
-      interval = 1;
       format = "{:%H:%M}";
     };
     bluetooth = {

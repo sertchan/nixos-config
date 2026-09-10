@@ -20,13 +20,7 @@
       DisableFormHistory = true;
       DisablePasswordReveal = true;
       NoDefaultBookmarks = true;
-      OfferToSaveLoginsDefault = false;
       PopupBlocking.Default = true;
-      AIControls.Default = {
-        Value = "blocked";
-        Locked = true;
-      };
-      GenerativeAI.Enabled = false;
       EncryptedMediaExtensions.Enabled = true;
       DNSOverHTTPS = {
         Enabled = true;
@@ -35,17 +29,11 @@
       };
       HttpsOnlyMode = "force_enabled";
       EnableTrackingProtection = {
-        Value = true;
-        Cryptomining = true;
-        Fingerprinting = true;
-        EmailTracking = true;
-        SuspectedFingerprinting = true;
         Category = "strict";
         BaselineExceptions = true;
         ConvenienceExceptions = true;
       };
       PostQuantumKeyAgreementEnabled = true;
-      TranslateEnabled = false;
       BlockAboutConfig = true;
       BlockAboutProfiles = false;
       BlockAboutSupport = false;
@@ -61,28 +49,28 @@
         "uBlock0@raymondhill.net" = {
           install_url = moz "ublock-origin";
           installation_mode = "force_installed";
-          updates_disabled = true;
+          updates_disabled = false;
           default_area = "navbar";
           private_browsing = true;
         };
         "sponsorBlocker@ajay.app" = {
           install_url = moz "sponsorblock";
           installation_mode = "force_installed";
-          updates_disabled = true;
+          updates_disabled = false;
           default_area = "menupanel";
           private_browsing = true;
         };
         "enhancerforyoutube@maximerf.addons.mozilla.org" = {
           install_url = moz "enhancer-for-youtube";
           installation_mode = "force_installed";
-          updates_disabled = true;
+          updates_disabled = false;
           default_area = "menupanel";
           private_browsing = true;
         };
         "elemental-bold-colorway@mozilla.org" = {
           install_url = moz "elemental-bold";
           installation_mode = "force_installed";
-          updates_disabled = true;
+          updates_disabled = false;
         };
       };
       "3rdparty".Extensions = {
@@ -106,7 +94,6 @@
             "ublock-cookies-adguard"
             "fanboy-social"
             "fanboy-thirdparty_social"
-            "fanboy-ai-suggestions"
             "easylist-chat"
             "easylist-newsletters"
             "easylist-notifications"

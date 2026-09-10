@@ -4,126 +4,125 @@
   pkgs,
   ...
 }: let
+  inherit (lib.attrsets) genAttrs;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkForce;
+  inherit (lib.strings) concatStringsSep;
+
+  cfg = config.services.zapret2;
+  dev = config.modules.device;
 
   user = config.users.users.zapret.name;
   group = config.users.groups.zapret.name;
 
-  iface = config.modules.device.wirelessInterface;
-  mark = "0x40000000";
-  qnum = toString config.services.zapret.qnum;
-
-  stateDir = "/var/lib/zapret";
+  stateDirectory = "zapret";
+  stateDir = "/var/lib/${stateDirectory}";
   autoHostlist = "${stateDir}/zapret-hosts-auto.txt";
   excludeHostlist = "${stateDir}/zapret-hosts-exclude.txt";
   autoHostlistDebugLog = "${stateDir}/zapret-hosts-auto-debug.log";
-in {
-  environment.systemPackages = [config.services.zapret.package];
 
-  boot.kernel.sysctl = {"net.netfilter.nf_conntrack_tcp_be_liberal" = 1;};
+  fakeTtlFallback = toString 3;
+  fakeAutoTtl = "-1,3-20";
+  fakeTtlOptions = concatStringsSep ":" [
+    "ip_ttl=${fakeTtlFallback}"
+    "ip6_ttl=${fakeTtlFallback}"
+    "ip_autottl=${fakeAutoTtl}"
+    "ip6_autottl=${fakeAutoTtl}"
+  ];
+  autoHostlistFailureWindow = toString 180;
+  initialPacketsToInspect = 9;
+
+  mkProfile = parameters: {
+    hosts.autodetect = {
+      enable = true;
+      file = autoHostlist;
+    };
+    parameters =
+      [
+        "--hostlist-exclude=${excludeHostlist}"
+        "--hostlist-auto-fail-time=${autoHostlistFailureWindow}"
+      ]
+      ++ parameters;
+  };
+in {
+  environment.systemPackages = [cfg.package];
 
   users = {
     users.zapret = {
       isSystemUser = true;
       inherit group;
-      description = "zapret nfqws privilege-drop user";
+      description = "zapret2 service user";
       shell = getExe' pkgs.shadow "nologin";
     };
     groups.zapret = {};
   };
 
-  networking.nftables = {
+  networking.nftables.enable = true;
+
+  services.zapret2 = {
     enable = true;
-    tables.zapret-raw = {
-      family = "inet";
-      content = ''
-        chain output {
-          type filter hook output priority raw; policy accept;
-          meta mark and ${mark} == ${mark} counter notrack
-        }
-      '';
+    firewall = {
+      interfaces = [dev.wirelessInterface];
+      tcpPorts = [80 443];
+      udpPorts = [443];
+      maxPackets = initialPacketsToInspect;
     };
 
-    tables.zapret = {
-      family = "inet";
-      content = ''
-        chain ingress {
-          type filter hook prerouting priority -150; policy accept;
-          iifname "${iface}" tcp sport { 80, 443 } ct reply packets 1-3 \
-            counter queue num ${qnum} bypass
-        }
-
-        chain outbound {
-          type filter hook output priority -10; policy accept;
-          oifname "${iface}" tcp dport { 80, 443 } ct original packets 1-9 \
-            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
-          oifname "${iface}" udp dport 443 ct original packets 1-9 \
-            meta mark and ${mark} != ${mark} counter queue num ${qnum} bypass
-        }
-      '';
+    profiles = {
+      http = mkProfile [
+        "--filter-tcp=80"
+        "--payload=http_req"
+        "--lua-desync=fake:blob=fake_default_http:${fakeTtlOptions}"
+      ];
+      https = mkProfile [
+        "--filter-tcp=443"
+        "--payload=tls_client_hello"
+        "--lua-desync=fake:blob=fake_default_tls:tls_mod=rnd,rndsni,dupsid:${fakeTtlOptions}"
+      ];
+      quic = mkProfile [
+        "--filter-udp=443"
+        "--payload=quic_initial"
+        "--lua-desync=fake:blob=fake_default_quic:${fakeTtlOptions}"
+      ];
     };
-  };
 
-  services.zapret = {
-    enable = true;
-    params = [
-      "--dpi-desync=fake"
-      "--dpi-desync-autottl"
-      "--dpi-desync-ttl=3"
-      "--dpi-desync-fwmark=${mark}"
-      "--hostlist-exclude=${excludeHostlist}"
-      "--hostlist-auto=${autoHostlist}"
-      "--hostlist-auto-fail-time=180"
+    extraOptions = [
       "--hostlist-auto-debug=${autoHostlistDebugLog}"
     ];
-    configureFirewall = false;
   };
 
   systemd = {
-    services.zapret = {
+    services."nfqws2@default" = {
       serviceConfig = {
         User = user;
         Group = group;
-        ReadWritePaths = [stateDir];
-        RuntimeMaxSec = mkForce "6h";
-        ExecStartPre = [
-          "+${getExe' pkgs.coreutils "touch"} /run/nfqws.pid"
-          "+${getExe' pkgs.coreutils "chown"} ${user}:${group} /run/nfqws.pid"
-        ];
-        CapabilityBoundingSet = [
-          "CAP_NET_ADMIN"
-          "CAP_NET_RAW"
-        ];
-        AmbientCapabilities = [
-          "CAP_NET_ADMIN"
-          "CAP_NET_RAW"
-        ];
-        NoNewPrivileges = true;
-        LockPersonality = true;
-        MemoryDenyWriteExecute = true;
-        ProtectClock = true;
-        ProtectControlGroups = true;
-        ProtectKernelLogs = true;
-        RestrictAddressFamilies = [
-          "AF_INET"
-          "AF_INET6"
-          "AF_NETLINK"
-        ];
-        UMask = "0077";
-        PrivateDevices = true;
-        ProcSubset = "pid";
-        SystemCallFilter = ["@system-service"];
+        DynamicUser = mkForce false;
+        StateDirectory = mkForce stateDirectory;
+        StateDirectoryMode = "0700";
+        RuntimeMaxSec = "6h";
+        ProtectSystem = mkForce "strict";
+        DevicePolicy = "closed";
+        KeyringMode = "private";
         SystemCallErrorNumber = "EPERM";
       };
     };
 
-    tmpfiles.rules =
-      ["d ${stateDir} 0700 ${user} ${group} -"]
-      ++ map (path: "f ${path} 0600 ${user} ${group} -") [
+    tmpfiles.settings.zapret =
+      {
+        ${stateDir}.d = {
+          inherit user group;
+          mode = "0700";
+        };
+      }
+      // genAttrs [
         autoHostlist
         excludeHostlist
         autoHostlistDebugLog
-      ];
+      ] (_: {
+        f = {
+          inherit user group;
+          mode = "0600";
+        };
+      });
   };
 }

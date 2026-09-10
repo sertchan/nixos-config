@@ -67,7 +67,7 @@ in {
 
       "niri/window" = {
         format = "{}";
-        max-length = 360;
+        max-length = 300;
       };
 
       "group/connectivity" = horizontalGroup (

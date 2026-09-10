@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
@@ -19,40 +18,24 @@ in {
       extra-experimental-features = [
         "flakes"
         "nix-command"
-        "recursive-nix"
       ];
       allowed-users = [
         "root"
         "@wheel"
-        "nix-builder"
       ];
-      trusted-users = ["root"];
       sandbox = true;
       sandbox-fallback = false;
-      max-jobs = "auto";
-      system-features = [
-        "nixos-test"
-        "kvm"
-        "recursive-nix"
-        "big-parallel"
-      ];
       extra-platforms = config.boot.binfmt.emulatedSystems;
       connect-timeout = 5;
       http-connections = 50;
       log-lines = 30;
       keep-going = true;
-      builders-use-substitutes = true;
       min-free = toString collectBelow;
       max-free = toString stopCollectingAt;
-      auto-optimise-store = false;
-      keep-derivations = true;
-      keep-outputs = true;
       substituters = [
-        "https://cache.nixos.org"
         "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
@@ -75,7 +58,6 @@ in {
 
   programs.nh = {
     enable = true;
-    package = pkgs.nh;
     flake = mkDefault "${config.users.users.seyhan.home}/.nixos";
   };
 }

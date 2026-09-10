@@ -1,10 +1,8 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
-  inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.system.bluetooth;
@@ -20,28 +18,13 @@ in {
 
     hardware.bluetooth = {
       enable = true;
-      powerOnBoot = true;
       disabledPlugins = ["sap"];
-      settings = {
-        General = {
-          JustWorksRepairing = "always";
-          MultiProfile = "multiple";
-          Experimental = true;
-          FastConnectable = true;
-        };
-        Policy = {AutoEnable = true;};
-      };
+      settings.General.MultiProfile = "multiple";
     };
 
     systemd.user.services.mpris-proxy = {
-      description = "MPRIS Proxy for Bluetooth devices";
       wantedBy = ["default.target"];
-      after = [
-        "network.target"
-        "sound.target"
-      ];
       serviceConfig = {
-        ExecStart = getExe' pkgs.bluez "mpris-proxy";
         Restart = "on-failure";
         RestartSec = 5;
       };

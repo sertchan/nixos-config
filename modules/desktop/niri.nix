@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  user = config.users.users.seyhan;
+in {
   programs.niri.enable = true;
 
   environment = {
@@ -11,8 +17,9 @@
     sessionVariables = {NIXOS_OZONE_WL = "1";};
   };
 
-  security.polkit.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-
-  systemd.user.services.niri.enableDefaultPath = false;
+  systemd.tmpfiles.settings."screenshots"."${user.home}/Pictures/Screenshots".d = {
+    mode = "0700";
+    user = user.name;
+    group = config.users.groups.${user.group}.name;
+  };
 }

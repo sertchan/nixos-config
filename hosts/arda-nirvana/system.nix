@@ -20,6 +20,7 @@ in {
         "rtsx_usb_sdmmc"
       ];
       kernelModules = [];
+      luks.devices.cryptroot.device = "/dev/disk/by-partuuid/bed9db3c-9a06-499d-be84-c81a27aaa911";
     };
     kernelModules = ["kvm-intel"];
     kernelParams = ["mem_sleep_default=deep"];
@@ -31,26 +32,12 @@ in {
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/NIXROOT";
+      device = "/dev/mapper/cryptroot";
       fsType = "ext4";
     };
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
-    };
-    "/home/seyhan/Pictures/Screenshots" = {
-      device = "tmpfs";
-      fsType = "tmpfs";
-      noCheck = true;
-      options = [
-        "noatime"
-        "nodev"
-        "nosuid"
-        "size=128M"
-        "uid=1000"
-        "gid=100"
-        "mode=0700"
-      ];
     };
   };
 

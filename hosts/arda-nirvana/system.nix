@@ -20,7 +20,7 @@ in {
         "rtsx_usb_sdmmc"
       ];
       kernelModules = [];
-      luks.devices.cryptroot.device = "/dev/disk/by-partuuid/bed9db3c-9a06-499d-be84-c81a27aaa911";
+      luks.devices.cryptroot.device = "/dev/disk/by-partuuid/35a50b89-1a29-49eb-bb8c-45f844d284ef";
     };
     kernelModules = ["kvm-intel"];
     kernelParams = ["mem_sleep_default=deep"];

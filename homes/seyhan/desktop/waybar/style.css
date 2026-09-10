@@ -18,6 +18,7 @@ button {
 }
 
 #workspaces,
+#window,
 #connectivity,
 #system,
 #io,
@@ -39,12 +40,25 @@ button {
   padding: 0 4px;
 }
 
+#window {
+  padding: 0 12px;
+}
+
+window#waybar.empty #window {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
 #connectivity > *:first-child > *,
 #system > *:first-child > *,
 #io > *:first-child > *,
 #time > *:first-child > * {
   padding-left: 12px;
 }
+
 #connectivity > *:last-child > *,
 #system > *:last-child > *,
 #io > *:last-child > *,
@@ -54,7 +68,7 @@ button {
 
 #workspaces button {
   padding: 0 8px;
-  margin: 2px 2px;
+  margin: 2px;
   border-radius: 9px;
   color: gray;
   background-color: transparent;
@@ -62,10 +76,12 @@ button {
     background-color 150ms ease-in-out,
     color 150ms ease-in-out;
 }
+
 #workspaces button:hover {
   background-color: alpha(@foreground, 0.08);
   color: @foreground;
 }
+
 #workspaces button.active {
   background-color: alpha(@foreground, 0.14);
   color: @foreground;
@@ -79,64 +95,63 @@ button {
 #clock,
 #language,
 #memory,
-#battery,
 #cpu,
 #temperature,
 #network,
 #bluetooth,
 #wireplumber {
-  padding: 0px 8px;
+  padding: 0 8px;
 }
 
 #tray {
-  padding: 0px 4px;
+  padding: 0 4px;
 }
+
 #tray > .passive {
   -gtk-icon-effect: dim;
   opacity: 0.6;
 }
+
 #tray > .active {
   opacity: 1;
 }
+
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: alpha(@critical, 0.3);
   border-radius: 8px;
 }
+
 #tray > button {
   padding: 0 4px;
   border-radius: 8px;
   transition: background-color 150ms ease-in-out;
 }
+
 #tray > button:hover {
   background-color: alpha(@foreground, 0.1);
 }
 
-window.popup {
-  background-color: transparent;
-  background-image: none;
-  box-shadow: none;
-  border: none;
-}
-
-window.popup decoration,
+window.popup,
 decoration {
   background-color: transparent;
   background-image: none;
   box-shadow: none;
   border: none;
+}
+
+decoration {
   border-radius: 0;
 }
 
-.window-frame,
-.window-frame.popup {
+.window-frame {
   background-color: transparent;
   box-shadow: none;
   border: none;
   margin: 0;
 }
-menu,
-#tray menu {
+
+menu {
   background-color: alpha(@base, 0.85);
   border: 1px solid alpha(@foreground, 0.12);
   border-radius: 0;
@@ -144,36 +159,32 @@ menu,
   margin: 4px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
-menu menuitem,
-#tray menu menuitem {
+
+menu menuitem {
   padding: 6px 12px;
   margin: 2px 0;
   border-radius: 0;
   color: @foreground;
-  font-family: "AdwaitaMono Nerd Font";
   font-size: 13px;
-  font-weight: bold;
   background-color: transparent;
   transition:
     background-color 120ms ease-in-out,
     color 120ms ease-in-out;
 }
+
 menu menuitem:hover,
 menu menuitem:selected,
-menu menuitem:focus,
-#tray menu menuitem:hover,
-#tray menu menuitem:selected,
-#tray menu menuitem:focus {
+menu menuitem:focus {
   background-color: alpha(@foreground, 0.12);
   color: @foreground;
 }
-menu menuitem:disabled,
-#tray menu menuitem:disabled {
+
+menu menuitem:disabled {
   color: alpha(@foreground, 0.35);
   background-color: transparent;
 }
-menu separator,
-#tray menu separator {
+
+menu separator {
   background-color: alpha(@foreground, 0.12);
   min-height: 1px;
   margin: 4px 6px;
@@ -184,12 +195,14 @@ menu menuitem arrow {
   min-height: 14px;
   min-width: 14px;
 }
+
 menu menuitem check,
 menu menuitem radio {
   margin-right: 8px;
   min-height: 14px;
   min-width: 14px;
 }
+
 menu menuitem check:checked,
 menu menuitem radio:checked {
   color: @good;
@@ -201,42 +214,25 @@ tooltip {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
+
 tooltip label {
   color: @foreground;
   padding: 4px 8px;
-  font-family: "AdwaitaMono Nerd Font";
   font-size: 12px;
-  font-weight: bold;
 }
 
 #network {
   color: @good;
 }
-#network.linked {
-  color: @warning;
-}
 
-#wireplumber.muted {
-  color: @critical;
-}
-
-#cpu.warning {
-  color: @warning;
-}
-#cpu.critical {
-  color: @critical;
-}
-
+#network.linked,
+#cpu.warning,
 #temperature.warning {
   color: @warning;
 }
-#temperature.critical {
-  color: @critical;
-}
 
-#battery.warning {
-  color: @warning;
-}
-#battery.critical {
+#wireplumber.muted,
+#cpu.critical,
+#temperature.critical {
   color: @critical;
 }

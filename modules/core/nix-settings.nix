@@ -58,6 +58,6 @@ in {
 
   programs.nh = {
     enable = true;
-    flake = mkDefault "${config.users.users.seyhan.home}/.nixos";
+    flake = mkDefault "${config.users.users.seyhan.home}/nixos-config";
   };
 }

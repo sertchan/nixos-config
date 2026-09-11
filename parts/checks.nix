@@ -12,4 +12,5 @@ in {
   lua-formatting = mkCheck "lua-formatting" [pkgs.stylua] "stylua --check ${self}";
   lint = mkCheck "lint" [pkgs.statix] "statix check ${self}";
   dead-code = mkCheck "dead-code" [pkgs.deadnix] "deadnix --fail ${self}";
+  zapret-strategy = self.nixosConfigurations.arda-nirvana.config.system.build.zapretStrategyTest;
 }

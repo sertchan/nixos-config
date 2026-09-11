@@ -12,9 +12,9 @@
   intelGpu = modulePath + /hardware/intel-gpu.nix;
 
   coredump = modulePath + /services/coredump.nix;
-  dnsContentBlocking = modulePath + /services/dns-content-blocking.nix;
-  wireshark = modulePath + /services/wireshark.nix;
-  zapret = modulePath + /services/zapret.nix;
+  dnsContentBlocking = modulePath + /services/networking/dns-content-blocking.nix;
+  wireshark = modulePath + /services/networking/wireshark.nix;
+  zapret = modulePath + /services/networking/zapret;
 
   homeManager = inputs.home-manager.nixosModules.home-manager;
   homes = ../homes;

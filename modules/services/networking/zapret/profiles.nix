@@ -28,7 +28,7 @@
 
         hosts.autodetect = {
           enable = true;
-          file = "${settings.autoHostlistDir}/${name}.txt";
+          file = "${settings.currentDir}/${name}.txt";
         };
       };
     }) ["ipv4" "ipv6"]);

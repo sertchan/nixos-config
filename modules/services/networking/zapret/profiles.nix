@@ -38,11 +38,11 @@ in
       (mkProfiles "http" (ttlOptions: [
         "--filter-tcp=80"
         "--payload=http_req"
-        "--lua-desync=fake:blob=fake_default_http:tcp_md5:fwmark=${settings.splitCompletedMark}:${ttlOptions}"
+        "--lua-desync=fake:blob=fake_default_http:tcp_md5:${ttlOptions}"
       ]))
       // (mkProfiles "https" (ttlOptions: [
         "--filter-tcp=443"
         "--payload=tls_client_hello"
-        "--lua-desync=connection_fake:tcp_md5:fwmark=${settings.splitCompletedMark}:${ttlOptions}"
+        "--lua-desync=connection_fake:tcp_md5:${ttlOptions}"
       ]));
   }

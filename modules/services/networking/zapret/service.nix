@@ -44,7 +44,7 @@ in {
         firewall = {
           interfaces = [dev.wirelessInterface];
           tcpPorts = [80 443];
-          udpPorts = [443];
+          udpPorts = [];
         };
         extraOptions = [
           "--hostlist-auto-debug=${settings.autoHostlistDebugLog}"

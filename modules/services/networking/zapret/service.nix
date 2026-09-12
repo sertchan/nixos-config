@@ -5,8 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (builtins) filter;
-  inherit (lib.attrsets) attrValues genAttrs;
+  inherit (lib.attrsets) genAttrs;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkForce mkIf;
   inherit (lib.options) mkEnableOption;
@@ -18,10 +17,6 @@
 
   user = config.users.users.zapret.name;
   group = config.users.groups.zapret.name;
-
-  autoHostlistFiles =
-    map (profile: profile.hosts.autodetect.file)
-    (filter (profile: profile.hosts.autodetect.enable) (attrValues zapret2.profiles));
 in {
   options.modules.services.zapret.enable = mkEnableOption "the zapret2 DPI bypass";
 
@@ -50,11 +45,11 @@ in {
           udpPorts = [];
         };
         extraOptions = [
-          "--hostlist-auto-debug=${settings.autoHostlistDebugLog}"
+          "--hostlist-auto-debug=${settings.debugLog}"
         ];
       };
 
-      logrotate.settings.${settings.autoHostlistDebugLog} = {
+      logrotate.settings.${settings.debugLog} = {
         frequency = "daily";
         rotate = 7;
         maxsize = "8M";
@@ -74,18 +69,18 @@ in {
         };
 
       tmpfiles.settings.zapret =
-        genAttrs [settings.stateDir settings.autoHostlistDir] (_: {
+        genAttrs [settings.stateDir settings.networksDir settings.activityDir] (_: {
           d = {
             inherit user group;
             mode = "0700";
           };
         })
-        // genAttrs ([settings.autoHostlistDebugLog] ++ autoHostlistFiles) (_: {
-          f = {
+        // {
+          ${settings.currentDir}.L = {
             inherit user group;
-            mode = "0600";
+            argument = "networks/${settings.offlineNetwork}";
           };
-        });
+        };
     };
   };
 }

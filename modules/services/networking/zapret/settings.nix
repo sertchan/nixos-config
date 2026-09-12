@@ -10,6 +10,10 @@
 
   stateDirectory = "zapret";
   stateDir = "/var/lib/${stateDirectory}";
+  networksDir = "${stateDir}/networks";
+  currentDir = "${stateDir}/current";
+  activityDir = "${stateDir}/by-activity";
+  offlineNetwork = "_offline";
 
   desyncCapabilities = "CAP_NET_ADMIN CAP_NET_RAW";
 
@@ -18,9 +22,8 @@
     then file
     else "${zapret2.package}/share/zapret2/lua/${file}.lua";
 in {
-  inherit stateDirectory stateDir;
-  autoHostlistDir = "${stateDir}/autohostlist-hosts";
-  autoHostlistDebugLog = "${stateDir}/autohostlist-debug.log";
+  inherit stateDirectory stateDir networksDir currentDir activityDir offlineNetwork;
+  debugLog = "${currentDir}/debug.log";
   splitQueue = zapret2.firewall.queue + 1;
   splitCompletedMark = "0x20000000";
   strategy = ./strategy.lua;

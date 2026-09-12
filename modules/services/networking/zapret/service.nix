@@ -38,16 +38,25 @@ in {
 
       networking.nftables.enable = true;
 
-      services.zapret2 = {
-        files = options.services.zapret2.files.default ++ [settings.strategy];
-        firewall = {
-          interfaces = [dev.wirelessInterface];
-          tcpPorts = [80 443];
-          udpPorts = [];
+      services = {
+        zapret2 = {
+          files = options.services.zapret2.files.default ++ [settings.strategy];
+          firewall = {
+            interfaces = [dev.wirelessInterface];
+            tcpPorts = [80 443];
+            udpPorts = [];
+          };
+          extraOptions = [
+            "--hostlist-auto-debug=${settings.autoHostlistDebugLog}"
+          ];
         };
-        extraOptions = [
-          "--hostlist-auto-debug=${settings.autoHostlistDebugLog}"
-        ];
+
+        logrotate.settings.${settings.autoHostlistDebugLog} = {
+          frequency = "daily";
+          rotate = 7;
+          maxsize = "8M";
+          create = "0600 ${user} ${group}";
+        };
       };
 
       systemd = {

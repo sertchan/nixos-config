@@ -35,47 +35,6 @@ function connection_fake(ctx, desync)
 	return send_connection_fake(ctx, desync, state.fake_tls)
 end
 
-local function quic_connection_key(data)
-	local maximum_cid_length = 20
-	if #data < 7 or data:byte(1) < 128 then
-		return nil
-	end
-	local dcid_length = data:byte(6)
-	local scid_offset = 7 + dcid_length
-	if dcid_length > maximum_cid_length or scid_offset > #data then
-		return nil
-	end
-	local scid_length = data:byte(scid_offset)
-	local cid_end = scid_offset + scid_length
-	if scid_length > maximum_cid_length or cid_end > #data then
-		return nil
-	end
-	return data:sub(2, cid_end)
-end
-
-function connection_quic_fake(ctx, desync)
-	if not desync.outgoing or not desync.dis.udp or desync.l7payload ~= "quic_initial" or not replay_first(desync) then
-		return
-	end
-	local state = connection_state(desync)
-	local key = quic_connection_key(desync.dis.payload)
-	if not state or not key then
-		return
-	end
-	if state.fake_quic_key ~= key then
-		local secret_size = 32
-		state.quic_secret = state.quic_secret or bcryptorandom(secret_size)
-		local padding = hkdf("sha256", "zapret-quic-fake", state.quic_secret, key, #fake_default_quic - 1)
-		if not padding then
-			DLOG_ERR("connection_quic_fake: payload derivation failed")
-			return
-		end
-		state.fake_quic = fake_default_quic:sub(1, 1) .. padding
-		state.fake_quic_key = key
-	end
-	return send_connection_fake(ctx, desync, state.fake_quic)
-end
-
 local function split_positions(data, payload)
 	local first = resolve_pos(data, payload, "host")
 	local last = resolve_pos(data, payload, "endhost")

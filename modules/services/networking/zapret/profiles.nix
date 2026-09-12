@@ -48,11 +48,5 @@ in
         "--filter-tcp=443"
         "--payload=tls_client_hello"
         "--lua-desync=connection_fake:tcp_md5:fwmark=${settings.splitCompletedMark}:${ttlOptions}"
-      ]))
-      // (mkProfiles "quic" false (_: [
-        "--filter-udp=443"
-        "--filter-l7=quic"
-        "--payload=quic_initial"
-        "--lua-desync=connection_quic_fake:repeats=2"
       ]));
   }

@@ -33,7 +33,6 @@ in {
     NoNewPrivileges = true;
     ProtectSystem = mkForce "strict";
     SystemCallArchitectures = "native";
-    SystemCallErrorNumber = "EPERM";
     SystemCallFilter = "@system-service";
   };
 }

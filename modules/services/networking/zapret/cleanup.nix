@@ -19,7 +19,6 @@
       activity_dir=${shared.activityDir}
       retention_days=${toString shared.retentionDays}
       idle_days=${toString shared.idleDays}
-      log_lines=${toString shared.logLineCap}
 
       now=$(date +%s)
       domain_cutoff=$((now - retention_days * 86400))
@@ -93,7 +92,7 @@
               next
             }
             !drop
-          ' "$folder/debug.log" | tail -n "$log_lines" > "$folder/debug.log.staged"
+          ' "$folder/debug.log" > "$folder/debug.log.staged"
           mv -Tf "$folder/debug.log.staged" "$folder/debug.log"
         fi
 

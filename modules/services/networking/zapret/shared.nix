@@ -96,6 +96,13 @@ in {
     SystemCallFilter = "@system-service";
   };
 
+  requireOwner = ''
+    if [ "$(id -un)" != "${user}" ]; then
+      echo "zapret state belongs to ${user}, start this through its systemd unit" >&2
+      exit 1
+    fi
+  '';
+
   shellPaths = ''
     networks_dir=${networksDir}
     current=${currentDir}

@@ -14,6 +14,7 @@
     name = "zapret-network-cleanup";
     runtimeInputs = with pkgs; [coreutils findutils gawk];
     text = ''
+      ${shared.requireOwner}
       ${shared.shellPaths}
       activity_dir=${shared.activityDir}
       retention_days=${toString shared.retentionDays}

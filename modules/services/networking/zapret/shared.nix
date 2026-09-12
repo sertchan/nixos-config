@@ -50,7 +50,7 @@ in {
   retentionDays = 30;
   idleDays = 90;
   logLineCap = 20000;
-  cleanupSchedule = "*-*-* 06,18:00:00";
+  cleanupSchedule = "*-*-* 08,20:00:00";
 
   splitQueue = zapret2.firewall.queue + 1;
   splitCompletedMark = "0x20000000";

@@ -29,7 +29,6 @@ in {
   hardening = {
     AmbientCapabilities = desyncCapabilities;
     CapabilityBoundingSet = desyncCapabilities;
-    DevicePolicy = "closed";
     KeyringMode = "private";
     NoNewPrivileges = true;
     ProtectSystem = mkForce "strict";

@@ -20,7 +20,11 @@
   hardening = {
     User = user;
     Group = group;
-    StateDirectory = settings.stateDirectory;
+    StateDirectory = [
+      settings.stateDirectory
+      "${settings.stateDirectory}/networks"
+      "${settings.stateDirectory}/by-activity"
+    ];
     StateDirectoryMode = "0700";
     CapabilityBoundingSet = "";
     LockPersonality = true;
@@ -46,7 +50,6 @@
 
   environment = ''
     networks_dir=${settings.networksDir}
-    activity_dir=${settings.activityDir}
     current=${settings.currentDir}
     index=${settings.addedIndex}
     hostlists="${concatStringsSep " " hostlistNames}"
@@ -72,25 +75,31 @@
       ${populate}
       offline=${settings.offlineNetwork}
 
-      device=$(ip route show default | awk '/^default/ {print $5; exit}' || true)
+      device=""
+      for probe in 192.0.2.1 2001:db8::1; do
+        device=$(ip route get "$probe" 2>/dev/null |
+          awk '{for (i = 1; i < NF; i++) if ($i == "dev") {print $(i + 1); exit}}' || true)
+        [ -n "''${device:-}" ] && break
+      done
       netid=$offline
+      label=$offline
 
       if [ -n "''${device:-}" ]; then
         uuid=$(nmcli -t -f UUID,DEVICE connection show --active |
           awk -F: -v d="$device" '$2 == d {print $1; exit}' || true)
         if [ -n "''${uuid:-}" ]; then
-          label=$(nmcli -t -f connection.id connection show "$uuid" | cut -d: -f2- || true)
-          slug=$(printf '%s' "''${label:-$uuid}" | tr -c 'A-Za-z0-9._-' '_' | cut -c1-48)
-          netid="''${slug}-''${uuid%%-*}"
+          netid=$uuid
+          title=$(nmcli -t -f connection.id connection show "$uuid" | cut -d: -f2- || true)
+          label=$(printf '%s' "''${title:-$uuid}" | tr -c 'A-Za-z0-9._-' '_' | cut -c1-48)
         fi
       fi
 
-      mkdir -p "$networks_dir" "$activity_dir"
-      chmod 0700 "$networks_dir" "$activity_dir"
       populate "$networks_dir/$netid"
+      printf '%s\n' "$label" > "$networks_dir/$netid/name"
+      chmod 0600 "$networks_dir/$netid/name"
       ln -sfn "networks/$netid" "$current.staged"
       mv -Tf "$current.staged" "$current"
-      printf 'zapret network %s\n' "$netid"
+      printf 'zapret network %s (%s)\n' "$label" "$netid"
     '';
   };
 
@@ -118,6 +127,7 @@
     runtimeInputs = with pkgs; [coreutils findutils gawk];
     text = ''
       ${environment}
+      activity_dir=${settings.activityDir}
       retention_days=${toString settings.retentionDays}
       log_lines=${toString settings.logLineCap}
 
@@ -126,8 +136,6 @@
       live=$(readlink -f "$current" || true)
 
       [ -d "$networks_dir" ] || exit 0
-      mkdir -p "$activity_dir"
-      chmod 0700 "$activity_dir"
       find "$activity_dir" -maxdepth 1 -type l -delete
 
       for dir in "$networks_dir"/*; do
@@ -212,8 +220,10 @@
           continue
         fi
 
+        label=$netid
+        [ -s "$dir/name" ] && label=$(cat "$dir/name")
         stamp=$(date -d "@$activity" +%Y%m%d-%H%M)
-        ln -sfn "../networks/$netid" "$activity_dir/$stamp--$netid"
+        ln -sfn "../networks/$netid" "$activity_dir/$stamp--$label--''${netid%%-*}"
       done
     '';
   };

@@ -15,8 +15,8 @@
       ${config.networking.nftables.tables.zapret2.content}
     }
   '';
-in {
-  system.build.zapretStrategyTest = pkgs.runCommand "zapret-strategy-test" {nativeBuildInputs = [pkgs.util-linux pkgs.nftables];} ''
+
+  strategyCheck = pkgs.runCommand "zapret-strategy-test" {nativeBuildInputs = [pkgs.util-linux pkgs.nftables];} ''
     ${optionalString cfg.enable ''
       unshare --user --map-current-user --net --keep-caps nft --check --file ${firewallRules}
     ''}
@@ -27,4 +27,9 @@ in {
       --lua-init=@${shared.strategyTest}
     touch "$out"
   '';
+in {
+  system = {
+    build.zapretStrategyTest = strategyCheck;
+    checks = [strategyCheck];
+  };
 }

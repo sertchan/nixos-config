@@ -1,7 +1,7 @@
 {lib, ...}: let
   inherit (lib.modules) mkRemovedOptionModule;
   inherit (lib.options) mkOption;
-  inherit (lib.types) bool str;
+  inherit (lib.types) bool nullOr str;
 in {
   imports = [
     (mkRemovedOptionModule ["modules" "device" "type"] ''
@@ -45,6 +45,20 @@ in {
 
         DPI bypass rules and the bar both point at it, so it carries no
         default and a host that leaves it out fails evaluation
+      '';
+    };
+
+    wiredInterface = mkOption {
+      type = nullOr str;
+      default = null;
+      example = "enp6s0";
+      description = ''
+        The name the ethernet interface carries under
+        networking.usePredictableInterfaceNames
+
+        DPI bypass rules cover it alongside the wireless interface, so a host
+        that owns a port and leaves this unset runs unprotected over a cable.
+        Null suits a machine with no ethernet at all
       '';
     };
   };

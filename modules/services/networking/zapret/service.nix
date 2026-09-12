@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (lib.attrsets) genAttrs;
+  inherit (lib.lists) optional;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkForce mkIf;
   inherit (lib.options) mkEnableOption;
@@ -39,7 +40,7 @@ in {
       enable = true;
       files = options.services.zapret2.files.default ++ [settings.strategy];
       firewall = {
-        interfaces = [dev.wirelessInterface];
+        interfaces = [dev.wirelessInterface] ++ optional (dev.wiredInterface != null) dev.wiredInterface;
         tcpPorts = [80 443];
         udpPorts = [];
       };

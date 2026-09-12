@@ -28,7 +28,7 @@ in {
   retentionDays = 30;
   idleDays = 90;
   logLineCap = 20000;
-  pruneSchedule = "*-*-* 00,06,12,18:00:00";
+  pruneSchedule = "*-*-* 06,18:00:00";
   splitQueue = zapret2.firewall.queue + 1;
   splitCompletedMark = "0x20000000";
   strategy = ./strategy.lua;

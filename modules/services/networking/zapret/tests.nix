@@ -7,7 +7,8 @@
   inherit (lib.meta) getExe;
   inherit (lib.strings) concatStringsSep optionalString;
 
-  cfg = config.services.zapret2;
+  cfg = config.modules.services.zapret;
+  zapret2 = config.services.zapret2;
   settings = import ./settings.nix {inherit config lib;};
   firewallRules = pkgs.writeText "zapret-test.nft" ''
     table inet zapret2 {
@@ -21,7 +22,7 @@ in {
     ''}
     unshare --user --map-current-user --net --keep-caps \
       setpriv --bounding-set=-setuid,-setgid --inh-caps=-setuid,-setgid --ambient-caps=-setuid,-setgid \
-      ${getExe cfg.package} --intercept=0 \
+      ${getExe zapret2.package} --intercept=0 \
       ${concatStringsSep " " settings.luaInit} \
       --lua-init=@${./strategy-test.lua}
     touch "$out"

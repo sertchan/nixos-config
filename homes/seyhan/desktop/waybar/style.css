@@ -66,6 +66,22 @@ window#waybar.empty #window {
   padding-right: 12px;
 }
 
+#connectivity > * + * > *,
+#system > * + * > *,
+#io > * + * > *,
+#time > * + * > * {
+  background-image: linear-gradient(
+    to bottom,
+    alpha(@foreground, 0) 20%,
+    alpha(@foreground, 0.16) 40%,
+    alpha(@foreground, 0.16) 60%,
+    alpha(@foreground, 0) 80%
+  );
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: left;
+}
+
 #workspaces button {
   padding: 0 8px;
   margin: 2px;

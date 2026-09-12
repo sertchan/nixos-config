@@ -2,8 +2,9 @@
   imports = [
     ./service.nix
     ./profiles.nix
-    ./networks.nix
     ./splitter.nix
-    ./tests.nix
+    ./network-folders.nix
+    ./cleanup.nix
+    ./checks.nix
   ];
 }

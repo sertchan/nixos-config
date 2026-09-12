@@ -7,7 +7,7 @@
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.services.zapret;
-  settings = import ./settings.nix {inherit config lib;};
+  shared = import ./shared.nix {inherit config lib;};
 
   fakeTtlFallback = "3";
   fakeAutoTtl = "-1,3-20";
@@ -28,7 +28,7 @@
 
         hosts.autodetect = {
           enable = true;
-          file = "${settings.currentDir}/${name}.txt";
+          file = "${shared.currentDir}/${name}.txt";
         };
       };
     }) ["ipv4" "ipv6"]);

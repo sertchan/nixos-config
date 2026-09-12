@@ -129,10 +129,12 @@
       ${environment}
       activity_dir=${settings.activityDir}
       retention_days=${toString settings.retentionDays}
+      idle_days=${toString settings.idleDays}
       log_lines=${toString settings.logLineCap}
 
       now=$(date +%s)
       cutoff=$((now - retention_days * 86400))
+      idle_cutoff=$((now - idle_days * 86400))
       live=$(readlink -f "$current" || true)
 
       [ -d "$networks_dir" ] || exit 0
@@ -215,7 +217,7 @@
 
         chmod 0600 "$dir"/*
 
-        if [ "$activity" -lt "$cutoff" ] && [ "$(readlink -f "$dir")" != "$live" ]; then
+        if [ "$activity" -lt "$idle_cutoff" ] && [ "$(readlink -f "$dir")" != "$live" ]; then
           rm -rf "$dir"
           continue
         fi

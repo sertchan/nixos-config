@@ -26,6 +26,7 @@ in {
   debugLog = "${currentDir}/debug.log";
   addedIndex = "added.tsv";
   retentionDays = 30;
+  idleDays = 90;
   logLineCap = 20000;
   pruneSchedule = "*-*-* 00,06,12,18:00:00";
   splitQueue = zapret2.firewall.queue + 1;

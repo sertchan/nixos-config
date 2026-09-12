@@ -8,7 +8,7 @@
   inherit (lib.modules) mkIf;
 
   cfg = config.services.zapret2;
-  settings = import ./settings.nix {inherit config;};
+  settings = import ./settings.nix {inherit config lib;};
 
   fakeTtlFallback = toString 3;
   fakeAutoTtlIpv4 = "-1,3-20";

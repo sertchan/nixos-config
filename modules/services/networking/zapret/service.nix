@@ -11,7 +11,7 @@
 
   cfg = config.services.zapret2;
   dev = config.modules.device;
-  settings = import ./settings.nix {inherit config;};
+  settings = import ./settings.nix {inherit config lib;};
 
   user = config.users.users.zapret.name;
   group = config.users.groups.zapret.name;
@@ -52,17 +52,15 @@ in {
       };
 
       systemd = {
-        services."nfqws2@default".serviceConfig = {
-          User = user;
-          Group = group;
-          DynamicUser = mkForce false;
-          StateDirectory = mkForce settings.stateDirectory;
-          StateDirectoryMode = "0700";
-          ProtectSystem = mkForce "strict";
-          DevicePolicy = "closed";
-          KeyringMode = "private";
-          SystemCallErrorNumber = "EPERM";
-        };
+        services."nfqws2@default".serviceConfig =
+          settings.hardening
+          // {
+            User = user;
+            Group = group;
+            DynamicUser = mkForce false;
+            StateDirectory = mkForce settings.stateDirectory;
+            StateDirectoryMode = "0700";
+          };
 
         tmpfiles.settings.zapret =
           genAttrs [settings.stateDir settings.autoHostlistDir] (_: {

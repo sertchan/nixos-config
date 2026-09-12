@@ -11,7 +11,7 @@
   inherit (lib.trivial) fromHexString;
 
   cfg = config.services.zapret2;
-  settings = import ./settings.nix {inherit config;};
+  settings = import ./settings.nix {inherit config lib;};
   splitPacketFilter = direction:
     if cfg.firewall.maxPackets == null
     then "ct direction ${direction}"
@@ -51,28 +51,24 @@ in
     systemd.services."nfqws2@split" = {
       overrideStrategy = "asDropin";
       wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        ExecStart = [
-          ""
-          (utils.escapeSystemdExecArgs [
-            (getExe cfg.package)
-            "--qnum=${toString settings.splitQueue}"
-            "--fwmark=${settings.splitCompletedMark}"
-            "--lua-init=@${cfg.package}/share/zapret2/lua/zapret-lib.lua"
-            "--lua-init=@${cfg.package}/share/zapret2/lua/zapret-antidpi.lua"
-            "--lua-init=@${settings.strategy}"
-            "--filter-tcp=80,443"
-            "--payload=http_req,tls_client_hello"
-            "--lua-desync=connection_multisplit"
-          ])
-        ];
-        DynamicUser = true;
-        CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_RAW";
-        AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_RAW";
-        NoNewPrivileges = true;
-        ProtectSystem = "strict";
-        SystemCallFilter = "@system-service";
-        SystemCallArchitectures = "native";
-      };
+      serviceConfig =
+        settings.hardening
+        // {
+          ExecStart = [
+            ""
+            (utils.escapeSystemdExecArgs [
+              (getExe cfg.package)
+              "--qnum=${toString settings.splitQueue}"
+              "--fwmark=${settings.splitCompletedMark}"
+              "--lua-init=@${cfg.package}/share/zapret2/lua/zapret-lib.lua"
+              "--lua-init=@${cfg.package}/share/zapret2/lua/zapret-antidpi.lua"
+              "--lua-init=@${settings.strategy}"
+              "--filter-tcp=80,443"
+              "--payload=http_req,tls_client_hello"
+              "--lua-desync=connection_multisplit"
+            ])
+          ];
+          DynamicUser = true;
+        };
     };
   }

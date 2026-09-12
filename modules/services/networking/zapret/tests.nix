@@ -8,7 +8,7 @@
   inherit (lib.strings) optionalString;
 
   cfg = config.services.zapret2;
-  settings = import ./settings.nix {inherit config;};
+  settings = import ./settings.nix {inherit config lib;};
   firewallRules = pkgs.writeText "zapret-test.nft" ''
     table inet zapret2 {
       ${config.networking.nftables.tables.zapret2.content}

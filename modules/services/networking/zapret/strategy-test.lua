@@ -105,7 +105,6 @@ for _, ipv6 in ipairs({ false, true }) do
 	local desync = flow("tls_client_hello", fake_default_tls, ipv6)
 	desync.arg = {
 		tcp_md5 = "",
-		fwmark = "0x20000000",
 		ip_autottl = "-1,3-20",
 		ip6_autottl = "-1,3-20",
 		ip_ttl = "3",
@@ -119,7 +118,7 @@ for _, ipv6 in ipairs({ false, true }) do
 	assert(first_fake ~= fake_default_tls)
 	assert(find_tcp_option(packet.tcp.options, TCP_KIND_MD5))
 	assert((packet.ip and packet.ip.ip_ttl or packet.ip6.ip6_hlim) == (ipv6 and 6 or 7))
-	assert(sent[1].options.fwmark == "0x20000000")
+	assert(sent[1].options.fwmark == desync.fwmark)
 	assert(desync.dis.payload == fake_default_tls)
 	assert(#desync.dis.tcp.options == 0)
 	sent = {}
@@ -138,6 +137,22 @@ for _, ipv6 in ipairs({ false, true }) do
 	sent = {}
 	connection_fake(nil, fallback)
 	assert((sent[1].dis.ip and sent[1].dis.ip.ip_ttl or sent[1].dis.ip6.ip6_hlim) == 3)
+
+	local split_fake = flow("tls_client_hello", first_fake, ipv6)
+	local fake_positions, fake_count = check_split(split_fake)
+	assert(fake_positions and fake_count >= 2)
+	local low_ttl = flow("tls_client_hello", first_fake, ipv6)
+	if ipv6 then
+		low_ttl.dis.ip6.ip6_hlim = 3
+	else
+		low_ttl.dis.ip.ip_ttl = 3
+	end
+	sent = {}
+	assert(connection_multisplit(nil, low_ttl) == VERDICT_DROP)
+	assert(#sent >= 2)
+	for _, piece in ipairs(sent) do
+		assert((piece.dis.ip and piece.dis.ip.ip_ttl or piece.dis.ip6.ip6_hlim) == 3)
+	end
 end
 
 for _, modify in ipairs({

@@ -24,6 +24,10 @@
 in {
   inherit stateDirectory stateDir networksDir currentDir activityDir offlineNetwork;
   debugLog = "${currentDir}/debug.log";
+  addedIndex = "added.tsv";
+  retentionDays = 30;
+  logLineCap = 20000;
+  pruneSchedule = "*-*-* 00,06,12,18:00:00";
   splitQueue = zapret2.firewall.queue + 1;
   splitCompletedMark = "0x20000000";
   strategy = ./strategy.lua;

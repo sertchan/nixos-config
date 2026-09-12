@@ -81,19 +81,24 @@ in {
     CapabilityBoundingSet = "";
     LockPersonality = true;
     NoNewPrivileges = true;
+    PrivateDevices = true;
     PrivateTmp = true;
     ProtectClock = true;
     ProtectControlGroups = true;
     ProtectHome = true;
+    ProtectHostname = true;
     ProtectKernelLogs = true;
     ProtectKernelModules = true;
     ProtectKernelTunables = true;
+    ProtectProc = "invisible";
     ProtectSystem = "strict";
+    RestrictAddressFamilies = "AF_UNIX AF_NETLINK";
     RestrictNamespaces = true;
     RestrictRealtime = true;
     RestrictSUIDSGID = true;
     SystemCallArchitectures = "native";
     SystemCallFilter = "@system-service";
+    UMask = "0077";
   };
 
   requireOwner = ''

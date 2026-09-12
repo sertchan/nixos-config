@@ -12,7 +12,7 @@
 
   cfg = config.modules.services.zapret;
   zapret2 = config.services.zapret2;
-  settings = import ./settings.nix {inherit config lib;};
+  shared = import ./shared.nix {inherit config lib;};
 
   splitPacketFilter = direction:
     if zapret2.firewall.maxPackets == null
@@ -22,7 +22,7 @@ in
   mkIf cfg.enable {
     assertions = [
       {
-        assertion = zapret2.firewall.configureAutomatically && settings.splitQueue <= 65535;
+        assertion = zapret2.firewall.configureAutomatically && shared.splitQueue <= 65535;
         message = "zapret TCP splitting requires automatic firewall configuration and services.zapret2.firewall.queue below 65535.";
       }
       {
@@ -30,8 +30,8 @@ in
         message = "zapret TCP splitting follows services.zapret2.firewall.tcpPorts, so the list must name at least one port.";
       }
       {
-        assertion = bitAnd (fromHexString zapret2.firewall.desyncFwmark) (fromHexString settings.splitCompletedMark) == 0;
-        message = "services.zapret2.firewall.desyncFwmark must not use the TCP splitting mark ${settings.splitCompletedMark}.";
+        assertion = bitAnd (fromHexString zapret2.firewall.desyncFwmark) (fromHexString shared.splitCompletedMark) == 0;
+        message = "services.zapret2.firewall.desyncFwmark must not use the TCP splitting mark ${shared.splitCompletedMark}.";
       }
     ];
 
@@ -41,16 +41,16 @@ in
         ${optionalString (zapret2.firewall.interfaces != null) "oifname != $WAN return"}
         ip daddr @local4 return
         ip6 daddr @local6 return
-        meta mark & ${settings.splitCompletedMark} != 0 return
-        meta l4proto tcp tcp dport $TCP_PORT meta mark & $DESYNC_MARK != 0 queue num ${toString settings.splitQueue} bypass
-        meta l4proto tcp tcp dport $TCP_PORT ${splitPacketFilter "original"} meta mark set meta mark | $DESYNC_MARK queue num ${toString settings.splitQueue} bypass
+        meta mark & ${shared.splitCompletedMark} != 0 return
+        meta l4proto tcp tcp dport $TCP_PORT meta mark & $DESYNC_MARK != 0 queue num ${toString shared.splitQueue} bypass
+        meta l4proto tcp tcp dport $TCP_PORT ${splitPacketFilter "original"} meta mark set meta mark | $DESYNC_MARK queue num ${toString shared.splitQueue} bypass
       }
       chain split_pre {
         type filter hook prerouting priority -100; policy accept;
         ${optionalString (zapret2.firewall.interfaces != null) "iifname != $WAN return"}
         ip saddr @local4 return
         ip6 saddr @local6 return
-        meta mark & $DESYNC_MARK == 0 meta l4proto tcp tcp sport $TCP_PORT ${splitPacketFilter "reply"} queue num ${toString settings.splitQueue} bypass
+        meta mark & $DESYNC_MARK == 0 meta l4proto tcp tcp sport $TCP_PORT ${splitPacketFilter "reply"} queue num ${toString shared.splitQueue} bypass
       }
     '';
 
@@ -58,17 +58,17 @@ in
       overrideStrategy = "asDropin";
       wantedBy = ["multi-user.target"];
       serviceConfig =
-        settings.hardening
+        shared.nfqwsHardening
         // {
           ExecStart = [
             ""
             (utils.escapeSystemdExecArgs (
               [
                 (getExe zapret2.package)
-                "--qnum=${toString settings.splitQueue}"
-                "--fwmark=${settings.splitCompletedMark}"
+                "--qnum=${toString shared.splitQueue}"
+                "--fwmark=${shared.splitCompletedMark}"
               ]
-              ++ settings.luaInit
+              ++ shared.luaInit
               ++ [
                 "--filter-tcp=${concatMapStringsSep "," toString zapret2.firewall.tcpPorts}"
                 "--payload=http_req,tls_client_hello"

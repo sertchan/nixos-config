@@ -9,7 +9,7 @@
 
   cfg = config.modules.services.zapret;
   zapret2 = config.services.zapret2;
-  settings = import ./settings.nix {inherit config lib;};
+  shared = import ./shared.nix {inherit config lib;};
   firewallRules = pkgs.writeText "zapret-test.nft" ''
     table inet zapret2 {
       ${config.networking.nftables.tables.zapret2.content}
@@ -23,8 +23,8 @@ in {
     unshare --user --map-current-user --net --keep-caps \
       setpriv --bounding-set=-setuid,-setgid --inh-caps=-setuid,-setgid --ambient-caps=-setuid,-setgid \
       ${getExe zapret2.package} --intercept=0 \
-      ${concatStringsSep " " settings.luaInit} \
-      --lua-init=@${./strategy-test.lua}
+      ${concatStringsSep " " shared.luaInit} \
+      --lua-init=@${shared.strategyTest}
     touch "$out"
   '';
 }

@@ -14,10 +14,7 @@
   cfg = config.modules.services.zapret;
   zapret2 = config.services.zapret2;
   dev = config.modules.device;
-  settings = import ./settings.nix {inherit config lib;};
-
-  user = config.users.users.zapret.name;
-  group = config.users.groups.zapret.name;
+  shared = import ./shared.nix {inherit config lib;};
 in {
   options.modules.services.zapret.enable = mkEnableOption "the zapret2 DPI bypass";
 
@@ -27,7 +24,7 @@ in {
     users = {
       users.zapret = {
         isSystemUser = true;
-        inherit group;
+        inherit (shared) group;
         description = "zapret2 service user";
         shell = getExe' pkgs.shadow "nologin";
       };
@@ -38,39 +35,39 @@ in {
 
     services.zapret2 = {
       enable = true;
-      files = options.services.zapret2.files.default ++ [settings.strategy];
+      files = options.services.zapret2.files.default ++ [shared.strategy];
       firewall = {
         interfaces = [dev.wirelessInterface] ++ optional (dev.wiredInterface != null) dev.wiredInterface;
         tcpPorts = [80 443];
         udpPorts = [];
       };
       extraOptions = [
-        "--hostlist-auto-debug=${settings.debugLog}"
+        "--hostlist-auto-debug=${shared.debugLog}"
       ];
     };
 
     systemd = {
       services."nfqws2@default".serviceConfig =
-        settings.hardening
+        shared.nfqwsHardening
         // {
-          User = user;
-          Group = group;
+          User = shared.user;
+          Group = shared.group;
           DynamicUser = mkForce false;
-          StateDirectory = mkForce settings.stateDirectory;
+          StateDirectory = mkForce shared.stateDirectory;
           StateDirectoryMode = "0700";
         };
 
       tmpfiles.settings.zapret =
-        genAttrs [settings.stateDir settings.networksDir settings.activityDir] (_: {
+        genAttrs [shared.stateDir shared.networksDir shared.activityDir] (_: {
           d = {
-            inherit user group;
+            inherit (shared) user group;
             mode = "0700";
           };
         })
         // {
-          ${settings.currentDir}.L = {
-            inherit user group;
-            argument = "networks/${settings.offlineNetwork}";
+          ${shared.currentDir}.L = {
+            inherit (shared) user group;
+            argument = "networks/${shared.offlineNetwork}";
           };
         };
     };

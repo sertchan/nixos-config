@@ -32,7 +32,7 @@
       for folder in "$networks_dir"/*; do
         [ -d "$folder" ] || continue
         netid=$(basename "$folder")
-        created=$(stat -c %Y "$folder")
+        folder_mtime=$(stat -c %Y "$folder")
         recorded=0
         [ -s "$folder/activity" ] && recorded=$(cat "$folder/activity")
 
@@ -101,7 +101,7 @@
         for stamp in "''${previous:-0}" "$(cut -f1 "$folder/$index" | sort -n | tail -1)"; do
           [ -n "$stamp" ] && [ "$stamp" -gt "$activity" ] && activity=$stamp
         done
-        [ "$activity" -gt 0 ] || activity=$created
+        [ "$activity" -gt 0 ] || activity=$folder_mtime
         printf '%s\n' "$activity" > "$folder/activity"
 
         chmod 0600 "$folder"/*

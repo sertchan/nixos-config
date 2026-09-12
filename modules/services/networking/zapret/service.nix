@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: let
+  inherit (builtins) filter;
   inherit (lib.attrsets) attrValues genAttrs;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkForce mkIf mkMerge;
@@ -18,9 +19,7 @@
 
   autoHostlistFiles =
     map (profile: profile.hosts.autodetect.file)
-    (builtins.filter
-      (profile: profile.hosts.autodetect.enable)
-      (attrValues cfg.profiles));
+    (filter (profile: profile.hosts.autodetect.enable) (attrValues cfg.profiles));
 in {
   config = mkMerge [
     {services.zapret2.enable = true;}

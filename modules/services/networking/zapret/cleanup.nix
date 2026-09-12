@@ -128,10 +128,7 @@ in
           // {
             Type = "oneshot";
             ExecStart = getExe removeAged;
-            PrivateDevices = true;
             PrivateNetwork = true;
-            ProtectHostname = true;
-            ProtectProc = "invisible";
           };
       };
 

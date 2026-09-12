@@ -84,6 +84,7 @@ in
       zapret-network = {
         description = "Point zapret at the hostlist folder for the current network";
         after = ["NetworkManager.service"];
+        startLimitIntervalSec = 0;
         serviceConfig =
           shared.helperHardening
           // {

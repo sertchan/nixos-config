@@ -22,16 +22,16 @@
       for probe in 192.0.2.1 2001:db8::1; do
         device=$(ip route get "$probe" 2>/dev/null |
           awk '{for (i = 1; i < NF; i++) if ($i == "dev") {print $(i + 1); exit}}' || true)
-        [ -n "''${device:-}" ] && break
+        [ -n "$device" ] && break
       done
 
       netid=$offline
       label=$offline
 
-      if [ -n "''${device:-}" ]; then
+      if [ -n "$device" ]; then
         uuid=$(nmcli -t -f UUID,DEVICE connection show --active |
           awk -F: -v d="$device" '$2 == d {print $1; exit}' || true)
-        if [ -n "''${uuid:-}" ]; then
+        if [ -n "$uuid" ]; then
           netid=$uuid
           title=$(nmcli -t -f connection.id connection show "$uuid" | cut -d: -f2- || true)
           label=$(printf '%s' "''${title:-$uuid}" | tr -c 'A-Za-z0-9._-' '_' | cut -c1-48)
@@ -62,11 +62,11 @@
         *) exit 0 ;;
       esac
 
-      before=$(readlink -f ${shared.currentDir} || true)
+      before=$(readlink -f "${shared.currentDir}" || true)
       systemctl start zapret-network.service
-      after=$(readlink -f ${shared.currentDir} || true)
+      after=$(readlink -f "${shared.currentDir}" || true)
 
-      if [ "''${before:-}" != "''${after:-}" ]; then
+      if [ "$before" != "$after" ]; then
         systemctl try-restart nfqws2@default.service
       fi
     '';

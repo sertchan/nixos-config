@@ -14,6 +14,7 @@
     name = "zapret-network-select";
     runtimeInputs = with pkgs; [coreutils gawk iproute2 networkmanager];
     text = ''
+      ${shared.requireOwner}
       ${shared.shellPaths}
       offline=${shared.offlineNetwork}
 

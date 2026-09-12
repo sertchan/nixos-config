@@ -17,6 +17,29 @@
   user = config.users.users.zapret.name;
   group = config.users.groups.zapret.name;
 
+  hardening = {
+    User = user;
+    Group = group;
+    StateDirectory = settings.stateDirectory;
+    StateDirectoryMode = "0700";
+    CapabilityBoundingSet = "";
+    LockPersonality = true;
+    NoNewPrivileges = true;
+    PrivateTmp = true;
+    ProtectClock = true;
+    ProtectControlGroups = true;
+    ProtectHome = true;
+    ProtectKernelLogs = true;
+    ProtectKernelModules = true;
+    ProtectKernelTunables = true;
+    ProtectSystem = "strict";
+    RestrictNamespaces = true;
+    RestrictRealtime = true;
+    RestrictSUIDSGID = true;
+    SystemCallArchitectures = "native";
+    SystemCallFilter = "@system-service";
+  };
+
   hostlistNames =
     map (profile: baseNameOf profile.hosts.autodetect.file)
     (filter (profile: profile.hosts.autodetect.enable) (attrValues zapret2.profiles));
@@ -26,7 +49,6 @@
     activity_dir=${settings.activityDir}
     current=${settings.currentDir}
     index=${settings.addedIndex}
-    owner=${user}:${group}
     hostlists="${concatStringsSep " " hostlistNames}"
   '';
 
@@ -37,7 +59,6 @@
       for name in $hostlists debug.log "$index"; do
         [ -e "$dir/$name" ] || : > "$dir/$name"
       done
-      chown "$owner" "$dir" "$dir"/*
       chmod 0700 "$dir"
       chmod 0600 "$dir"/*
     }
@@ -65,7 +86,6 @@
       fi
 
       mkdir -p "$networks_dir" "$activity_dir"
-      chown "$owner" "$networks_dir" "$activity_dir"
       chmod 0700 "$networks_dir" "$activity_dir"
       populate "$networks_dir/$netid"
       ln -sfn "networks/$netid" "$current.staged"
@@ -107,7 +127,6 @@
 
       [ -d "$networks_dir" ] || exit 0
       mkdir -p "$activity_dir"
-      chown "$owner" "$activity_dir"
       chmod 0700 "$activity_dir"
       find "$activity_dir" -maxdepth 1 -type l -delete
 
@@ -186,7 +205,6 @@
         [ "$activity" -gt 0 ] || activity=$created
         printf '%s\n' "$activity" > "$dir/activity"
 
-        chown "$owner" "$dir" "$dir"/*
         chmod 0600 "$dir"/*
 
         if [ "$activity" -lt "$cutoff" ] && [ "$(readlink -f "$dir")" != "$live" ]; then
@@ -212,18 +230,27 @@ in
       services = {
         zapret-network = {
           description = "Select per network zapret hostlist directory";
-          serviceConfig = {
-            Type = "oneshot";
-            ExecStart = getExe select;
-          };
+          after = ["NetworkManager.service"];
+          serviceConfig =
+            hardening
+            // {
+              Type = "oneshot";
+              ExecStart = getExe select;
+            };
         };
 
         zapret-network-prune = {
           description = "Expire aged zapret hostlist entries and idle networks";
-          serviceConfig = {
-            Type = "oneshot";
-            ExecStart = getExe prune;
-          };
+          serviceConfig =
+            hardening
+            // {
+              Type = "oneshot";
+              ExecStart = getExe prune;
+              PrivateDevices = true;
+              PrivateNetwork = true;
+              ProtectHostname = true;
+              ProtectProc = "invisible";
+            };
         };
 
         "nfqws2@default" = {

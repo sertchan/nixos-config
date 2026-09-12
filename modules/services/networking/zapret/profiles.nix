@@ -6,7 +6,7 @@
   inherit (builtins) listToAttrs;
   inherit (lib.modules) mkIf;
 
-  cfg = config.services.zapret2;
+  cfg = config.modules.services.zapret;
   settings = import ./settings.nix {inherit config lib;};
 
   fakeTtlFallback = "3";

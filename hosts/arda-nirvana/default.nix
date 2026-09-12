@@ -14,6 +14,8 @@
       wirelessInterface = "wlp0s20f3";
     };
 
+    services.zapret.enable = true;
+
     system = {
       audio.enable = true;
       bluetooth.enable = true;

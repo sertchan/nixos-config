@@ -173,4 +173,26 @@ send_failure = false
 send_failure_after = 1
 assert(connection_multisplit(nil, flow("tls_client_hello", fake_default_tls)) == VERDICT_PASS)
 assert(#sent == 1)
+send_failure_after = nil
+
+local short_label = {}
+for _ = 1, 100 do
+	local desync = flow("http_req", "GET / HTTP/1.1\r\nHost: x.com\r\nUser-Agent: fixture\r\n\r\n")
+	check_split(desync)
+	local host_first = resolve_pos(desync.reasm_data, desync.l7payload, "host")
+	local host_last = resolve_pos(desync.reasm_data, desync.l7payload, "endhost")
+	local length = 0
+	for _, piece in ipairs(sent) do
+		length = length + #piece.dis.payload
+		if length >= host_first and length < host_last - 1 then
+			short_label[length] = true
+		end
+	end
+end
+local short_label_count = 0
+for _ in pairs(short_label) do
+	short_label_count = short_label_count + 1
+end
+assert(short_label_count > 2)
+
 print("zapret strategy tests passed")

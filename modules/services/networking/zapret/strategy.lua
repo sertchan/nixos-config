@@ -35,16 +35,20 @@ function connection_fake(ctx, desync)
 	return send_connection_fake(ctx, desync, state.fake_tls)
 end
 
-local function split_positions(data, payload)
-	local first = resolve_pos(data, payload, "host")
-	local last = resolve_pos(data, payload, "endhost")
-	if not first or not last or last - first < 2 then
-		return nil
-	end
+local function split_anchor(data, payload, first, last)
 	local label_first = resolve_pos(data, payload, "sld")
 	local label_last = resolve_pos(data, payload, "endsld")
-	local anchor_first = label_first and label_last and label_last - label_first > 1 and label_first or first
-	local anchor_last = anchor_first == label_first and label_last or last
+	if label_first and label_last and label_last - label_first > 1 then
+		return label_first, label_last
+	end
+	return first, last
+end
+
+local function split_positions(data, payload, first, last)
+	if last - first < 2 then
+		return nil
+	end
+	local anchor_first, anchor_last = split_anchor(data, payload, first, last)
 	local positions = { math.random(anchor_first + 1, anchor_last - 1) }
 	local minimum_gap = 8
 	local left_first = minimum_gap + 1
@@ -85,7 +89,7 @@ function connection_multisplit(ctx, desync)
 	local layout = table.concat({ desync.l7payload, #data, first, last }, ":")
 	if state.split_layout ~= layout then
 		state.split_layout = layout
-		state.split_positions = split_positions(data, desync.l7payload)
+		state.split_positions = split_positions(data, desync.l7payload, first, last)
 	end
 	if not state.split_positions then
 		return

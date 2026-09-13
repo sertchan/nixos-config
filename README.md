@@ -14,11 +14,9 @@
 [nixpkgs]: https://nixos.org/manual/nixpkgs/stable/
 [home-manager]: https://nix-community.github.io/home-manager/
 
-This configuration built for `arda-nirvana`, my laptop that I found lying around the house 🥺. At the moment it’s where I develop my NixOS configuration,
-later I want to turn it into a home server with a custom chassis and some addons (storage units for example)
+This configuration built for `arda-nirvana`, my laptop that I found lying around the house. At the moment it’s where I develop my NixOS configuration
 
-Home Manager runs as a NixOS module, so system and my user environment come out of one evaluation and share a single nixpkgs. Everything here is built for the hardware that I actually have.
-I will expand this configuration when I install it to other devices that I get in the future
+Home Manager runs as a NixOS module, so system and my user environment come out of one evaluation and share a single nixpkgs. Everything here is built for the hardware that I actually have. I will expand this configuration when I install it to other devices that I get in the future
 
 <!-- deno-fmt-ignore-start -->
 

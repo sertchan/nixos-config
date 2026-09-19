@@ -11,7 +11,9 @@ local overrides = {
 	NvimTreeIndentMarker = { fg = palette.hairline },
 	NvimTreeNormal = { bg = palette.explorerCard },
 	NvimTreeNormalNC = { bg = palette.explorerCard },
-	NvimTreeWinSeparator = { fg = palette.hairline, bg = palette.explorerCard },
+	NvimTreeStatusLine = { fg = palette.explorerCard, bg = palette.explorerCard },
+	NvimTreeStatuslineNC = { fg = palette.explorerCard, bg = palette.explorerCard },
+	NvimTreeWinSeparator = { fg = palette.explorerCard, bg = palette.explorerCard },
 	WinSeparator = { fg = palette.hairline, bg = palette.base },
 }
 

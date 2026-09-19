@@ -1,3 +1,5 @@
+local palette = require("palette")
+
 local theme = require("lualine.themes.auto")
 
 for _, mode in pairs(theme) do
@@ -21,6 +23,7 @@ require("lualine").setup({
 		component_separators = "",
 		section_separators = "",
 		theme = theme,
+		disabled_filetypes = { statusline = { "NvimTree" } },
 	},
 	sections = {
 		lualine_a = { { "mode", separator = pill } },
@@ -41,5 +44,15 @@ require("lualine").setup({
 		lualine_y = { "progress" },
 		lualine_z = { { "location", separator = pill } },
 	},
-	extensions = { "nvim-tree" },
+})
+
+local function blendDisabledStatusline()
+	vim.api.nvim_set_hl(0, "lualine_transparent", { fg = palette.explorerCard, bg = palette.explorerCard })
+end
+
+blendDisabledStatusline()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = vim.api.nvim_create_augroup("ExplorerStatusline", { clear = true }),
+	callback = blendDisabledStatusline,
 })

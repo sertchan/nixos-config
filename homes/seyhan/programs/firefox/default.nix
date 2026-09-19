@@ -62,6 +62,10 @@ in {
       DisplayMenuBar = "never";
       DontCheckDefaultBrowser = true;
       HardwareAcceleration = true;
+      Preferences."media.videocontrols.picture-in-picture.video-toggle.enabled" = {
+        Value = false;
+        Status = "default";
+      };
       OfferToSaveLogins = false;
       DefaultDownloadDirectory = config.xdg.userDirs.download;
       ExtensionSettings = let

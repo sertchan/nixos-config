@@ -60,6 +60,7 @@ in {
       BlockAboutSupport = false;
       DisplayBookmarksToolbar = "never";
       DisplayMenuBar = "never";
+      FirefoxHome.TopSites = false;
       DontCheckDefaultBrowser = true;
       HardwareAcceleration = true;
       TranslateEnabled = false;

@@ -6,6 +6,7 @@ local overrides = {
 	IblIndent = { fg = palette.hairline },
 	IblWhitespace = { fg = palette.hairline },
 	MsgArea = { bg = palette.explorerCard },
+	MsgSeparator = { bg = palette.explorerCard },
 	NormalFloat = { bg = palette.base },
 	NvimTreeCursorLine = { bg = palette.hairline },
 	NvimTreeEndOfBuffer = { fg = palette.explorerCard, bg = palette.explorerCard },

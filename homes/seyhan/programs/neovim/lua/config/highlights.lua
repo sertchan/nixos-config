@@ -1,22 +1,28 @@
 local palette = require("palette")
 
+local surface = { bg = palette.explorerCard }
+local hidden = { fg = palette.explorerCard, bg = palette.explorerCard }
+local hairline = { fg = palette.hairline }
+local edge = { fg = palette.hairline, bg = palette.base }
+local floating = { bg = palette.base }
+
 local overrides = {
-	FloatBorder = { fg = palette.hairline, bg = palette.base },
-	FloatTitle = { bg = palette.base },
-	IblIndent = { fg = palette.hairline },
-	IblWhitespace = { fg = palette.hairline },
-	MsgArea = { bg = palette.explorerCard },
-	MsgSeparator = { bg = palette.explorerCard },
-	NormalFloat = { bg = palette.base },
+	FloatBorder = edge,
+	FloatTitle = floating,
+	IblIndent = hairline,
+	IblWhitespace = hairline,
+	MsgArea = surface,
+	MsgSeparator = surface,
+	NormalFloat = floating,
 	NvimTreeCursorLine = { bg = palette.hairline },
-	NvimTreeEndOfBuffer = { fg = palette.explorerCard, bg = palette.explorerCard },
-	NvimTreeIndentMarker = { fg = palette.hairline },
-	NvimTreeNormal = { bg = palette.explorerCard },
-	NvimTreeNormalNC = { bg = palette.explorerCard },
-	NvimTreeStatusLine = { fg = palette.explorerCard, bg = palette.explorerCard },
-	NvimTreeStatuslineNC = { fg = palette.explorerCard, bg = palette.explorerCard },
-	NvimTreeWinSeparator = { fg = palette.explorerCard, bg = palette.explorerCard },
-	WinSeparator = { fg = palette.hairline, bg = palette.base },
+	NvimTreeEndOfBuffer = hidden,
+	NvimTreeIndentMarker = hairline,
+	NvimTreeNormal = surface,
+	NvimTreeNormalNC = surface,
+	NvimTreeStatusLine = hidden,
+	NvimTreeStatuslineNC = hidden,
+	NvimTreeWinSeparator = hidden,
+	WinSeparator = edge,
 }
 
 vim.api.nvim_create_autocmd("ColorScheme", {

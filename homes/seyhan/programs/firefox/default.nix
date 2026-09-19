@@ -62,6 +62,7 @@ in {
       DisplayMenuBar = "never";
       DontCheckDefaultBrowser = true;
       HardwareAcceleration = true;
+      TranslateEnabled = false;
       Preferences."media.videocontrols.picture-in-picture.video-toggle.enabled" = {
         Value = false;
         Status = "default";

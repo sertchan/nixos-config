@@ -9,6 +9,7 @@ _: {
 
       require("config.filetypes")
       require("config.options")
+      require("config.cmdline")
       require("config.keymaps")
       require("config.diagnostics")
       require("config.restore-cursor")

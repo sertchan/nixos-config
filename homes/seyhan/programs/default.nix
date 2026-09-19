@@ -1,6 +1,7 @@
 {
   imports = [
     ./firefox
+    ./git
     ./gpg
     ./neovim
     ./obs

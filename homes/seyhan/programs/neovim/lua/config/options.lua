@@ -10,7 +10,7 @@ opt.showmode = false
 opt.pumheight = 10
 
 opt.winborder = "rounded"
-opt.laststatus = 3
+opt.laststatus = 2
 opt.fillchars = {
 	eob = " ",
 	horiz = "─",

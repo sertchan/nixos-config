@@ -41,4 +41,5 @@ require("lualine").setup({
 		lualine_y = { "progress" },
 		lualine_z = { { "location", separator = pill } },
 	},
+	extensions = { "nvim-tree" },
 })

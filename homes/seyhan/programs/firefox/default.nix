@@ -98,6 +98,7 @@ in {
       "3rdparty".Extensions = {
         "uBlock0@raymondhill.net".adminSettings = {
           userSettings = {
+            advancedUserEnabled = true;
             uiTheme = "dark";
             cloudStorageEnabled = false;
           };

@@ -10,14 +10,20 @@ local function toggle_focus()
 	end
 end
 
+local function map_focus(desc, opts)
+	opts = vim.tbl_extend("force", { desc = desc }, opts or {})
+
+	vim.keymap.set("n", "<C-e>", toggle_focus, opts)
+	vim.keymap.set("n", "<leader>E", toggle_focus, opts)
+end
+
 require("nvim-tree").setup({
 	disable_netrw = true,
 	hijack_directories = { enable = false },
 	on_attach = function(bufnr)
 		api.config.mappings.default_on_attach(bufnr)
 
-		vim.keymap.set("n", "<C-e>", toggle_focus, { buffer = bufnr, desc = "Focus the editor window" })
-		vim.keymap.set("n", "<leader>E", toggle_focus, { buffer = bufnr, desc = "Focus the editor window" })
+		map_focus("Focus the editor window", { buffer = bufnr })
 	end,
 	view = {
 		width = 35,
@@ -91,6 +97,5 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
-vim.keymap.set("n", "<C-e>", toggle_focus, { desc = "Focus the file explorer" })
-vim.keymap.set("n", "<leader>E", toggle_focus, { desc = "Focus the file explorer" })
+map_focus("Focus the file explorer")
 vim.keymap.set("n", "<C-n>", api.tree.toggle, { desc = "Toggle the file explorer" })

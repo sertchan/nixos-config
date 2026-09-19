@@ -58,6 +58,7 @@ in {
       BlockAboutConfig = true;
       BlockAboutProfiles = false;
       BlockAboutSupport = false;
+      DisplayBookmarksToolbar = "never";
       DisplayMenuBar = "never";
       DontCheckDefaultBrowser = true;
       HardwareAcceleration = true;

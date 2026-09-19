@@ -51,6 +51,7 @@ in {
         "ublock-cookies-adguard"
         "fanboy-social"
         "fanboy-thirdparty_social"
+        "adguard-social"
         "easylist-chat"
         "easylist-newsletters"
         "easylist-notifications"

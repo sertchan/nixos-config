@@ -41,20 +41,25 @@ local function place()
 			})
 
 			vim.wo[win].smoothscroll = false
+			vim.wo[win].wrap = name == "pager"
 			vim.wo[win].statuscolumn = blanks
 		end
 	end
+end
+
+local function replace()
+	vim.schedule(place)
 end
 
 local group = vim.api.nvim_create_augroup("MessagesOffExplorer", { clear = true })
 
 vim.api.nvim_create_autocmd({ "WinNew", "WinClosed", "WinResized", "VimResized", "CmdlineEnter" }, {
 	group = group,
-	callback = place,
+	callback = replace,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = group,
-	pattern = windows,
-	callback = place,
+	pattern = { "NvimTree", "cmd", "dialog", "pager" },
+	callback = replace,
 })

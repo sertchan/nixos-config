@@ -11,7 +11,7 @@ opt.pumheight = 10
 
 opt.winborder = "rounded"
 opt.laststatus = 2
-opt.cmdheight = 0
+opt.cmdheight = 2
 opt.fillchars = {
 	eob = " ",
 	horiz = "─",

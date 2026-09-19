@@ -11,7 +11,7 @@ local overrides = {
 	FloatTitle = floating,
 	IblIndent = hairline,
 	IblWhitespace = hairline,
-	MsgArea = surface,
+	MsgArea = floating,
 	MsgSeparator = surface,
 	NormalFloat = floating,
 	NvimTreeCursorLine = { bg = palette.hairline },

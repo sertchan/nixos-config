@@ -1,7 +1,24 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  setDefaultZoom = ''
+    try {
+      Components.classes["@mozilla.org/content-pref/service;1"]
+        .getService(Components.interfaces.nsIContentPrefService2)
+        .setGlobal(
+          "browser.content.full-zoom",
+          1.1,
+          Components.utils.createLoadContext()
+        );
+    } catch (e) {}
+  '';
+in {
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
+    package = pkgs.firefox.override {extraPrefs = setDefaultZoom;};
 
     policies = {
       AppAutoUpdate = false;

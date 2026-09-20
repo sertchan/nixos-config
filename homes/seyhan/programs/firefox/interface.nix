@@ -1,6 +1,5 @@
 _: let
   darkAppearance = 1;
-  builtinDarkTheme = "firefox-compact-dark@mozilla.org";
 in {
   programs.firefox.policies = {
     DisplayBookmarksToolbar = "never";
@@ -18,11 +17,6 @@ in {
       "ui.systemUsesDarkTheme" = {
         Value = darkAppearance;
         Type = "number";
-        Status = "user";
-      };
-
-      "extensions.activeThemeID" = {
-        Value = builtinDarkTheme;
         Status = "user";
       };
     };

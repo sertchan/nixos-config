@@ -15,7 +15,7 @@ in {
     assertions = [
       {
         assertion = dev.hasSound;
-        message = "${config.networking.hostName} runs the audio stack without an audio device to run it on. Set modules.device.hasSound in the host configuration, or clear modules.system.audio.enable.";
+        message = "${config.networking.hostName} enables the audio stack but has no audio device. Set modules.device.hasSound in the host configuration, or clear modules.system.audio.enable";
       }
     ];
 

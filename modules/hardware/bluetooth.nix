@@ -12,7 +12,7 @@ in {
     assertions = [
       {
         assertion = dev.hasBluetooth;
-        message = "${config.networking.hostName} runs the bluetooth stack without a radio to run it on. Set modules.device.hasBluetooth in the host configuration, or clear modules.system.bluetooth.enable.";
+        message = "${config.networking.hostName} enables the bluetooth stack but has no radio. Set modules.device.hasBluetooth in the host configuration, or clear modules.system.bluetooth.enable";
       }
     ];
 

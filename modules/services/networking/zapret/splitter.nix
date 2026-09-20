@@ -23,15 +23,15 @@ in
     assertions = [
       {
         assertion = zapret2.firewall.configureAutomatically && shared.splitQueue <= 65535;
-        message = "zapret TCP splitting requires automatic firewall configuration and services.zapret2.firewall.queue below 65535.";
+        message = "zapret TCP splitting needs services.zapret2.firewall.configureAutomatically set and services.zapret2.firewall.queue below 65535";
       }
       {
         assertion = zapret2.firewall.tcpPorts != null && zapret2.firewall.tcpPorts != [];
-        message = "zapret TCP splitting follows services.zapret2.firewall.tcpPorts, so the list must name at least one port.";
+        message = "zapret TCP splitting follows services.zapret2.firewall.tcpPorts, so the list must name at least one port";
       }
       {
         assertion = bitAnd (fromHexString zapret2.firewall.desyncFwmark) (fromHexString shared.splitCompletedMark) == 0;
-        message = "services.zapret2.firewall.desyncFwmark must not use the TCP splitting mark ${shared.splitCompletedMark}.";
+        message = "services.zapret2.firewall.desyncFwmark must not use the TCP splitting mark ${shared.splitCompletedMark}";
       }
     ];
 

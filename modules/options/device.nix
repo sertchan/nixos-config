@@ -5,9 +5,9 @@
 in {
   imports = [
     (mkRemovedOptionModule ["modules" "device" "type"] ''
-      Removed, because nothing read it. Branch on the specific fact a module
-      needs, such as modules.device.hasBluetooth, and declare a new one beside
-      the module that reads it
+      Removed, because nothing read it. Use the exact fact a module needs,
+      such as modules.device.hasBluetooth, and declare a new one next to the
+      module that reads it
     '')
   ];
 
@@ -18,9 +18,8 @@ in {
       description = ''
         Whether the machine has a bluetooth radio
 
-        This is a fact about the hardware and not a request to run anything.
-        modules.system.bluetooth.enable starts the stack, because owning the
-        radio is a separate question from leaving it listening
+        This describes the hardware only. Set modules.system.bluetooth.enable
+        to run the stack
       '';
     };
 
@@ -28,10 +27,10 @@ in {
       type = bool;
       default = true;
       description = ''
-        Whether the machine has an audio device worth configuring.
+        Whether the machine has an audio device
 
-        Defaults to true because everything with a screen has one.
-        modules.system.audio.enable starts pipewire on top of it
+        True by default, because almost every machine has one. Set
+        modules.system.audio.enable to run pipewire on it
       '';
     };
 
@@ -39,12 +38,12 @@ in {
       type = str;
       example = "wlp0s20f3";
       description = ''
-        The name the wireless interface carries under
-        networking.usePredictableInterfaceNames, which encodes bus topology
-        and so holds across reboots
+        Name of the wireless interface under
+        networking.usePredictableInterfaceNames
 
-        DPI bypass rules and the bar both point at it, so it carries no
-        default and a host that leaves it out fails evaluation
+        The name comes from where the card sits on the bus, so it survives a
+        reboot. DPI bypass rules and the bar both read it. It has no default,
+        so a host that leaves it out fails to evaluate
       '';
     };
 
@@ -53,12 +52,12 @@ in {
       default = null;
       example = "enp6s0";
       description = ''
-        The name the ethernet interface carries under
+        Name of the ethernet interface under
         networking.usePredictableInterfaceNames
 
-        DPI bypass rules cover it alongside the wireless interface, so a host
-        that owns a port and leaves this unset runs unprotected over a cable.
-        Null suits a machine with no ethernet at all
+        DPI bypass rules cover it as well as the wireless interface. A host
+        with a port that leaves this unset has no protection over a cable.
+        Use null on a machine with no ethernet port
       '';
     };
   };

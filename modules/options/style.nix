@@ -21,11 +21,11 @@ in {
         critical = "#ff0000";
       };
       description = ''
-        The colours more than one program draws with, as #rrggbb.
+        Colours that more than one program draws with, written as #rrggbb
 
-        A program keeps a shade of its own where it is the only one using it,
-        such as the terminal palette. Everything a second program repeats
-        belongs here, so a change to the look is a change to one attribute.
+        A program keeps its own shade while it is the only user, such as the
+        terminal palette. A colour moves here once a second program needs it,
+        so changing the look means changing one attribute
       '';
     };
 
@@ -35,11 +35,11 @@ in {
       defaultText = "one @define-color line per entry in modules.style.colors";
       readOnly = true;
       description = ''
-        The palette in the form a GTK3 stylesheet reads it back as @name.
+        The palette in the form GTK3 reads, where each colour becomes @name
 
-        CSS custom properties arrived in GTK 4.16, so a GTK3 sheet that names
-        one parses nothing and fails without a message. waybar and wofi both
-        render through GTK3, which leaves @define-color as the mechanism.
+        GTK gained CSS custom properties in 4.16. A GTK3 sheet that uses one
+        parses nothing and fails without a message. waybar and wofi both draw
+        through GTK3, so @define-color is what works here
       '';
     };
   };

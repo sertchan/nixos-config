@@ -52,6 +52,7 @@ in {
         "fanboy-social"
         "fanboy-thirdparty_social"
         "adguard-social"
+        "fanboy-ai-suggestions"
         "easylist-chat"
         "easylist-newsletters"
         "easylist-notifications"

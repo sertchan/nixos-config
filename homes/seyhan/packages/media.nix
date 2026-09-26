@@ -6,7 +6,5 @@
     imagemagick
     losslesscut
     pulsemixer
-    ueberzugpp
-    waifu2x-converter-cpp
   ];
 }

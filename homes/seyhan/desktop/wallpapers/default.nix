@@ -3,8 +3,8 @@
   pkgs,
   ...
 }: let
-  inherit (builtins) path readDir;
-  inherit (lib.attrsets) attrNames filterAttrs;
+  inherit (builtins) map path toString;
+  inherit (lib.filesystem) listFilesRecursive;
   inherit (lib.lists) any;
   inherit (lib.meta) getExe getExe';
   inherit (lib.strings) concatStringsSep hasSuffix toLower;
@@ -13,15 +13,13 @@
 
   isImage = name: any (suffix: hasSuffix suffix (toLower name)) imageSuffixes;
 
-  images = filterAttrs (name: type: type == "regular" && isImage name) (readDir ./.);
-
   wallpaperDirectory = path {
     path = ./.;
     name = "wallpapers";
-    filter = name: type: type == "regular" && isImage name;
+    filter = name: type: type == "directory" || (type == "regular" && isImage name);
   };
 
-  wallpapers = map (name: "${wallpaperDirectory}/${name}") (attrNames images);
+  wallpapers = map toString (listFilesRecursive wallpaperDirectory);
 
   wallpaperDaemon =
     pkgs.runCommandLocal "wallpaper-daemon" {
@@ -38,7 +36,7 @@ in {
   assertions = [
     {
       assertion = wallpapers != [];
-      message = "homes/seyhan/desktop/wallpapers holds no image. Add a jpg, jpeg, png or webp file beside its default.nix";
+      message = "homes/seyhan/desktop/wallpapers holds no image. Add a jpg, jpeg, png or webp file there or in a subfolder";
     }
   ];
 

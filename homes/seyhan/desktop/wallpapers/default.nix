@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (builtins) readDir;
+  inherit (builtins) path readDir;
   inherit (lib.attrsets) attrNames filterAttrs;
   inherit (lib.lists) any;
   inherit (lib.meta) getExe getExe';
@@ -15,7 +15,13 @@
 
   images = filterAttrs (name: type: type == "regular" && isImage name) (readDir ./.);
 
-  wallpapers = map (name: "${./. + "/${name}"}") (attrNames images);
+  wallpaperDirectory = path {
+    path = ./.;
+    name = "wallpapers";
+    filter = name: type: type == "regular" && isImage name;
+  };
+
+  wallpapers = map (name: "${wallpaperDirectory}/${name}") (attrNames images);
 
   wallpaperDaemon =
     pkgs.runCommandLocal "wallpaper-daemon" {

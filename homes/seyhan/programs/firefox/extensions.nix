@@ -21,6 +21,10 @@ in {
         default_area = "menupanel";
         private_browsing = true;
       };
+      "{f2b832a9-f0f5-4532-934c-74b25eb23fb9}" = {
+        install_url = moz "matte-black-v1";
+        installation_mode = "force_installed";
+      };
     };
 
     "3rdparty".Extensions.${ublock}.adminSettings = {

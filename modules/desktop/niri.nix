@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib.strings) escapeShellArg;
+  inherit (pkgs) niri;
 
   user = config.users.users.seyhan;
 
@@ -13,14 +14,17 @@
 in {
   programs.niri = {
     enable = true;
-    package = pkgs.niri.overrideAttrs (prev: {
-      postInstall =
-        prev.postInstall
-        + ''
-          substituteInPlace $out/bin/niri-session \
-            --replace-fail ${escapeShellArg importWholeEnvironment} ${escapeShellArg importNamedEnvironment}
-        '';
-    });
+    package = pkgs.symlinkJoin {
+      inherit (niri) pname version meta;
+      paths = [niri];
+      passthru = {inherit (niri) providedSessions;};
+      postBuild = ''
+        rm "$out/bin/niri-session"
+        cp ${niri}/bin/niri-session "$out/bin/niri-session"
+        substituteInPlace "$out/bin/niri-session" \
+          --replace-fail ${escapeShellArg importWholeEnvironment} ${escapeShellArg importNamedEnvironment}
+      '';
+    };
   };
 
   environment = {

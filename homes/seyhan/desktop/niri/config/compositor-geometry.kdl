@@ -19,9 +19,6 @@ layout {
         off
     }
 }
-animations {
-    slowdown 0.5
-}
 prefer-no-csd
 gestures {
     hot-corners {
